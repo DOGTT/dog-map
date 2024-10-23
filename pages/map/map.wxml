@@ -1,2 +1,5 @@
 <!--pages/map/map.wxml-->
-<text>pages/map/map.wxml</text>
+<view class="full-screen">
+  <!-- <text>pages/map/map.wxml</text> -->
+  <map class="full-screen" latitude="29.995051" longitude="112.574526" scale="5"/>
+</view>

@@ -62,4 +62,3 @@ page {
   flex: 1;
 }
 
-@import 'index-wxa-auto-dark.wxss'

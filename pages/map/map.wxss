@@ -1,1 +1,7 @@
 /* pages/map/map.wxss */
+
+.full-screen {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
