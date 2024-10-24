@@ -1,5 +1,14 @@
 <!--pages/map/map.wxml-->
 <view class="full-screen">
   <!-- <text>pages/map/map.wxml</text> -->
-  <map class="full-screen" latitude="29.995051" longitude="112.574526" scale="5"/>
+  <map id="map" class="full-screen" 
+  latitude="{{latitude}}" longitude="{{longitude}}" 
+  scale="{{scale}}" circles="{{circles}}" 
+  setting="{{setting}}" 
+  show-location="true" />
+  <button 
+    style="position: absolute; bottom: 20px; right: 20px; z-index: 1000;" 
+    bindtap="reLocation">
+    .
+  </button>
 </view>
