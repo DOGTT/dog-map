@@ -5,3 +5,48 @@
   width: 100vw;
   position: relative;
 }
+
+/* .icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b8b8b8;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+} */
+
+/* .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+} */
+
+.square-button {
+  width: 50px;
+  height: 50px;
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: rgb(235, 11, 11);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.square-button:active {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+  background-color: #cfcfcf; /* 点击时的颜色变化 */
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 3px;
+}
+
+.button-text {
+  font-size: 10px;
+  color: #333;
+}

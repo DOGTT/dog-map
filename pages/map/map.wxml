@@ -6,9 +6,20 @@
   scale="{{scale}}" circles="{{circles}}" 
   setting="{{setting}}" 
   show-location="true" />
-  <button 
+  <!-- <button class="icon-button"
     style="position: absolute; bottom: 20px; right: 20px; z-index: 1000;" 
     bindtap="reLocation">
-    .
-  </button>
+    <image class="icon" src="/static/location.svg" mode="icon" />
+    <text>定位</text>
+  </button> -->
+
+  <view class="square-button" style="position: absolute; bottom: 40px; right: 30px; z-index: 1000;" bindtap="reLocation">
+  <image src="/static/location.svg" class="icon" />
+  <text class="button-text">定位</text>
+</view>
+  <!-- <view class="icon-button" style="position: absolute; bottom: 20px; right: 20px; z-index: 1000;" >
+    <view class="icon">
+      <image src="/static/location.svg" mode="aspectFit" />
+    </view>
+  </view> -->
 </view>
