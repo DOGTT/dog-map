@@ -15,23 +15,32 @@
     }
   },
   "tabBar": {
-  
+    "borderStyle":"white",
+    "backgroundColor":"#FFF",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "static/png/grass.png",
+        "selectedIconPath": "static/png/grass.png"
       },
       {
         "pagePath": "pages/discover/discover",
-        "text": "发现"
+        "text": "发现",
+        "iconPath": "static/png/rocket.png",
+        "selectedIconPath": "static/png/rocket.png"
       },
       {
         "pagePath": "pages/map/map",
-        "text": "地图"
+        "text": "地图",
+        "iconPath": "static/png/map-pin.png",
+        "selectedIconPath": "static/png/map-pin.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "static/png/dog-13.png",
+        "selectedIconPath": "static/png/dog-13.png"
       }
     ]
   },

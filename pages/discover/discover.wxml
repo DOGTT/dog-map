@@ -1,2 +1,5 @@
 <!--pages/discover/discover.wxml-->
-<text>pages/discover/discover.wxml</text>
+
+<view class="container">
+  <text>pages/discover/discover.wxml</text>
+</view>
