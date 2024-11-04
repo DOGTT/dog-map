@@ -1,7 +1,49 @@
 <!--pages/map/map.wxml-->
+
+
 <view class="full-screen">
+
+  <view class="search-bar">
+    <view>
+      <input class="search-input" type="text" placeholder="搜索" />
+    </view>
+  </view>
+
+  <scroll-view class="type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <view class="button-container">
+      <view class="button" bindtap="onSelect">
+        <image class="icon" src="/static/png/dog-13.png" />
+        <text class="label">选项1</text>
+      </view>
+      <view class="button" bindtap="onSelect">
+        <image class="icon" src="/static/png/dog-13.png" />
+        <text class="label">选项2</text>
+      </view>
+      <view class="button" bindtap="onSelect">
+        <image class="icon" src="/static/png/dog-13.png" />
+        <text class="label">选项2</text>
+      </view>
+      <view class="button" bindtap="onSelect">
+        <image class="icon" src="/static/png/dog-13.png" />
+        <text class="label">选项2</text>
+      </view>
+      <view class="button" bindtap="onSelect">
+        <image class="icon" src="/static/png/dog-13.png" />
+        <text class="label">选项2</text>
+      </view>
+      <view class="button" bindtap="onSelect">
+        <image class="icon" src="/static/png/dog-13.png" />
+        <text class="label">选项2</text>
+      </view>
+    </view>
+  </scroll-view>
+
   <!-- <text>pages/map/map.wxml</text> -->
-  <map id="map" class="full-screen" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" circles="{{circles}}" setting="{{setting}}" show-location="true" />
+  <map id="map" class="full-screen" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" circles="{{circles}}" setting="{{setting}}" markers="{{markers}}" show-location="true" bindregionchange="onChangeRegion" bindtap="onTapMap" bindpoitap="onTapPoi" bindmarkertap="onTapMarker"> </map>
+
+  <view hidden="{{detailHidden}}" style="position: absolute; bottom: 400px; right: 300px; z-index: 1000;">
+    <text>{{poiInfo}}</text>
+  </view>
 
   <view class="square-button" style="position: absolute; bottom: 40px; right: 30px; z-index: 1000;" bindtap="reLocation">
     <image src="/static/location.svg" class="icon" />

@@ -22,6 +22,70 @@
   margin-right: 8px;
 } */
 
+/* .map-cover {
+  position: absolute;
+  z-index: 1000;
+} */
+
+.type-selecter-scroll-view {
+  z-index: 1000;
+  width: 100%;
+  position: absolute;
+  top: 200rpx;
+  height: 50px; /* 根据内容适当调整 */
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  /* margin-bottom: 5px; */
+  /* margin: 10%; */
+  /* margin: 5%; */
+}
+
+.label {
+  font-size: 14px;
+  color: #333;
+  margin: 5%;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  margin-left: 40rpx;
+}
+
+.search-input {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10rpx;
+  height: 30px;
+  width: 200px;
+}
+
+.search-bar {
+  position: absolute; 
+  top: 60px; 
+  left: 20px; 
+  z-index: 1000;
+  margin: 10rpx;
+}
+
+.button{
+  display: flex;
+  margin-right: 20px;
+  background-color: #fcfcfc;
+  border-radius: 12px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* width: 80px;
+  height: 100px; */
+  margin: 0 10px;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+}
+
 .square-button {
   width: 50px;
   height: 50px;
@@ -31,7 +95,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  color: rgb(235, 11, 11);
+  /* color: rgb(235, 11, 11); */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
