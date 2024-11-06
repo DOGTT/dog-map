@@ -3,6 +3,8 @@
 var i = 1;
 Page({
   data: {
+    show: false,
+    popupStyle: "height: 30%;",
     detailHidden:true,
     poiInfo: "",
     setting: { // 使用setting配置，方便统一还原
@@ -46,7 +48,28 @@ Page({
       
 			markers: [markers]
 		});
-	},
+  },
+  onLabelTap (event) {
+    console.log("tap")
+  },
+  onCalloutTap (event) {
+    console.log("tap callout")
+    this.setData({
+      show: true
+    });
+  },
+  popFullsize() {
+    console.log("popFullsize")
+    this.setData({
+      popupStyle:"height: 80%;"
+    })
+  },
+  onClose() {
+    this.setData({
+      show: false,
+      popupStyle: "height: 30%;"
+    });
+  },
 	// 标注点击回调
 	onTapMarker (event) {
     const marker = this.data.markers[0];

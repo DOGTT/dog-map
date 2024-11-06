@@ -2,7 +2,15 @@
 
 
 <view class="full-screen">
-
+  <van-popup 
+  show="{{ show }}" 
+  position="bottom"
+  z-index="1001"
+  custom-style="{{ popupStyle }}"
+  bind:close="onClose">
+  <van-button plain type="primary" size="small" bindclick="popFullsize" >放大</van-button>
+  
+  </van-popup>
   <view class="search-bar">
     <view>
       <input class="search-input" type="text" placeholder="搜索" />
@@ -39,7 +47,16 @@
   </scroll-view>
 
   <!-- <text>pages/map/map.wxml</text> -->
-  <map id="map" class="full-screen" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" circles="{{circles}}" setting="{{setting}}" markers="{{markers}}" show-location="true" bindregionchange="onChangeRegion" bindtap="onTapMap" bindpoitap="onTapPoi" bindmarkertap="onTapMarker"> </map>
+  <map 
+  id="map" 
+  class="full-screen" 
+  latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" circles="{{circles}}" setting="{{setting}}" markers="{{markers}}" show-location="true" 
+  bindregionchange="onChangeRegion" 
+  bindtap="onTapMap" 
+  bindpoitap="onTapPoi" 
+  bindlabeltap="onLabelTap"
+  bindcallouttap="onCalloutTap"
+  bindmarkertap="onTapMarker"> </map>
 
   <view hidden="{{detailHidden}}" style="position: absolute; bottom: 400px; right: 300px; z-index: 1000;">
     <text>{{poiInfo}}</text>
