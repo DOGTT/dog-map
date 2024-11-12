@@ -1,0 +1,31 @@
+{
+  "message":"OK",
+  "data":{
+    "poi_list":[
+      {
+        "id":"1a",
+        "type_id":"1",
+        "name":"图书馆大草地",
+        "latitude":22.22,
+        "longitude":100.11,
+        "tag_list":[""],
+        "fresh_score": 99,
+        "popular_score": 80
+      },
+      {
+        "id":"2b",
+        "type_id":"2",
+        "name":"宠爱友好餐厅",
+        "latitude":22.22,
+        "longitude":100.11
+      },
+      {
+        "id":"1b",
+        "type_id":"1",
+        "name":"啦啦宠物公园",
+        "latitude":22.22,
+        "longitude":100.11
+      }
+    ]
+  }
+}

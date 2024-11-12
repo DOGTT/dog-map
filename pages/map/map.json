@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "van-popup": "/components/@vant/weapp/popup/index",
-    "van-button": "/components/@vant/weapp/button/index"
+    "van-button": "/components/@vant/weapp/button/index",
+    "van-card": "/components/@vant/weapp/card/index"
   }
 }
