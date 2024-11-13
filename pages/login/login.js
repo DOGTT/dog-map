@@ -22,11 +22,16 @@ Component({
           if (res.code) {
             //发起网络请求
             wx.request({
-              url: 'https://example.com/onLogin',
+              url: 'https://example.com/login',
+              dataType: 'json',
               data: {
                 code: res.code
+              },
+              success(res) {
+                console.log(res)
               }
             })
+
           } else {
             console.log('登录失败！' + res.errMsg)
           }

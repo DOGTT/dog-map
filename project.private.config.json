@@ -3,6 +3,7 @@
   "projectname": "dog-map",
   "setting": {
     "compileHotReLoad": true,
-    "skylineRenderEnable": false
+    "skylineRenderEnable": false,
+    "urlCheck": false
   }
 }
