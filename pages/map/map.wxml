@@ -1,7 +1,5 @@
 <!--pages/map/map.wxml-->
 <view class="full-screen">
-
-
   <van-toast id="van-toast" />
   <!-- 地图 -->
   <map id="map" class="full-screen" 
@@ -30,6 +28,8 @@
   <scroll-view class="poi-type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
     <view class="poi-type-tab-button-container">
       <block wx:for="{{ poiTypeList }}" wx:key="id">
+        <canvas id="icon-{{item.id}}" type="2d" style="display: none;" ></canvas>
+        <canvas id="iconSet-{{item.id}}" type="2d" style="display: none;" ></canvas>
         <van-button plain size="small" 
         icon="{{item.icon}}" 
         type="primary"
@@ -45,11 +45,6 @@
     </view>
   </scroll-view>
 
-  <canvas
-  id="dynamicCanvas"
-  type="2d"
-  style="width: 100px; height: 100px;"
-></canvas>
   <!-- 下方弹出 -->
   <!-- <van-popup show="{{ show }}" position="bottom" z-index="1001" custom-style="{{ popupStyle }}" bind:close="onClose">
     <van-button plain type="primary" size="small" bindclick="popFullsize">放大</van-button>
@@ -61,7 +56,7 @@
   <!-- 下方 -->
   <view class="bottom-ctrl">
   <!-- 定位按钮 -->
-    <view class="reloc-button" bindtap="moveViewToLocation">
+    <view class="reloc-button {{poiDetailPopupShow  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
     <image src="/static/location.svg" class="reloc-button-icon" />
     <text class="reloc-button-text">定位</text>
   </view>

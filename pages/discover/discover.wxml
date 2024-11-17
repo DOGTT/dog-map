@@ -1,4 +1,7 @@
 <!--pages/discover/discover.wxml-->
+<canvas type="2d" style="width: 200px; height: 200px;" id="dynamicCanvas"
+bindtap="onCanvasClick"
+></canvas>
 
 <view class="container">
   <text>pages/discover/discover.wxml</text>
@@ -11,9 +14,8 @@
 
 <text>test</text>
 
-<canvas type="2d" style="width: 200px; height: 200px;" id="myCanvas"
-bindtap="onCanvasClick"
-></canvas>
+<image src="{{tempFilePathA}}" style="width: 100px;" mode="widthFix"></image>
+<image src="{{tempFilePathB}}" style="width: 100px;" mode="widthFix"></image>
 </view>
 
 <van-button plain type="primary">按钮</van-button>
