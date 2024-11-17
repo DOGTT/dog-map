@@ -1,55 +1,77 @@
 <!--pages/map/map.wxml-->
-
-
 <view class="full-screen">
-  <van-popup show="{{ show }}" position="bottom" z-index="1001" custom-style="{{ popupStyle }}" bind:close="onClose">
-    <van-button plain type="primary" size="small" bindclick="popFullsize">放大</van-button>
-    <van-card num="2" price="2.00" desc="描述信息" title="商品标题" thumb="{{ imageURL }}" />
-  </van-popup>
-  <view class="search-bar">
-    <view>
-      <input class="search-input" type="text" placeholder="搜索" />
-    </view>
-  </view>
 
-  <scroll-view class="type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
-    <view class="button-container">
-      <view class="button" bindtap="onSelect">
+
+  <van-toast id="van-toast" />
+  <!-- 地图 -->
+  <map id="map" class="full-screen" 
+  latitude="{{mapData.latitude}}" 
+  longitude="{{mapData.longitude}}" 
+  scale="{{mapData.scale}}" 
+  setting="{{mapSetting}}" 
+  markers="{{mapData.markers}}"
+  circles="{{mapData.circles}}"
+  bindtap="onTapMap" 
+  bindregionchange="onChangeRegion"
+  bindpoitap="onTapPoi" 
+  bindlabeltap="onLabelTap" 
+  bindcallouttap="onCalloutTap" 
+  bindmarkertap="onTapMarker"
+  > </map>
+
+  <!-- 搜索 -->
+  <view class="search-bar">
+    <!-- <view>
+      <input class="search-input" type="text" placeholder="搜索" />
+    </view> -->
+    <van-search class="search-input" background="ragb(0,0,0,0.5)" value="{{ value }}" placeholder="请输入搜索关键词" />
+  </view>
+  <!-- 上方类型tab -->
+  <scroll-view class="poi-type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <view class="poi-type-tab-button-container">
+      <block wx:for="{{ poiTypeList }}" wx:key="id">
+        <van-button plain size="small" 
+        icon="{{item.icon}}" 
+        type="primary"
+        data-id="{{item.id}}"
+        class="poi-type-button"
+        custom-class="poi-type-button-custom {{poiTypeStateMap[item.id].select ? 'selected' : 'default'}}"
+        bind:tap="onPOITypeButtonClick">{{item.name}}</van-button>
+      </block>
+      <!-- <view class="button" bindtap="onSelect">
         <image class="icon" src="/static/png/dog-13.png" />
         <text class="label">选项1</text>
-      </view>
-      <view class="button" bindtap="onSelect">
-        <image class="icon" src="/static/png/dog-13.png" />
-        <text class="label">选项2</text>
-      </view>
-      <view class="button" bindtap="onSelect">
-        <image class="icon" src="/static/png/dog-13.png" />
-        <text class="label">选项2</text>
-      </view>
-      <view class="button" bindtap="onSelect">
-        <image class="icon" src="/static/png/dog-13.png" />
-        <text class="label">选项2</text>
-      </view>
-      <view class="button" bindtap="onSelect">
-        <image class="icon" src="/static/png/dog-13.png" />
-        <text class="label">选项2</text>
-      </view>
-      <view class="button" bindtap="onSelect">
-        <image class="icon" src="/static/png/dog-13.png" />
-        <text class="label">选项2</text>
-      </view>
+      </view> -->
     </view>
   </scroll-view>
 
-  <!-- <text>pages/map/map.wxml</text> -->
-  <map id="map" class="full-screen" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" circles="{{circles}}" setting="{{setting}}" markers="{{markers}}" show-location="true" bindregionchange="onChangeRegion" bindtap="onTapMap" bindpoitap="onTapPoi" bindlabeltap="onLabelTap" bindcallouttap="onCalloutTap" bindmarkertap="onTapMarker"> </map>
+  <canvas
+  id="dynamicCanvas"
+  type="2d"
+  style="width: 100px; height: 100px;"
+></canvas>
+  <!-- 下方弹出 -->
+  <!-- <van-popup show="{{ show }}" position="bottom" z-index="1001" custom-style="{{ popupStyle }}" bind:close="onClose">
+    <van-button plain type="primary" size="small" bindclick="popFullsize">放大</van-button>
+    <van-card num="2" price="2.00" desc="描述信息" title="商品标题" thumb="{{ imageURL }}" />
+  </van-popup> -->
 
-  <view hidden="{{detailHidden}}" style="position: absolute; bottom: 400px; right: 300px; z-index: 1000;">
-    <text>{{poiInfo}}</text>
-  </view>
 
-  <view class="square-button" style="position: absolute; bottom: 40px; right: 30px; z-index: 1000;" bindtap="reLocation">
-    <image src="/static/location.svg" class="icon" />
-    <text class="button-text">定位</text>
+
+  <!-- 下方 -->
+  <view class="bottom-ctrl">
+  <!-- 定位按钮 -->
+    <view class="reloc-button" bindtap="moveViewToLocation">
+    <image src="/static/location.svg" class="reloc-button-icon" />
+    <text class="reloc-button-text">定位</text>
   </view>
+  <!-- 弹出框 -->
+  <view class="poi-detail-popup {{poiDetailPopupShow  ? 'poi-detail-popup-show' : 'poi-detail-popup-hide'}}">
+    <view class="popup-content">
+      <text>{{poiDetail.title}}</text>
+      <button bindtap="hidePopup">关闭</button>
+    </view>
+  </view>
+  </view>
+  <!-- end -->
 </view>

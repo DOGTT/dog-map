@@ -1,5 +1,6 @@
 // index.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+const app = getApp();
 
 Component({
   data: {
@@ -22,13 +23,17 @@ Component({
           if (res.code) {
             //发起网络请求
             wx.request({
-              url: 'https://example.com/login',
+              url: app.globalData.baseUrl+'/login',
               dataType: 'json',
               data: {
                 code: res.code
               },
               success(res) {
-                console.log(res)
+                console.log("res",res)
+                wx.setStorageSync('token', res.data.token);
+              },
+              fail(err) {
+                console.error('Login failed:', err);
               }
             })
 

@@ -5,26 +5,30 @@
       {
         "id":"1a",
         "type_id":"1",
-        "name":"图书馆大草地",
-        "latitude":22.22,
-        "longitude":100.11,
+        "name":"宝安青少年宫边大草地",
+        "content":"每天晚上超多狗狗",
+        "photo_list":[],
+        "latitude":22.545864325965013,
+        "longitude":113.88149142389454,
         "tag_list":[""],
         "fresh_score": 99,
-        "popular_score": 80
+        "popular_score": 80,
+        "create_at": 123414314312,
+        "update_at": 123414314312
       },
       {
         "id":"2b",
         "type_id":"2",
         "name":"宠爱友好餐厅",
-        "latitude":22.22,
-        "longitude":100.11
+        "latitude":22.55100078551942,
+        "longitude":113.8775019419171
       },
       {
         "id":"1b",
-        "type_id":"1",
+        "type_id":"3",
         "name":"啦啦宠物公园",
-        "latitude":22.22,
-        "longitude":100.11
+        "latitude":22.56034688402926,
+        "longitude":113.88894457650508
       }
     ]
   }

@@ -6,6 +6,78 @@
   position: relative;
 }
 
+.search-bar {
+  position: absolute; 
+  top: 42px; 
+  width: 320px;
+  z-index: 1001;
+  margin: 10rpx;
+}
+
+.search-input {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10rpx;
+  height: 30px;
+}
+
+.poi-type-selecter-scroll-view {
+  z-index: 1000;
+  width: 100%;
+  position: absolute;
+  top: 200rpx;
+  height: 50px; /* 根据内容适当调整 */
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.poi-type-tab-button-container {
+  display: flex;
+  /* align-items: center; */
+  margin-left: 10rpx;
+}
+
+.poi-type-button-custom.selected {
+  justify-content: flex-start !important; /* 左对齐 */
+  text-align: left !important; /* 确保文字左对齐 */
+  border-color: rgb(0, 255, 21) !important;
+  color: #409eff !important;
+  transition: all 0.3s !important;
+  /* padding-left: 10px !important; */
+}
+.poi-type-button-custom.default {
+  justify-content: flex-start !important; /* 左对齐 */
+  text-align: left !important; /* 确保文字左对齐 */
+  border-color: #ccc !important;
+  color: #b4b4b4 !important;
+  transition: all 0.3s !important;
+  /* border-color: #ccc !important; */
+  /* color: #409eff !important; */
+  /* padding-left: 10px !important; */
+}
+
+.poi-type-button {
+  display: flex;
+  padding-left: 10px;
+  /* 可根据需求调整内边距 */
+  /* margin-right: 10px; */
+  /* background-color: #fcfcfc; */
+  /* border-radius: 12px; */
+  /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
+  /* width: 80px;
+  height: 100px; */
+  width: 100px;
+  margin: 0 2px;
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.poi-type-button .van-button__icon {
+  margin-right: 8px; /* 设置图标和文字的间距 */
+}
+/* head ====== */
+
+
 /* .icon-button {
   display: flex;
   align-items: center;
@@ -27,90 +99,86 @@
   z-index: 1000;
 } */
 
-.type-selecter-scroll-view {
-  z-index: 1000;
-  width: 100%;
-  position: absolute;
-  top: 200rpx;
-  height: 50px; /* 根据内容适当调整 */
-  white-space: nowrap;
-  overflow-x: auto;
-}
 
-.icon {
+/* .icon {
   width: 40px;
-  height: 40px;
+  height: 40px; */
   /* margin-bottom: 5px; */
   /* margin: 10%; */
   /* margin: 5%; */
-}
+/* } */
 
-.label {
+/* .label {
   font-size: 14px;
   color: #333;
   margin: 5%;
-}
+} */
 
-.button-container {
-  display: flex;
-  align-items: center;
-  margin-left: 40rpx;
-}
-
-.search-input {
-  background-color: rgb(255, 255, 255);
-  border-radius: 10rpx;
-  height: 30px;
-  width: 200px;
-}
-
-.search-bar {
-  position: absolute; 
-  top: 60px; 
-  left: 20px; 
+/* 底部容器 */
+.bottom-ctrl {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  margin: 10rpx;
 }
 
-.button{
+.reloc-button {
+  position: fixed;
   display: flex;
-  margin-right: 20px;
-  background-color: #fcfcfc;
-  border-radius: 12px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  /* width: 80px;
-  height: 100px; */
-  margin: 0 10px;
-  /* flex-direction: column; */
-  align-items: center;
-  justify-content: center;
-}
-
-.square-button {
   width: 50px;
   height: 50px;
   background-color: #fcfcfc;
-  display: flex;
+  bottom: 40px; 
+  right: 30px; 
+  z-index: 1000;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
+  /* margin-bottom: 300rpx; */
   /* color: rgb(235, 11, 11); */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.square-button:active {
+.reloc-button:active {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
   background-color: #cfcfcf; /* 点击时的颜色变化 */
-}
+}  
 
-.icon {
+.reloc-button-icon {
   width: 20px;
   height: 20px;
   margin-bottom: 3px;
 }
 
-.button-text {
+.reloc-button-text {
   font-size: 10px;
   color: #333;
+}
+
+
+
+
+/* 弹出框样式 */
+.poi-detail-popup {
+  position: fixed;
+  height: 300rpx;
+  bottom: -300rpx;
+  left: 30rpx; 
+  right: 30rpx; 
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* margin: 20px 20px 20px 20px; */
+  background-color: #ffffff;
+  /* 默认隐藏 */
+  /* transform: translateY(100%);  */
+  transition: transform 0.3s ease, bottom 0.3s ease;
+  /* z-index: 1000; */
+}
+.poi-detail-popup-show {
+  bottom: 30rpx; /* 弹出到可见区域 */
+}
+.poi-detail-popup-hide {
+  bottom: -300rpx; /* 隐藏回屏幕下方 */
 }

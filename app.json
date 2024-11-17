@@ -27,13 +27,13 @@
       {
         "pagePath": "pages/discover/discover",
         "text": "发现",
-        "iconPath": "static/png/rocket.png",
+        "iconPath": "static/png/grass.png",
         "selectedIconPath": "static/png/rocket.png"
       },
       {
         "pagePath": "pages/login/login",
-        "text": "登陆",
-        "iconPath": "static/png/grass.png",
+        "text": "消息",
+        "iconPath": "static/png/message.png",
         "selectedIconPath": "static/png/grass.png"
       },
       {

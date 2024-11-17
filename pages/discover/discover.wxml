@@ -7,8 +7,14 @@
 <input type="text" placeholder="搜索"/>
 </view>
 </view>
+<text>test</text>
 
+<text>test</text>
 
+<canvas type="2d" style="width: 200px; height: 200px;" id="myCanvas"
+bindtap="onCanvasClick"
+></canvas>
 </view>
 
 <van-button plain type="primary">按钮</van-button>
+
