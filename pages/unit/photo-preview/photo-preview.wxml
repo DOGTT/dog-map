@@ -1,0 +1,16 @@
+<!--pages/unit/photo-preview/photo-preview.wxml-->
+<view class="photo-preview" wx:if="{{show}}">
+  <!-- 遮罩层 -->
+  <view class="overlay" bindtap="closePreview"></view>
+  
+  <!-- 图片预览内容 -->
+  <view class="content">
+    <image src="{{currentPhoto}}" class="preview-image" mode="aspectFit" />
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="action-button" bindtap="setAsCover">设为首图</button>
+      <button class="action-button delete-button" bindtap="deletePhoto">删除</button>
+    </view>
+  </view>
+</view>

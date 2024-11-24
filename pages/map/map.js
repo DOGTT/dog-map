@@ -27,16 +27,18 @@ class PoiMarker {
 // Main
 Page({
 	data: {
+    loginPopupShow: false,
 		// for render
-		poiDetailPopupShow: false,
-		poiDetailPopupAnimation: 'slideUp',
-		poiDetail: {
+		pofpDetailPopupShow: false,
+		pofpDetailPopupAnimation: 'slideUp',
+		pofpDetail: {
 			id: "",
 			title: "信息待填充",
 			content: "",
 			address: "",
 			create_at: "",
-			update_at: "",
+      update_at: "",
+      is_favorited: false,
 			publish_user: {
 				user_id: 1,
 				avatar: ""
@@ -65,7 +67,7 @@ Page({
 			circles: [],
 			markers: [{
 				id: 1,
-				title: "当前位置",
+				title: "示例位置",
 				latitude: 22.55329,
 				longitude: 113.90308,
 				iconPath: "/static/png/marker/Marker3_Activated@3x.png",
@@ -73,20 +75,20 @@ Page({
 				height: "38px",
 				callout: {
 					content: "我的位置",
-					display: "BYCLICK",
+					display: "ALWAYS",
 					padding: 10,
 					borderRadius: 2
 				}
 			}]
 		},
 		poiMap: {},
-		poiTypeList: [],
-		poiTypeStateMap: {}
+		pofpTypeList: [],
+		pofpTypeStateMap: {}
 	},
-	onPOITypeButtonClick(e) {
+	onPOFPTypeButtonClick(e) {
 		// console.log("tap id e:",e)
 		var id = e.currentTarget.dataset.id; // 获取按钮的唯一标识
-		var ps = this.data.poiTypeStateMap;
+		var ps = this.data.pofpTypeStateMap;
 		console.log("tap id:", id, ps)
 		const allTrue = Object.values(ps).every(value => value.select === true);
 		if (allTrue) {
@@ -94,22 +96,26 @@ Page({
 				ps[key].select = !ps[key].select;
 			}
 		}
-		this.data.poiTypeStateMap[id].select = !ps[id].select;
+		this.data.pofpTypeStateMap[id].select = !ps[id].select;
 		this.poiListReRender();
 		// 更新数据
 		this.setData({
-			poiTypeStateMap: this.data.poiTypeStateMap,
+			pofpTypeStateMap: this.data.pofpTypeStateMap,
 		});
 	},
 	// 点击地图事件
 	onTapMap(event) {
 		console.log("onTapMap")
-		const latitude = event.detail.latitude;
-		const longitude = event.detail.longitude;
-		var markers = this.data.mapData.markers;
-		markers[0].latitude = latitude;
-		markers[0].longitude = longitude;
-
+		// const latitude = event.detail.latitude;
+		// const longitude = event.detail.longitude;
+    // var markers = this.data.mapData.markers;
+    // console.log(markers);
+		// this.data.mapData.markers[0].latitude = latitude;
+    // this.data.mapData.markers[0].longitude = longitude;
+    // this.data.mapData.markers = markers;
+    // this.setData({
+    //   mapData:this.data.mapData,
+    // });
 	},
 	onLabelTap(event) {
 		console.log("onLabelTap")
@@ -137,7 +143,7 @@ Page({
      let markers = this.data.mapData.markers;
      for (let i=1;i<markers.length;i++) {
       let poiInfo = this.data.poiMap[i+1];
-      markers[i].iconPath = this.data.poiTypeStateMap[poiInfo.type_id].icon;
+      markers[i].iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].icon;
       markers[i].anchor = {x:0.5,y:0.5};
      }
      this.data.mapData.markers = markers;
@@ -155,10 +161,10 @@ Page({
     let markers = this.data.mapData.markers;
     for (let i=1;i<markers.length;i++) {
       if (i+1===event.markerId) {
-        markers[i].iconPath = this.data.poiTypeStateMap[poiInfo.type_id].iconSet;
+        markers[i].iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].iconSet;
         markers[i].anchor = {x: 0.5, y: 1};
-        markers[i].width = '58px';
-        markers[i].height = '58px';
+        // markers[i].width = '58px';
+        // markers[i].height = '58px';
       }
       console.log('data:',markers[i] )
     }
@@ -166,11 +172,11 @@ Page({
 		// update marker info to detail
 		this.setData({
       mapData: this.data.mapData,
-			poiDetail: {
+			pofpDetail: {
 				title: poiInfo.name,
 			}
 		})
-		this.poiDetailUp();
+		this.pofpDetailUp();
 		// const marker = this.data.markers[0];
 		// const mapCtx = wx.createMapContext('map', this);
 		// mapCtx.moveToLocation({
@@ -199,20 +205,20 @@ Page({
 		// poiCallbackTxt: name + '：' + latitude.toFixed(6) + ',' + longitude.toFixed(6)
 		// });
 	},
-	poiDetailUp() {
+	pofpDetailUp() {
 		this.setData({
-			poiDetailPopupShow: true,
-			poiDetailPopupAnimation: 'slideUp', // 添加向上动画
+			pofpDetailPopupShow: true,
+			pofpDetailPopupAnimation: 'slideUp', // 添加向上动画
 		});
 	},
-	poiDetailDown() {
+	pofpDetailDown() {
 		this.setData({
-			poiDetailPopupAnimation: 'slideDown', // 添加向下动画
+			pofpDetailPopupAnimation: 'slideDown', // 添加向下动画
 		});
 		// 动画完成后再隐藏组件
 		setTimeout(() => {
 			this.setData({
-				poiDetailPopupShow: false,
+				pofpDetailPopupShow: false,
 			});
 		}, 300); // 动画时长与 CSS 定义一致
 	},
@@ -220,7 +226,7 @@ Page({
 	onChangeRegion(event) {
 		console.log("onChangeRegion")
 		// 关闭弹出框
-		this.poiDetailDown();
+		this.pofpDetailDown();
 		if (event.type === 'end' && event.causedBy === 'drag') {
 			const mapCtx = wx.createMapContext('map', this);
 			mapCtx.getCenterLocation({
@@ -273,8 +279,8 @@ Page({
 	},
 	drowPOIPng() {
 		var canvasConfigs = [];
-		for (let typeID in this.data.poiTypeStateMap) {
-			let poiData = this.data.poiTypeStateMap[typeID].data;
+		for (let typeID in this.data.pofpTypeStateMap) {
+			let poiData = this.data.pofpTypeStateMap[typeID].data;
 			canvasConfigs.push({
 				typeID: typeID,
 				canvasId: '#icon-' + typeID,
@@ -292,7 +298,7 @@ Page({
         iconSrc: config.iconSrc,
         fillStyle: config.fillStyle,
 			}).then((tempPath) => {
-				this.data.poiTypeStateMap[config.typeID].icon = tempPath;
+				this.data.pofpTypeStateMap[config.typeID].icon = tempPath;
 			}).catch((err) => {
 				console.error('图片生成失败:', err);
 			})
@@ -300,7 +306,12 @@ Page({
 		// 批量处理图片生成
 		Promise.all(imagePromises)
 			.then(() => {
-				console.log('所有图片生成成功:', this.data.poiTypeStateMap);
+        console.log('所有图片生成成功:', this.data.pofpTypeStateMap);
+        this.setData(
+          {
+            pofpTypeStateMap: this.data.pofpTypeStateMap,
+          }
+        )
 				this.poiListReRender();
 			})
 			.catch((err) => {
@@ -308,8 +319,8 @@ Page({
 			});
 
 		var canvasSetConfigs = [];
-		for (let typeID in this.data.poiTypeStateMap) {
-      let poiData = this.data.poiTypeStateMap[typeID].data;
+		for (let typeID in this.data.pofpTypeStateMap) {
+      let poiData = this.data.pofpTypeStateMap[typeID].data;
 			canvasSetConfigs.push({
 				typeID: typeID,
 				canvasId: '#iconSet-' + typeID,
@@ -324,7 +335,7 @@ Page({
         iconSrc: config.iconSrc,
         fillStyle: config.fillStyle,
 			}).then((tempPath) => {
-				this.data.poiTypeStateMap[config.typeID].iconSet = tempPath;
+				this.data.pofpTypeStateMap[config.typeID].iconSet = tempPath;
 			}).catch((err) => {
 				console.error('图片生成失败:', err);
 			})
@@ -332,13 +343,13 @@ Page({
 		// 批量处理图片生成
 		Promise.all(imagePromisesSet)
 			.then(() => {
-				console.log('所有选择中图片生成成功:', this.data.poiTypeStateMap);
+				console.log('所有选择中图片生成成功:', this.data.pofpTypeStateMap);
 			})
 			.catch((err) => {
 				console.error('图片生成失败:', err);
 			});
 	},
-	poiTypeListReload() {
+	pofpTypeListReload() {
 		// 查询poi类型列表
 		wx.request({
 			url: app.globalData.baseUrl + '/poi_type_list',
@@ -351,15 +362,15 @@ Page({
 				console.log("res.data", res.data);
 				var listData = res.data.poi_type_list;
 				for (let i = 0; i < listData.length; i++) {
-					this.data.poiTypeStateMap[listData[i].id] = {
+					this.data.pofpTypeStateMap[listData[i].id] = {
 						select: true,
 						data: listData[i],
 					};
 				}
 
 				this.setData({
-					poiTypeList: res.data.poi_type_list,
-					poiTypeStateMap: this.data.poiTypeStateMap,
+					pofpTypeList: res.data.poi_type_list,
+					pofpTypeStateMap: this.data.pofpTypeStateMap,
 				});
 				this.drowPOIPng();
 				this.poiListReload();
@@ -375,7 +386,7 @@ Page({
 			markers.push(this.data.mapData.markers[0]);
 		}
 		console.log("poiListReRender this.poiMap", this.data.poiMap);
-		var ptsMap = this.data.poiTypeStateMap;
+		var ptsMap = this.data.pofpTypeStateMap;
 		var pMap = this.data.poiMap;
 		for (let makerID in pMap) {
 			let poi = pMap[makerID];
@@ -422,7 +433,24 @@ Page({
 		});
 
 	},
-
+  toggleFavorite() {
+    var d = this.data.pofpDetail;
+    console.log("toggleFavorite",d.is_favorited);
+    d.is_favorited = !d.is_favorited;
+    this.setData({ pofpDetail: d });
+  },
+  showPOFPFullPage(){
+    this.setData(
+      {
+        loginPopupShow:true,
+      }
+    );
+  },
+  navigateToPofpCreate() {
+    wx.navigateTo({
+      url: '/pages/unit/pofp-create/pofp-create', // 替换为实际的协议页面路径
+    });
+  },
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -436,7 +464,7 @@ Page({
 		console.log("onLoad")
 		this.reLocation();
 		Toast('加载中');
-		this.poiTypeListReload();
+		this.pofpTypeListReload();
 
 	},
 	/**

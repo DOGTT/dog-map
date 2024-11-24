@@ -1,0 +1,35 @@
+/* pages/unit/user-terms/user-terms.wxss */
+.terms-page {
+  position: relative;
+  padding: 0 20rpx;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  padding: 0 20rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.back-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  cursor: pointer;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.terms-content {
+  margin-top: 20rpx;
+  height: calc(100vh - 80rpx); /* 扣除顶部标题栏的高度 */
+  overflow-y: scroll;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #333;
+}

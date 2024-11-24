@@ -1,0 +1,57 @@
+/* pages/unit/photo-preview/photo-preview.wxss */
+.photo-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.preview-image {
+  flex: 1;
+  width: 100%;
+  background-color: #000;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx;
+}
+
+.action-button {
+  flex: 1;
+  margin: 0 10rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10rpx;
+  color: #333;
+}
+
+.delete-button {
+  background-color: #ff4d4f;
+  color: #fff;
+}

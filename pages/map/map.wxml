@@ -1,8 +1,10 @@
 <!--pages/map/map.wxml-->
 <view class="full-screen">
   <van-toast id="van-toast" />
-  <!-- 地图 -->
-  <map id="map" class="full-screen" 
+
+  <view id="map-container">
+   <!-- 地图 -->
+   <map id="map" class="full-screen" 
   latitude="{{mapData.latitude}}" 
   longitude="{{mapData.longitude}}" 
   scale="{{mapData.scale}}" 
@@ -15,8 +17,9 @@
   bindlabeltap="onLabelTap" 
   bindcallouttap="onCalloutTap" 
   bindmarkertap="onTapMarker"
-  > </map>
+  > 
 
+  </map>
   <!-- 搜索 -->
   <view class="search-bar">
     <!-- <view>
@@ -25,18 +28,19 @@
     <van-search class="search-input" background="ragb(0,0,0,0.5)" value="{{ value }}" placeholder="请输入搜索关键词" />
   </view>
   <!-- 上方类型tab -->
-  <scroll-view class="poi-type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
-    <view class="poi-type-tab-button-container">
-      <block wx:for="{{ poiTypeList }}" wx:key="id">
+  <scroll-view class="pofp-type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <view class="pofp-type-tab-button-container">
+      <block wx:for="{{ pofpTypeList }}" wx:key="id">
         <canvas id="icon-{{item.id}}" type="2d" style="display: none;" ></canvas>
         <canvas id="iconSet-{{item.id}}" type="2d" style="display: none;" ></canvas>
         <van-button plain size="small" 
-        icon="{{item.icon}}" 
+        icon="{{pofpTypeStateMap[item.id].icon}}"
+        icon-size="54px"
         type="primary"
         data-id="{{item.id}}"
-        class="poi-type-button"
-        custom-class="poi-type-button-custom {{poiTypeStateMap[item.id].select ? 'selected' : 'default'}}"
-        bind:tap="onPOITypeButtonClick">{{item.name}}</van-button>
+        class="pofp-type-button"
+        custom-class="pofp-type-button-custom {{pofpTypeStateMap[item.id].select ? 'selected' : 'default'}}"
+        bind:tap="onPOFPTypeButtonClick">{{item.name}}</van-button>
       </block>
       <!-- <view class="button" bindtap="onSelect">
         <image class="icon" src="/static/png/dog-13.png" />
@@ -44,29 +48,74 @@
       </view> -->
     </view>
   </scroll-view>
-
-  <!-- 下方弹出 -->
-  <!-- <van-popup show="{{ show }}" position="bottom" z-index="1001" custom-style="{{ popupStyle }}" bind:close="onClose">
-    <van-button plain type="primary" size="small" bindclick="popFullsize">放大</van-button>
-    <van-card num="2" price="2.00" desc="描述信息" title="商品标题" thumb="{{ imageURL }}" />
-  </van-popup> -->
-
-
-
-  <!-- 下方 -->
+  <!-- 下方控制展示区 -->
   <view class="bottom-ctrl">
+  <!-- 发布按钮 -->
+  <view class="rect-button pub-button {{pofpDetailPopupShow  ? 'pub-button-up' : ''}}" bindtap="navigateToPofpCreate">
+    <image src="/static/svg/pub.svg" class="rect-button-icon" />
+    <text class="rect-button-text">发布</text>
+  </view>
   <!-- 定位按钮 -->
-    <view class="reloc-button {{poiDetailPopupShow  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
-    <image src="/static/location.svg" class="reloc-button-icon" />
-    <text class="reloc-button-text">定位</text>
+  <view class="rect-button reloc-button {{pofpDetailPopupShow  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
+    <image src="/static/svg/location.svg" class="rect-button-icon" />
+    <text class="rect-button-text">定位</text>
   </view>
   <!-- 弹出框 -->
-  <view class="poi-detail-popup {{poiDetailPopupShow  ? 'poi-detail-popup-show' : 'poi-detail-popup-hide'}}">
-    <view class="popup-content">
-      <text>{{poiDetail.title}}</text>
-      <button bindtap="hidePopup">关闭</button>
+  <view class="pofp-detail-popup {{pofpDetailPopupShow  ? 'pofp-detail-popup-show' : 'pofp-detail-popup-hide'}}">
+    <view class="pofp-detail-card">
+      <view class="pofp-detail-row">
+        <view class="pofp-detail-column">
+          <image class="pofp-detail-avatar" src="/static/png/dog-13.png" />
+          <text class="pofp-detail-avatar-text">香香</text>
+        </view>
+        <view class="pofp-detail-content" bindtap="showPOFPFullPage">
+          <view class="pofp-detail-title">
+          <text>{{pofpDetail.title}}
+          </text>
+          <view class="favorite-icon-button" bindtap="toggleFavorite">
+            <image class="favorite-icon {{isFavorited ? 'active' : ''}}" src="/static/svg/fav.svg" />
+          </view>
+          </view>
+          <view class="pofp-detail-tags">
+            <view class="pofp-detail-tag">宠物友好</view>
+            <view class="pofp-detail-tag">大狗优选</view>
+            <view class="pofp-detail-tag">自由玩耍</view>
+          </view>
+        </view>
+        <view class="pofp-detail-button-wrapper">
+          <view class="pofp-detail-button">
+            <image class="pofp-detail-button-icon" src="/static/svg/share.svg" />
+            <text class="pofp-detail-button-text">分享</text>
+          </view>
+          <view class="pofp-detail-button">
+            <image class="pofp-detail-button-icon" src="/static/svg/nav.svg" />
+            <text class="pofp-detail-button-text">1.5km</text>
+          </view>
+        </view>
+      </view>
+      <view class="pofp-detail-row">
+        <view class="pofp-detail-row2-column">
+        热度/友好分
+        </view>
+        <view class="pofp-detail-row2-content">
+        动态
+        </view>
+      </view>
     </view>
+
   </view>
   </view>
   <!-- end -->
+  </view>
+
+  <!-- pofp详情页面 -->
+  <view >
+    
+  </view>
+  <!-- 登陆注册页 -->
+  <login-popup
+    show="{{loginPopupShow}}"
+    bind:close="onLoginPopupClose"
+    bind:login="onUserLogin"
+  />
 </view>

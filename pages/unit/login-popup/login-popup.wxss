@@ -1,0 +1,79 @@
+/* components/login-popup/login-popup.wxss */
+.login-popup {
+  padding: 20rpx;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+}
+
+
+.avatar-wrapper {
+  padding: 0;
+  width: 150rpx !important;
+  border-radius: 8rpx;
+  /* margin-top: 40px; */
+  margin-bottom: 30rpx;
+}
+
+.avatar {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.name-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+  margin-bottom: 40rpx;
+}
+
+.name-label {
+  width: 180rpx;
+}
+
+.name-input {
+  flex: 1;
+}
+
+
+
+
+.terms-checkbox-group {
+  position: fixed;
+  bottom: 20rpx;
+  left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.terms-checkbox {
+  vertical-align: middle;
+}
+
+.terms-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.terms-link {
+  font-size: 28rpx;
+  color: #007aff; /* 蓝色文字 */
+  text-decoration: underline;
+  margin-left: 5rpx;
+  cursor: pointer;
+}

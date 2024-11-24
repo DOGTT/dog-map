@@ -1,0 +1,99 @@
+<!--pages/unit/pofp-create/pofp-fullshow.wxml-->
+<view class="terms-page">
+  <navigation-bar title="新建" back="{{false}}" color="black"></navigation-bar>
+  <view class="header">
+    <image 
+      class="back-icon" 
+      src="/static/png/return.png" 
+      bindtap="goBack" 
+    />
+    <text class="header-title">足迹发布</text>
+  </view>
+  <scroll-view class="scroll-content">
+    <!-- 模拟用户协议内容 -->
+    <!-- <view class="grid-item"> -->
+      <!-- 预览组件 -->
+  <photo-preview
+    show="{{previewShow}}"
+    current-photo="{{currentPhoto}}"
+    photo-index="{{currentPhotoIndex}}"
+    bind:close="closePreview"
+    bind:setCover="setAsCover"
+    bind:delete="deletePhoto"
+  ></photo-preview>
+    <view class="photo-selection">
+      <block wx:for="{{photos}}" wx:key="*this">
+        <view class="photo-wrapper" bindtap="openPreview" data-index="{{index}}">
+          <image src="{{item}}" class="photo" />
+        </view>
+      </block>
+      <view class="add-photo-button" bindtap="addPhoto">
+        +
+      </view>
+    </view>
+    <!-- </view> -->
+    <!-- <view class="grid-item"> -->
+      <view class="title-input-wrapper">
+        <text class="title-label">标题：</text>
+        <input 
+          class="title-input" 
+          placeholder="请输入标题" 
+          bindinput="onInputTitle" 
+          maxlength="50"
+        />
+      </view>
+      <!-- 内容输入栏 -->
+  <view class="content-input-wrapper">
+    <text class="content-label">内容：</text>
+    <textarea 
+      class="content-input" 
+      placeholder="请输入内容"
+      bindinput="onInputContent"
+      maxlength="500"
+    ></textarea>
+  </view>
+
+  <!-- 地点选择框 -->
+<view class="location-selection">
+  <text class="location-label">地点：</text>
+  <view class="location-display" bindtap="chooseLocation">
+    <text>{{locationName || '请选择地点'}}</text>
+  </view>
+</view>
+
+<!-- 标签选择区域 -->
+<view class="tags-selection">
+  <text class="tags-label">选择标签：</text>
+  <view class="tags-list">
+    <checkbox-group bindchange="onTagChange">
+      <label class="tag-item" wx:for="{{tags}}" wx:key="index">
+        <checkbox value="{{item}}" /> {{item}}
+      </label>
+    </checkbox-group>
+  </view>
+</view>
+    <!-- </view> -->
+    <view class="grid-item">内容3</view>
+    <view class="grid-item">内容4</view>
+    <view class="grid-item">内容5</view>
+    <view class="grid-item">内容6</view>
+    <view class="grid-item">内容6</view>
+    <view class="grid-item">内容6</view>
+    <view class="grid-item">内容6</view>
+    <view class="grid-item">内容6</view>
+    <view class="grid-item">内容6</view>
+    <view class="grid-item">内容6</view>
+    <!-- <mp-uploader
+    title="图片上传"
+    tips="点击"
+    delete="true"
+    max-count="9"
+    files="{{photos}}"
+    >  </mp-uploader> -->
+  </scroll-view>
+  <!-- 底部按钮 -->
+  <view class="bottom-bar">
+    <button class="save-button" bindtap="onSave">暂存</button>
+    <button class="publish-button" bindtap="onPublish">发布</button>
+  </view>
+</view>

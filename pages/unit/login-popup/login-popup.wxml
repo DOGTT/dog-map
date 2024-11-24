@@ -1,0 +1,32 @@
+<!--components/login-popup/login-popup.wxml-->
+<van-popup
+  show="{{show}}"
+  position="bottom"
+  custom-style="z-index: 9999; height: 40%; border-radius: 20rpx 20rpx 0 0;"
+  bind:close="onClose"
+  class="login-popup"
+>
+  <view class="login-content">
+    <text class="login-title">登陆汪汪星球</text>
+    <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        </button>
+        <view class="name-wrapper">
+          <text class="name-label">宝贝名字</text>
+          <input type="nickname" class="name-input" placeholder="请输入昵称" bind:change="onInputChange" />
+        </view>
+    </block>
+    <van-button 
+    open-type="getPhoneNumber" bindgetphonenumber="onWeChatLogin"
+    type="primary" 
+    bindclick="onLogin">微信一键登陆</van-button>
+  </view>
+
+  <checkbox-group class="terms-checkbox-group" bindchange="onCheckboxChange">
+      <checkbox class="terms-checkbox" value="agree" />
+      <text class="terms-text">我已阅读并同意</text>
+      <text class="terms-link" bindtap="navigateToTerms">《用户协议》</text>
+  </checkbox-group>
+  
+</van-popup>

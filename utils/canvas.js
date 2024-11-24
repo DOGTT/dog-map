@@ -8,7 +8,7 @@ function darwAndsaveCanvasAsImage({
 	width = 200, // 画布宽度，默认值为 200
 	height = 200, // 画布高度，默认值为 200
 	lineWidth = 10,
-	strokeStyle = "#FFFFFF",
+	strokeStyle = "#1E90FF",
 	fillStyle = "#FF0000",
 	gridSize = 0, // 网格线间隔，默认值为 0, 不画
 	fileType = 'png', // 图片类型，默认值为 'png'
@@ -52,20 +52,20 @@ function darwAndsaveCanvasAsImage({
 							ctx.stroke();
 						}
 					}
-
+          var iconSize = width / 3;
 					// 绘制圆形或水滴形
 					if (shape === "circle") {
 						drawCircle(ctx, width, height, lineWidth, strokeStyle, fillStyle);
 					}
 					if (shape === "drop") {
-						drawDropShape(ctx, width, height, lineWidth, strokeStyle, fillStyle);
+            drawDropShape(ctx, width, height, lineWidth, strokeStyle, fillStyle);
+            iconSize = iconSize*1.3;
 					}
 
 					// 绘制图标
 					const img = canvas.createImage();
 					img.src = iconSrc;
 					img.onload = () => {
-						const iconSize = width / 4;
 						ctx.drawImage(
 							img,
 							(width - iconSize) / 2,
@@ -103,7 +103,7 @@ function darwAndsaveCanvasAsImage({
 
 // 绘制圆形
 function drawCircle(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
-	const radius = width / 4;
+	const radius = width / 3;
 	ctx.fillStyle = fillStyle; // 红色背景
 	ctx.beginPath();
 	console.log(radius, width, height);
@@ -117,13 +117,12 @@ function drawCircle(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
 function drawDropShape(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
 	const centerX = width / 2; // 水滴中心X坐标
 	const centerY = height / 2; // 水滴圆心Y坐标
-	const radius = centerX / 2; // 圆形半径
-	const tipY = height - 10; // 水滴尖端Y坐标
+	const radius = centerX/1.3; // 圆形半径
+	const tipY = height-10 ; // 水滴尖端Y坐标
 	// 清空画布
 	console.log(radius, width, height);
 	// ctx.clearRect(0, 0, width, height);
 	// 绘制水滴形状
-	// ctx.fillStyle = '#ff0000'; // 红色背景
 	ctx.fillStyle = fillStyle;
 	ctx.beginPath();
 	console.log(radius, centerX, centerY);

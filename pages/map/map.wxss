@@ -10,7 +10,7 @@
   position: absolute; 
   top: 42px; 
   width: 320px;
-  z-index: 1001;
+  /* z-index: 1001; */
   margin: 10rpx;
 }
 
@@ -20,8 +20,8 @@
   height: 30px;
 }
 
-.poi-type-selecter-scroll-view {
-  z-index: 1000;
+.pofp-type-selecter-scroll-view {
+  /* z-index: 1000; */
   width: 100%;
   position: absolute;
   top: 200rpx;
@@ -30,21 +30,21 @@
   overflow-x: auto;
 }
 
-.poi-type-tab-button-container {
+.pofp-type-tab-button-container {
   display: flex;
   /* align-items: center; */
   margin-left: 10rpx;
 }
 
-.poi-type-button-custom.selected {
+.pofp-type-button-custom.selected {
   justify-content: flex-start !important; /* 左对齐 */
   text-align: left !important; /* 确保文字左对齐 */
-  border-color: rgb(0, 255, 21) !important;
-  color: #409eff !important;
+  border-color: rgb(0, 0, 0) !important;
+  color: #000000 !important;
   transition: all 0.3s !important;
   /* padding-left: 10px !important; */
 }
-.poi-type-button-custom.default {
+.pofp-type-button-custom.default {
   justify-content: flex-start !important; /* 左对齐 */
   text-align: left !important; /* 确保文字左对齐 */
   border-color: #ccc !important;
@@ -55,9 +55,9 @@
   /* padding-left: 10px !important; */
 }
 
-.poi-type-button {
+.pofp-type-button {
   display: flex;
-  padding-left: 10px;
+  padding-left: 5px;
   /* 可根据需求调整内边距 */
   /* margin-right: 10px; */
   /* background-color: #fcfcfc; */
@@ -72,47 +72,13 @@
   /* justify-content: center; */
 }
 
-.poi-type-button .van-button__icon {
-  margin-right: 8px; /* 设置图标和文字的间距 */
+
+.pofp-type-button .van-button__icon {
+  /* margin-right: 5px; 设置图标和文字的间距 */
+  font-size: 30px; 
+  margin-left: -10px;
 }
 /* head ====== */
-
-
-/* .icon-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #b8b8b8;
-  border-radius: 10px;
-  padding: 10px;
-  color: white;
-} */
-
-/* .icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-} */
-
-/* .map-cover {
-  position: absolute;
-  z-index: 1000;
-} */
-
-
-/* .icon {
-  width: 40px;
-  height: 40px; */
-  /* margin-bottom: 5px; */
-  /* margin: 10%; */
-  /* margin: 5%; */
-/* } */
-
-/* .label {
-  font-size: 14px;
-  color: #333;
-  margin: 5%;
-} */
 
 /* 底部容器 */
 .bottom-ctrl {
@@ -120,18 +86,34 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  /* z-index: 1000; */
+}
+
+.pub-button {
+  bottom: 150rpx; 
+  right: 30rpx; 
+}
+
+.pub-button-up {
+  bottom: 450rpx;
 }
 
 .reloc-button {
+  bottom: 50rpx; 
+  right: 30rpx; 
+}
+
+.reloc-button-up {
+  bottom: 350rpx;
+}
+
+.rect-button {
   position: fixed;
   display: flex;
   width: 50px;
   height: 50px;
   background-color: #fcfcfc;
-  bottom: 40px; 
-  right: 30px; 
-  z-index: 1000;
+  /* z-index: 1000; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -141,22 +123,20 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: bottom 0.3s ease;
 }
-.reloc-button-up {
-  bottom: 340rpx;
-}
 
-.reloc-button:active {
+
+.rect-button:active {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
   background-color: #cfcfcf; /* 点击时的颜色变化 */
 }  
 
-.reloc-button-icon {
+.rect-button-icon {
   width: 20px;
   height: 20px;
   margin-bottom: 3px;
 }
 
-.reloc-button-text {
+.rect-button-text {
   font-size: 10px;
   color: #333;
 }
@@ -165,7 +145,7 @@
 
 
 /* 弹出框样式 */
-.poi-detail-popup {
+.pofp-detail-popup {
   position: fixed;
   height: 300rpx;
   bottom: -300rpx;
@@ -180,9 +160,152 @@
   transition: transform 0.3s ease, bottom 0.3s ease;
   /* z-index: 1000; */
 }
-.poi-detail-popup-show {
+.pofp-detail-popup-show {
   bottom: 30rpx; /* 弹出到可见区域 */
 }
-.poi-detail-popup-hide {
+.pofp-detail-popup-hide {
   bottom: -300rpx; /* 隐藏回屏幕下方 */
+}
+.pofp-detail-card {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr); /* 等分为两行 */
+  height: 300rpx; /* 卡片总高度 */
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.pofp-detail-row {
+  display: grid;
+  position: relative;
+  grid-template-columns: 150rpx 1fr; /* 第一列固定宽度，第二列自适应 */
+  align-items: center; /* 垂直居中 */
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #eee; /* 行间分隔线 */
+}
+
+.pofp-detail-row:last-child {
+  border-bottom: none; /* 最后一行去掉分隔线 */
+  grid-template-columns: 250rpx 1fr;
+}
+
+/* 第一列样式 */
+.pofp-detail-column {
+  display: flex;
+  flex-direction: column; /* 纵向排列 */
+  align-items: center; /* 水平居中 */
+  justify-content: center; /* 垂直居中 */
+  height: 100%;
+  background-color: #f0f0f0;
+  padding: 10rpx;
+  border-right: 1px solid #ddd; /* 列分隔线 */
+}
+
+.pofp-detail-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%; /* 圆形头像 */
+  margin-bottom: 10rpx; /* 头像和文字框的间距 */
+}
+
+.pofp-detail-avatar-text {
+  font-size: 20rpx;
+  color: #666;
+  text-align: center;
+}
+
+/* 第二列样式 */
+.pofp-detail-content {
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+/* 中间内容样式 */
+.pofp-detail-content {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  justify-content: center; /* 内容居中 */
+  padding: 20rpx;
+}
+
+.pofp-detail-title {
+  display: flex; /* 使用 flexbox 布局 */
+  align-items: center; /* 垂直居中对齐 */
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.favorite-icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorite-icon {
+  width:38rpx; /* 图标大小 */
+  height: 38rpx;
+  margin-left: 20rpx;
+  cursor: pointer; /* 鼠标指针样式 */
+  transition: fill 0.3s; /* 颜色切换过渡效果 */
+}
+
+
+.pofp-detail-tags {
+  display: flex;
+  flex-wrap: wrap; /* 标签自动换行 */
+  gap: 10rpx; /* 标签之间的间距 */
+}
+
+.pofp-detail-tag {
+  padding: 5rpx 15rpx;
+  font-size: 20rpx;
+  color: #fff;
+  background-color: #007aff;
+  border-radius: 20rpx;
+  white-space: nowrap; /* 防止文字换行 */
+}
+/* 按钮外部容器 */
+.pofp-detail-button-wrapper {
+  position: absolute;
+  display: flex; /* 启用Flexbox布局 */
+  justify-content: space-between; /* 水平排列，按钮之间留有间隙 */
+  right: 20rpx; /* 距离右边 20rpx */
+  top: 50%; /* 垂直居中 */
+  transform: translateY(-50%); /* 调整垂直居中 */
+}
+/* 最右侧按钮样式 */
+.pofp-detail-button {
+  display: flex;
+  flex-direction: column; /* 图标在上，文字在下 */
+  align-items: center; /* 水平居中 */
+  justify-content: center; /* 垂直居中 */
+  height: 100rpx; /* 按钮固定高度 */
+  padding: 10rpx;
+  background-color: #ffffff;
+}
+
+.pofp-detail-button-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-bottom: 5rpx; /* 图标和文字之间的间距 */
+}
+
+.pofp-detail-button-text {
+  font-size: 20rpx;
+  color: #333;
+  text-align: center;
+}
+
+.pofp-detail-row2-column {
+  display: flex;
+  flex-direction: column; /* 纵向排列 */
+  align-items: center; /* 水平居中 */
+  justify-content: center; /* 垂直居中 */
+  height: 100%;
+  background-color: #bbb5b5;
+  padding: 10rpx;
+  border-right: 1px solid #ddd; /* 列分隔线 */
 }
