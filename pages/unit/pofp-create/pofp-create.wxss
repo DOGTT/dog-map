@@ -104,14 +104,14 @@
   flex-wrap: wrap; /* 自动换行 */
   gap: 10rpx;
   padding: 10rpx;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+  /* background-color: #ffffff; */
+  border-bottom: 1px solid #ddd;
   border-radius: 10rpx;
 }
 
 .photo-wrapper {
-  width: 120rpx;
-  height: 120rpx;
+  width: 150rpx;
+  height: 150rpx;
   border-radius: 10rpx;
   overflow: hidden;
   position: relative;
@@ -120,12 +120,12 @@
 .photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 .add-photo-button {
-  width: 120rpx;
-  height: 120rpx;
+  width: 150rpx;
+  height: 150rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,97 +143,99 @@
   margin-bottom: 20rpx;
 }
 
-.title-label {
-  font-size: 32rpx;
-  color: #333;
-  margin-right: 10rpx;
-}
-
 .title-input {
   flex: 1;
   height: 80rpx;
-  border: 1rpx solid #ccc;
-  border-radius: 10rpx;
+  border-bottom: 1rpx solid #ccc;
+  /* border-radius: 10rpx; */
   padding: 0 20rpx;
-  font-size: 28rpx;
-  outline: none;
+  font-size: 32rpx;
+  /* outline: none; */
 }
+
+
+/* 标签选择区域 */
+.tags-selection {
+  display: flex;
+  margin-bottom: 30rpx;
+  padding: 20rpx;
+  white-space: nowrap;
+  overflow-x: auto;
+  /* border-bottom: 1px solid #ddd; */
+  /* border-radius: 10rpx; */
+}
+.tags-list {
+  display: flex; 
+  /* 使用 Flexbox */
+}
+
+.tag-button {
+  display: flex; 
+  font-size: 26rpx;
+  border-radius: 20rpx;
+  border: 1px solid #ddd;
+  color: rgb(255, 255, 255);
+  background-color: rgb(161, 161, 161);
+  /* width: 100rpx; */
+  padding: 5rpx;
+  margin-right: 20rpx;   
+  transition: all 0.3s ease-in-out; /* 平滑的状态切换动画 */  
+   /* 标签之间的间距 */
+  /* margin-bottom: 10rpx; */
+}
+
+
+.tag-button.selected {
+  color: #fff;
+  background-color: #007aff;
+  /* background-color: #333; */
+  transform: scale(1.1); /* 选中时稍微放大 */
+}
+
+
 
 /* 内容输入栏 */
 .content-input-wrapper {
   display: flex;
-  flex-direction: column;
+  /* flex: 1; */
+  /* flex-direction: column; */
   margin-bottom: 30rpx;
 }
 
-.content-label {
-  font-size: 32rpx;
-  color: #333;
-  margin-bottom: 10rpx;
-}
-
 .content-input {
-  height: 300rpx;
-  border: 1rpx solid #ccc;
-  border-radius: 10rpx;
+  width: 100%;
+  height: 400rpx;
+  border-bottom: 1rpx solid #ccc;
   padding: 20rpx;
   font-size: 28rpx;
-  outline: none;
+  /* outline: none; */
   overflow-y: auto;
 }
 
 /* 地点选择框 */
-.location-selection {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30rpx;
-}
-
-.location-label {
-  font-size: 32rpx;
-  color: #333;
-  margin-right: 10rpx;
-}
-
-.location-display {
-  flex: 1;
-  height: 80rpx;
-  border: 1rpx solid #ccc;
+.location-container {
+  /* margin: 20rpx; */
+  border: 1rpx solid #ddd;
+  height: 400rpx;
   border-radius: 10rpx;
-  padding: 0 20rpx;
+  /* overflow: hidden; */
+  /* box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1); */
+}
+
+.location-info {
+  /* padding: 10rpx; */
   font-size: 28rpx;
-  display: flex;
-  align-items: center;
-  color: #666;
-  background-color: #f9f9f9;
-}
-
-/* 标签选择区域 */
-/* 标签选择区域 */
-.tags-selection {
-  margin-bottom: 30rpx;
-}
-
-.tags-label {
-  font-size: 32rpx;
   color: #333;
-  margin-bottom: 10rpx;
+  background-color: #f9f9f9;
+  border-bottom: 1rpx solid #ddd;
 }
 
-.tags-list {
-  display: flex;            /* 使用 Flexbox */
-  flex-wrap: nowrap;        /* 不换行 */
-  justify-content: flex-start; /* 横向排列，从左到右 */
-  overflow-x: auto;         /* 允许横向滚动（如果标签过多的话） */
+.location-info-text{
+  color: #333;
+  font-weight: bold;
 }
 
-.tag-item {
-  display: flex;
-  align-items: center;
-  margin-right: 20rpx;      /* 标签之间的间距 */
-}
-
-.checkbox {
-  margin-right: 10rpx;
-  font-size: 28rpx;
+.location-map {
+  width: 100%;
+  height: 100%;
 }
