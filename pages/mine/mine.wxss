@@ -1,2 +1,138 @@
 /* pages/mine.wxss */
 
+/* 页面容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 占满整个屏幕高度 */
+  width: 100vw; /* 宽度设置为全屏宽度 */
+  position: relative;
+}
+
+/* 上部分 */
+.user-info-section {
+  flex: 4; /* 上部分占4份 */
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  background: linear-gradient(to top, #ff7e5f, #feb47b); /* 渐变色背景 */
+  color: white;
+  font-size: 36rpx;
+  flex-direction: column;
+}
+/* 用户信息容器 */
+.user-base-info {
+  flex: 5;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  margin-left: 30rpx;
+  gap: 20rpx;
+   /* 控制头像和用户名的间距 */
+}
+
+.user-sum-info {
+  flex: 5;
+  display: flex;
+}
+/* 圆形头像 */
+.avatar {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%; /* 圆形效果 */
+  border: 4rpx solid white; /* 白色边缘 */
+  
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1); /* 可选阴影 */
+}
+
+/* 用户名 */
+.user-name {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+/* 下部分 */
+.bottom-section {
+  flex: 6; /* 下部分占6份 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5; /* 固定背景色 */
+  color: #333;
+  font-size: 36rpx;
+}
+
+
+/* 狗狗信息卡片整体 */
+.dog-info-card {
+  display: flex;
+  gap: 20rpx; /* 调整头像与信息的间距 */
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 16rpx; /* 卡片圆角 */
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1); /* 卡片阴影 */
+  margin: 20rpx;
+  align-items: center; /* 垂直居中 */
+}
+
+/* 狗狗头像 */
+.dog-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%; /* 圆形头像 */
+  border: 2rpx solid #f0f0f0; /* 灰色边框 */
+  object-fit: cover; /* 确保图片比例 */
+}
+/* 狗狗信息卡片整体 */
+.dog-info-card {
+  display: flex;
+  gap: 30rpx; /* 调整头像与信息的间距 */
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 24rpx; /* 卡片圆角 */
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15); /* 卡片阴影 */
+  margin: 30rpx;
+  align-items: center; /* 垂直居中 */
+}
+
+/* 狗狗头像 */
+.dog-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%; /* 圆形头像 */
+  border: 4rpx solid #f0f0f0; /* 灰色边框 */
+  object-fit: cover; /* 确保图片比例 */
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1); /* 头像阴影 */
+}
+
+/* 狗狗信息容器 */
+.dog-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12rpx; /* 信息间距 */
+}
+
+/* 狗狗名字 */
+.dog-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8rpx; /* 与 emoji 的间距 */
+}
+
+/* 狗狗详细信息 */
+.dog-detail {
+  font-size: 32rpx;
+  color: #555;
+}
+
+/* 性别信息 */
+.dog-gender {
+  font-size: 32rpx;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: 8rpx; /* 与 emoji 的间距 */
+}

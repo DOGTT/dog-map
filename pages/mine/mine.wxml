@@ -1,6 +1,37 @@
 <!--pages/mine.wxml-->
-
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <view class="container">
-  <text class="link-txt">pages/mine.wxml</text>
-
+  <!-- 上部分 -->
+  <view class="header">
+    
+  </view>
+  <view class="user-info-section">
+    <!-- <text>这是上半部分</text> -->
+     <!-- 上部分 -->
+    <view class="user-base-info">
+      <!-- 圆形头像 -->
+      <image class="avatar" src="/static/png/dog-undefine.png" />
+      <!-- 用户名 -->
+      <text class="user-name">用户昵称</text>
+    </view>
+    <view class="user-sum-info">
+      <text></text>
+    </view>
+  </view>
+  <!-- 下部分 -->
+  <view class="bottom-section">
+    <!-- <text>这是下半部分</text> -->
+    <view class="dog-info-card">
+  <!-- 狗狗头像 -->
+  <image class="dog-avatar" src="/path/to/dog-avatar.jpg" />
+  
+  <!-- 狗狗信息 -->
+  <view class="dog-info">
+    <text class="dog-name">🐾 小黄</text>
+    <text class="dog-detail">🐕 品种: 拉布拉多</text>
+    <text class="dog-detail">🎂 生日: 2022-08-15</text>
+    <text class="dog-gender">🐶 性别:  ♀️</text>
+  </view>
+</view>
+  </view>
 </view>
