@@ -2,8 +2,6 @@
   "pages": [
     "pages/map/map",
     "pages/discover/discover",
-    "pages/login/login",
-    "pages/logs/logs",
     "pages/mine/mine",
     "pages/message/message",
     "pages/unit/user-terms/user-terms",

@@ -39,7 +39,7 @@
 .pofp-type-button-custom.selected {
   justify-content: flex-start !important; /* 左对齐 */
   text-align: left !important; /* 确保文字左对齐 */
-  border-color: rgb(0, 0, 0) !important;
+  border-color: #FFF !important;
   color: #000000 !important;
   transition: all 0.3s !important;
   /* padding-left: 10px !important; */
@@ -47,8 +47,9 @@
 .pofp-type-button-custom.default {
   justify-content: flex-start !important; /* 左对齐 */
   text-align: left !important; /* 确保文字左对齐 */
-  border-color: #ccc !important;
-  color: #b4b4b4 !important;
+  border-color: #eee !important;
+  color: #666 !important;
+  background-color: #eee;
   transition: all 0.3s !important;
   /* border-color: #ccc !important; */
   /* color: #409eff !important; */

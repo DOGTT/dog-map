@@ -54,8 +54,8 @@
 .bottom-section {
   flex: 6; /* 下部分占6份 */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   background-color: #f5f5f5; /* 固定背景色 */
   color: #333;
   font-size: 36rpx;
@@ -91,6 +91,7 @@
   border-radius: 24rpx; /* 卡片圆角 */
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15); /* 卡片阴影 */
   margin: 30rpx;
+  margin-top: 80rpx;
   align-items: center; /* 垂直居中 */
 }
 
@@ -135,4 +136,82 @@
   display: flex;
   align-items: center;
   gap: 8rpx; /* 与 emoji 的间距 */
+}
+
+/* 按钮容器 */
+.info-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 20rpx 30rpx 0;
+}
+
+/* 单个按钮 */
+.info-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100rpx;
+  height: 120rpx;
+  margin: 20rpx;
+  /* background-color: #fff; */
+  /* border-radius: 16rpx; */
+  /* box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1); */
+}
+
+/* 按钮数字 */
+.info-number {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+/* 按钮文字 */
+.info-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+
+/* 吸顶标签栏 */
+.sticky-tab-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  /* align-items: center; */
+  height: 80rpx;
+  background-color: #fff;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+  border-bottom: 1rpx solid #eee;
+}
+
+/* 标签项 */
+.tab-item {
+  flex: 1;
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #666;
+  width: 100rpx;
+  cursor: pointer;
+}
+
+/* 激活状态 */
+.tab-item.active {
+  color: #333;
+  font-weight: bold;
+}
+
+/* 下划线 */
+.underline {
+  position: absolute;
+  bottom: 0;
+  width:33.333%; /* 每个标签的宽度 */
+  height: 4rpx;
+  background-color: #1aad19;
+  transition: left 0.3s ease;
 }

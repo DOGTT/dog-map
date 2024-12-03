@@ -1,6 +1,8 @@
 {
-  "data": {
-    "message": "OK",
+  "message":"OK",
+  "data":{
+    "token":"xxxxxx",
+    "id":"1a",
     "user_id": "1",
     "nick_name": "香了个香",
     "avatar": "",
@@ -10,7 +12,5 @@
       "likes_numer": 100
     },
     "friends_info": {}
-  },
-  "statusCode": "200",
-  "header": ""
+  }
 }

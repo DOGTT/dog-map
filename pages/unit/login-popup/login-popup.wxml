@@ -18,7 +18,7 @@
         </view>
     </block>
     <van-button 
-    open-type="getPhoneNumber" bindgetphonenumber="onWeChatLogin"
+    open-type="getPhoneNumber" 
     type="primary" 
     bindclick="onLogin">微信一键登陆</van-button>
   </view>

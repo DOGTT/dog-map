@@ -1,4 +1,6 @@
 <!--pages/discover/discover.wxml-->
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
 <canvas type="2d" style="width: 200px; height: 200px;" id="dynamicCanvas"
 bindtap="onCanvasClick"
 ></canvas>

@@ -1,2 +1,3 @@
 <!--pages/message/message.wxml-->
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <text>pages/message/message.wxml</text>
