@@ -256,8 +256,8 @@
 
 .pofp-detail-tags {
   display: flex;
-  flex-wrap: wrap; /* 标签自动换行 */
-  gap: 10rpx; /* 标签之间的间距 */
+  flex-wrap: wrap; 
+  gap: 10rpx;
 }
 
 .pofp-detail-tag {

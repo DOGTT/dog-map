@@ -1,4 +1,3 @@
-// pages/unit/photo-preview/photo-preview.js
 Component({
   properties: {
     show: {

@@ -1,4 +1,4 @@
-<!--pages/unit/pofp-create/pofp-fullshow.wxml-->
+<!--pages/sub/pofp-create/pofp-fullshow.wxml-->
 <view class="terms-page">
   <navigation-bar title="新建" back="{{false}}" color="black"></navigation-bar>
   <view class="header">

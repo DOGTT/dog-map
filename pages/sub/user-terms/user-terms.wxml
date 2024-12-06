@@ -1,4 +1,3 @@
-<!--pages/unit/user-terms/user-terms.wxml-->
 <view class="terms-page">
   <navigation-bar title="用户协议" back="{{false}}" color="black"></navigation-bar>
   <view class="header">

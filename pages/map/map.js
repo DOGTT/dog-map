@@ -14,8 +14,11 @@ class PoiMarker {
 		// this.title = title;
 		this.iconPath = icon;
 		this.width = "48px";
-    this.height = "48px";
-    this.anchor = {x:0.5,y:0.5};
+		this.height = "48px";
+		this.anchor = {
+			x: 0.5,
+			y: 0.5
+		};
 		this.callout = {
 			content: title,
 			display: "BYCLICK",
@@ -27,7 +30,7 @@ class PoiMarker {
 // Main
 Page({
 	data: {
-    loginPopupShow: false,
+		loginPopupShow: false,
 		// for render
 		pofpDetailPopupShow: false,
 		pofpDetailPopupAnimation: 'slideUp',
@@ -37,8 +40,8 @@ Page({
 			content: "",
 			address: "",
 			create_at: "",
-      update_at: "",
-      is_favorited: false,
+			update_at: "",
+			is_favorited: false,
 			publish_user: {
 				user_id: 1,
 				avatar: ""
@@ -74,7 +77,7 @@ Page({
 				width: "38px",
 				height: "38px",
 				callout: {
-					content: "我的位置",
+					content: "此处-发布",
 					display: "ALWAYS",
 					padding: 10,
 					borderRadius: 2
@@ -83,8 +86,46 @@ Page({
 		},
 		poiMap: {},
 		pofpTypeList: [],
-		pofpTypeStateMap: {}
-	},
+    pofpTypeStateMap: {},
+    touchStartTime: 0, // 记录触摸开始时间
+    longPressTimeout: null, // 记录长按定时器
+  },
+  onMapTouchStart(e) {
+    console.log("onMapTouchStart");
+    const { latitude, longitude } = e.detail;
+    // 开始记录时间并设置长按触发逻辑
+    this.setData({
+      touchStartTime: Date.now(),
+    });
+  
+    this.data.longPressTimeout = setTimeout(() => {
+      this.onMapLongPress({ latitude, longitude });
+    }, 3000); // 长按 3 秒
+  },
+  onMapTouchEnd() {
+    // 清除长按检测
+    clearTimeout(this.data.longPressTimeout);
+  },
+  onMapLongPress({ latitude, longitude }) {
+    wx.showToast({
+      title: '长按触发!',
+      icon: 'success',
+    });
+  
+    // this.setData({
+    //   markers: [
+    //     ...this.data.markers,
+    //     {
+    //       id: this.data.markers.length + 1,
+    //       latitude,
+    //       longitude,
+    //       iconPath: '/static/marker.png', // 替换为你的图标路径
+    //       width: 30,
+    //       height: 30,
+    //     },
+    //   ],
+    // });
+  },
 	onPOFPTypeButtonClick(e) {
 		// console.log("tap id e:",e)
 		var id = e.currentTarget.dataset.id; // 获取按钮的唯一标识
@@ -106,25 +147,24 @@ Page({
 	// 点击地图事件
 	onTapMap(event) {
 		console.log("onTapMap")
-		// const latitude = event.detail.latitude;
-		// const longitude = event.detail.longitude;
-    // var markers = this.data.mapData.markers;
-    // console.log(markers);
-		// this.data.mapData.markers[0].latitude = latitude;
-    // this.data.mapData.markers[0].longitude = longitude;
-    // this.data.mapData.markers = markers;
-    // this.setData({
-    //   mapData:this.data.mapData,
-    // });
+		const latitude = event.detail.latitude;
+		const longitude = event.detail.longitude;
+		var markers = this.data.mapData.markers;
+		console.log(markers);
+		this.data.mapData.markers[0].latitude = latitude;
+		this.data.mapData.markers[0].longitude = longitude;
+		this.data.mapData.markers = markers;
+		this.setData({
+			mapData: this.data.mapData,
+		});
 	},
 	onLabelTap(event) {
 		console.log("onLabelTap")
 	},
 	onCalloutTap(event) {
 		console.log("onCalloutTap")
-		this.setData({
-			show: true
-		});
+		this.navigateToPofpCreate();
+
 	},
 	popFullsize() {
 		console.log("popFullsize")
@@ -137,41 +177,47 @@ Page({
 			show: false,
 			popupStyle: "height: 30%;"
 		});
-  },
-  
-  markerIconReset() {
-     let markers = this.data.mapData.markers;
-     for (let i=1;i<markers.length;i++) {
-      let poiInfo = this.data.poiMap[i+1];
-      markers[i].iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].icon;
-      markers[i].anchor = {x:0.5,y:0.5};
-     }
-     this.data.mapData.markers = markers;
-     this.setData({
-      mapData: this.data.mapData
+	},
+
+	markerIconReset() {
+		let markers = this.data.mapData.markers;
+		for (let i = 1; i < markers.length; i++) {
+			let poiInfo = this.data.poiMap[i + 1];
+			markers[i].iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].icon;
+			markers[i].anchor = {
+				x: 0.5,
+				y: 0.5
+			};
+		}
+		this.data.mapData.markers = markers;
+		this.setData({
+			mapData: this.data.mapData
 		})
-  },
+	},
 	// 标注点击回调
 	onTapMarker(event) {
-    console.log("onTapMarker", event)
-    const poiInfo = this.data.poiMap[event.markerId];
-    console.log(poiInfo);
-    this.markerIconReset();
-    // change icon
-    let markers = this.data.mapData.markers;
-    for (let i=1;i<markers.length;i++) {
-      if (i+1===event.markerId) {
-        markers[i].iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].iconSet;
-        markers[i].anchor = {x: 0.5, y: 1};
-        // markers[i].width = '58px';
-        // markers[i].height = '58px';
-      }
-      console.log('data:',markers[i] )
-    }
-    this.data.mapData.markers = markers;
+		console.log("onTapMarker", event)
+		const poiInfo = this.data.poiMap[event.markerId];
+		console.log(poiInfo);
+		this.markerIconReset();
+		// change icon
+		let markers = this.data.mapData.markers;
+		for (let i = 1; i < markers.length; i++) {
+			if (i + 1 === event.markerId) {
+				markers[i].iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].iconSet;
+				markers[i].anchor = {
+					x: 0.5,
+					y: 1
+				};
+				// markers[i].width = '58px';
+				// markers[i].height = '58px';
+			}
+			console.log('data:', markers[i])
+		}
+		this.data.mapData.markers = markers;
 		// update marker info to detail
 		this.setData({
-      mapData: this.data.mapData,
+			mapData: this.data.mapData,
 			pofpDetail: {
 				title: poiInfo.name,
 			}
@@ -286,8 +332,8 @@ Page({
 				canvasId: '#icon-' + typeID,
 				// canvasSetId: '#iconSet-'+typeID,
 				//        shape:'circle',drop
-        iconSrc: poiData.icon,
-        fillStyle: poiData.icon_bg_color,
+				iconSrc: poiData.icon,
+				fillStyle: poiData.icon_bg_color,
 			})
 		}
 		console.log("ddd ", canvasConfigs)
@@ -295,8 +341,8 @@ Page({
 			darwAndsaveCanvasAsImage({
 				canvasId: config.canvasId,
 				shape: 'circle',
-        iconSrc: config.iconSrc,
-        fillStyle: config.fillStyle,
+				iconSrc: config.iconSrc,
+				fillStyle: config.fillStyle,
 			}).then((tempPath) => {
 				this.data.pofpTypeStateMap[config.typeID].icon = tempPath;
 			}).catch((err) => {
@@ -306,12 +352,10 @@ Page({
 		// 批量处理图片生成
 		Promise.all(imagePromises)
 			.then(() => {
-        console.log('所有图片生成成功:', this.data.pofpTypeStateMap);
-        this.setData(
-          {
-            pofpTypeStateMap: this.data.pofpTypeStateMap,
-          }
-        )
+				console.log('所有图片生成成功:', this.data.pofpTypeStateMap);
+				this.setData({
+					pofpTypeStateMap: this.data.pofpTypeStateMap,
+				})
 				this.poiListReRender();
 			})
 			.catch((err) => {
@@ -320,20 +364,20 @@ Page({
 
 		var canvasSetConfigs = [];
 		for (let typeID in this.data.pofpTypeStateMap) {
-      let poiData = this.data.pofpTypeStateMap[typeID].data;
+			let poiData = this.data.pofpTypeStateMap[typeID].data;
 			canvasSetConfigs.push({
 				typeID: typeID,
 				canvasId: '#iconSet-' + typeID,
-        iconSrc: poiData.icon,
-        fillStyle: poiData.icon_bg_color,
+				iconSrc: poiData.icon,
+				fillStyle: poiData.icon_bg_color,
 			})
 		}
 		const imagePromisesSet = canvasSetConfigs.map((config) =>
 			darwAndsaveCanvasAsImage({
 				canvasId: config.canvasId,
 				shape: 'drop',
-        iconSrc: config.iconSrc,
-        fillStyle: config.fillStyle,
+				iconSrc: config.iconSrc,
+				fillStyle: config.fillStyle,
 			}).then((tempPath) => {
 				this.data.pofpTypeStateMap[config.typeID].iconSet = tempPath;
 			}).catch((err) => {
@@ -433,24 +477,24 @@ Page({
 		});
 
 	},
-  toggleFavorite() {
-    var d = this.data.pofpDetail;
-    console.log("toggleFavorite",d.is_favorited);
-    d.is_favorited = !d.is_favorited;
-    this.setData({ pofpDetail: d });
-  },
-  showPOFPFullPage(){
-    this.setData(
-      {
-        loginPopupShow:true,
-      }
-    );
-  },
-  navigateToPofpCreate() {
-    wx.navigateTo({
-      url: '/pages/unit/pofp-create/pofp-create', // 替换为实际的协议页面路径
-    });
-  },
+	toggleFavorite() {
+		var d = this.data.pofpDetail;
+		console.log("toggleFavorite", d.is_favorited);
+		d.is_favorited = !d.is_favorited;
+		this.setData({
+			pofpDetail: d
+		});
+	},
+	showPOFPFullPage() {
+		this.setData({
+			loginPopupShow: true,
+		});
+	},
+	navigateToPofpCreate() {
+		wx.navigateTo({
+			url: '/pages/sub/pofp-create/pofp-create', // 替换为实际的协议页面路径
+		});
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */

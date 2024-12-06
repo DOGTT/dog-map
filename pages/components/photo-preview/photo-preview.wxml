@@ -1,4 +1,3 @@
-<!--pages/unit/photo-preview/photo-preview.wxml-->
 <view class="photo-preview" wx:if="{{show}}">
   <!-- 遮罩层 -->
   <view class="overlay" bindtap="closePreview"></view>

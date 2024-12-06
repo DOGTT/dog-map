@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "navigation-bar": "/components/navigation-bar/navigation-bar",
-    "login-popup": "/pages/unit/login-popup/login-popup"
+    "login-popup": "/pages/components/login-popup/login-popup"
   }
 }

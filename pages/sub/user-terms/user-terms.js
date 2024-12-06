@@ -1,4 +1,3 @@
-// pages/unit/user-terms/user-terms.js
 Page({
 
   /**

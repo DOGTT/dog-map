@@ -77,7 +77,7 @@ Component({
 		},
 		navigateToTerms() {
 			wx.navigateTo({
-				url: '/pages/unit/user-terms/user-terms', // 替换为实际的协议页面路径
+				url: '/pages/sub/user-terms/user-terms', // 替换为实际的协议页面路径
 			});
 		},
 		onLogin() {

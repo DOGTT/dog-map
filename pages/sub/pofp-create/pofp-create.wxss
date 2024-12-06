@@ -1,4 +1,4 @@
-/* pages/unit/pofp-create/pofp-fullshow.wxss */
+/* pages/sub/pofp-create/pofp-fullshow.wxss */
 .terms-page {
   position: relative;
   padding: 0 20rpx;
@@ -38,9 +38,6 @@
 }
 
 /* 页面整体样式 */
-.publish-page {
- 
-}
 
 /* 内容区域样式 */
 .content-grid {

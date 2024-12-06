@@ -7,6 +7,6 @@
     "van-search": "/components/@vant/weapp/search/index",
     "van-col": "/components/@vant/weapp/col/index",
     "van-row": "/components/@vant/weapp/row/index",
-    "login-popup": "/pages/unit/login-popup/login-popup"
+    "login-popup": "/pages/components/login-popup/login-popup"
   }
 }

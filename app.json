@@ -4,9 +4,10 @@
     "pages/discover/discover",
     "pages/mine/mine",
     "pages/message/message",
-    "pages/unit/user-terms/user-terms",
-    "pages/unit/pofp-create/pofp-create",
-    "pages/unit/pofp-fullshow/pofp-fullshow"
+    "pages/sub/user-terms/user-terms",
+    "pages/sub/pofp-create/pofp-create",
+    "pages/sub/pofp-fullshow/pofp-fullshow",
+    "pages/sub/search/search"
   ],
   "useExtendedLib": {
     "kbone": true,

@@ -2,6 +2,6 @@
   "usingComponents": {
     "navigation-bar": "/components/navigation-bar/navigation-bar",
     "mp-uploader": "weui-miniprogram/uploader/uploader",
-    "photo-preview": "/pages/unit/photo-preview/photo-preview"
+    "photo-preview": "/pages/components/photo-preview/photo-preview"
   }
 }

@@ -1,4 +1,3 @@
-/* pages/unit/user-terms/user-terms.wxss */
 .terms-page {
   position: relative;
   padding: 0 20rpx;

@@ -1,4 +1,4 @@
-// pages/unit/pofp-create/pofp-fullshow.js
+// pages/sub/pofp-create/pofp-fullshow.js
 Page({
 
 	/**

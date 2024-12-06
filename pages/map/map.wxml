@@ -12,6 +12,8 @@
   markers="{{mapData.markers}}"
   circles="{{mapData.circles}}"
   bindtap="onTapMap" 
+  bindtouchstart="onMapTouchStart" 
+  bindtouchend="onMapTouchEnd"
   bindregionchange="onChangeRegion"
   bindpoitap="onTapPoi" 
   bindlabeltap="onLabelTap" 
@@ -55,6 +57,11 @@
     <image src="/static/svg/pub.svg" class="rect-button-icon" />
     <text class="rect-button-text">发布</text>
   </view>
+  <!-- 脚印按钮 -->
+  <!-- <view class="rect-button pub-button {{pofpDetailPopupShow  ? 'pub-button-up' : ''}}" bindtap="">
+    <image src="/static/svg/pub.svg" class="rect-button-icon" />
+    <text class="rect-button-text">踩踩</text>
+  </view> -->
   <!-- 定位按钮 -->
   <view class="rect-button reloc-button {{pofpDetailPopupShow  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
     <image src="/static/svg/location.svg" class="rect-button-icon" />
@@ -77,8 +84,8 @@
           </view>
           </view>
           <view class="pofp-detail-tags">
-            <view class="pofp-detail-tag">宠物友好</view>
-            <view class="pofp-detail-tag">大狗优选</view>
+            <view class="pofp-detail-tag">聚会草地</view>
+            <view class="pofp-detail-tag">大狗狗</view>
             <view class="pofp-detail-tag">自由玩耍</view>
           </view>
         </view>
@@ -95,10 +102,13 @@
       </view>
       <view class="pofp-detail-row">
         <view class="pofp-detail-row2-column">
-        热度/友好分
+        脚印X18|喜爱X10
         </view>
         <view class="pofp-detail-row2-content">
-        动态
+        动态--
+        10分钟前可乐来过
+        评论--
+        “每天晚上9点狗狗玩耍聚会”
         </view>
       </view>
     </view>

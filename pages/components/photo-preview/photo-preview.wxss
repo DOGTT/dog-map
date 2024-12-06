@@ -1,4 +1,3 @@
-/* pages/unit/photo-preview/photo-preview.wxss */
 .photo-preview {
   position: fixed;
   top: 0;

@@ -1,4 +1,3 @@
-/* pages/unit/pofp-create/pofp-fullshow.wxss */
 .terms-page {
   position: relative;
   padding: 0 20rpx;
