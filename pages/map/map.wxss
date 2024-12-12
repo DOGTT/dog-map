@@ -91,11 +91,20 @@
 }
 
 .pub-button {
+  bottom: 50rpx; 
+  left: 30rpx; 
+}
+
+.pub-button-up {
+  bottom: 350rpx;
+}
+
+.mark-button {
   bottom: 150rpx; 
   right: 30rpx; 
 }
 
-.pub-button-up {
+.mark-button-up {
   bottom: 450rpx;
 }
 

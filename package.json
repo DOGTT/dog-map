@@ -17,6 +17,7 @@
     "eslint-plugin-html": "^4.0.0"
   },
   "dependencies": {
-    "@vant/weapp": "^1.11.7"
+    "@vant/weapp": "^1.11.7",
+    "geolib": "^3.3.4"
   }
 }

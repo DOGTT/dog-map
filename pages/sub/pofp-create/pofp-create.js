@@ -27,10 +27,6 @@ Page({
 		currentPhotoIndex: null, // 当前预览图片的索引
 	},
 
-	/**
-	 * 组件的方法列表
-	 */
-
 	goBack() {
 		wx.navigateBack(); // 返回到上一页
 	},
@@ -177,5 +173,17 @@ Page({
 				}
 			},
 		});
+  },
+  onLoad: function () {
+		console.log("onLoad")
+		// this.reLocation();
+		// Toast('加载中');
+		// this.pofpTypeListReload();
+  },
+  onShow() {
+		console.log("onShow")
+  },
+  onReady() {
+		console.log("onReady")
 	}
 })

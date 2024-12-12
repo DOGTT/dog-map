@@ -57,11 +57,11 @@
     <image src="/static/svg/pub.svg" class="rect-button-icon" />
     <text class="rect-button-text">发布</text>
   </view>
-  <!-- 脚印按钮 -->
-  <!-- <view class="rect-button pub-button {{pofpDetailPopupShow  ? 'pub-button-up' : ''}}" bindtap="">
+  <!-- 标记按钮 -->
+  <view class="rect-button mark-button {{pofpDetailPopupShow  ? 'mark-button-up' : ''}}" bindtap="">
     <image src="/static/svg/pub.svg" class="rect-button-icon" />
-    <text class="rect-button-text">踩踩</text>
-  </view> -->
+    <text class="rect-button-text">踩一踩</text>
+  </view>
   <!-- 定位按钮 -->
   <view class="rect-button reloc-button {{pofpDetailPopupShow  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
     <image src="/static/svg/location.svg" class="rect-button-icon" />

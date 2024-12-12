@@ -1,5 +1,6 @@
 // pages/map/map.js
 const app = getApp();
+const geolib = require('geolib');
 const token = wx.getStorageSync('token');
 const {
 	darwAndsaveCanvasAsImage
@@ -86,46 +87,55 @@ Page({
 		},
 		poiMap: {},
 		pofpTypeList: [],
-    pofpTypeStateMap: {},
-    touchStartTime: 0, // 记录触摸开始时间
-    longPressTimeout: null, // 记录长按定时器
-  },
-  onMapTouchStart(e) {
-    console.log("onMapTouchStart");
-    const { latitude, longitude } = e.detail;
-    // 开始记录时间并设置长按触发逻辑
-    this.setData({
-      touchStartTime: Date.now(),
-    });
-  
-    this.data.longPressTimeout = setTimeout(() => {
-      this.onMapLongPress({ latitude, longitude });
-    }, 3000); // 长按 3 秒
-  },
-  onMapTouchEnd() {
-    // 清除长按检测
-    clearTimeout(this.data.longPressTimeout);
-  },
-  onMapLongPress({ latitude, longitude }) {
-    wx.showToast({
-      title: '长按触发!',
-      icon: 'success',
-    });
-  
-    // this.setData({
-    //   markers: [
-    //     ...this.data.markers,
-    //     {
-    //       id: this.data.markers.length + 1,
-    //       latitude,
-    //       longitude,
-    //       iconPath: '/static/marker.png', // 替换为你的图标路径
-    //       width: 30,
-    //       height: 30,
-    //     },
-    //   ],
-    // });
-  },
+		pofpTypeStateMap: {},
+		touchStartTime: 0, // 记录触摸开始时间
+		longPressTimeout: null, // 记录长按定时器
+	},
+	onMapTouchStart(e) {
+		console.log("onMapTouchStart");
+		const {
+			latitude,
+			longitude
+		} = e.detail;
+		// 开始记录时间并设置长按触发逻辑
+		this.setData({
+			touchStartTime: Date.now(),
+		});
+
+		this.data.longPressTimeout = setTimeout(() => {
+			this.onMapLongPress({
+				latitude,
+				longitude
+			});
+		}, 3000); // 长按 3 秒
+	},
+	onMapTouchEnd() {
+		// 清除长按检测
+		clearTimeout(this.data.longPressTimeout);
+	},
+	onMapLongPress({
+		latitude,
+		longitude
+	}) {
+		wx.showToast({
+			title: '长按触发!',
+			icon: 'success',
+		});
+
+		// this.setData({
+		//   markers: [
+		//     ...this.data.markers,
+		//     {
+		//       id: this.data.markers.length + 1,
+		//       latitude,
+		//       longitude,
+		//       iconPath: '/static/marker.png', // 替换为你的图标路径
+		//       width: 30,
+		//       height: 30,
+		//     },
+		//   ],
+		// });
+	},
 	onPOFPTypeButtonClick(e) {
 		// console.log("tap id e:",e)
 		var id = e.currentTarget.dataset.id; // 获取按钮的唯一标识
@@ -146,17 +156,45 @@ Page({
 	},
 	// 点击地图事件
 	onTapMap(event) {
-		console.log("onTapMap")
+		console.log("onTapMap", event)
 		const latitude = event.detail.latitude;
 		const longitude = event.detail.longitude;
 		var markers = this.data.mapData.markers;
-		console.log(markers);
-		this.data.mapData.markers[0].latitude = latitude;
-		this.data.mapData.markers[0].longitude = longitude;
-		this.data.mapData.markers = markers;
-		this.setData({
-			mapData: this.data.mapData,
-		});
+		const mapCtx = wx.createMapContext('map', this);
+		let hasMarkerNearby = false;
+		for (let i = 0; i < markers.length; i++) {
+			const marker = markers[i];
+			const distance = geolib.getDistance({
+					latitude: latitude,
+					longitude: longitude
+				}, // 上海
+				{
+					latitude: marker.latitude,
+					longitude: marker.longitude
+				} // 北京
+			);
+			console.log("两点之间的距离为：" + distance + "米");
+			if (distance < 100) {
+				hasMarkerNearby = true;
+				break;
+			}
+		}
+
+		if (hasMarkerNearby) {
+			wx.showToast({
+				title: '附近有marker',
+				icon: 'success'
+			});
+		} else {
+			// console.log(markers);
+			this.data.mapData.markers[0].latitude = latitude;
+			this.data.mapData.markers[0].longitude = longitude;
+			this.data.mapData.markers = markers;
+			this.setData({
+				mapData: this.data.mapData,
+			});
+		}
+
 	},
 	onLabelTap(event) {
 		console.log("onLabelTap")
@@ -509,7 +547,6 @@ Page({
 		this.reLocation();
 		Toast('加载中');
 		this.pofpTypeListReload();
-
 	},
 	/**
 	 * 生命周期函数--监听页面显示
