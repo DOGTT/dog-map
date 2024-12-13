@@ -1,2 +1,24 @@
 <!--pages/discover/discover.wxml-->
-<text>pages/discover/discover.wxml</text>
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
+<canvas type="2d" style="width: 200px; height: 200px;" id="dynamicCanvas"
+bindtap="onCanvasClick"
+></canvas>
+
+<view class="container">
+  <text>pages/discover/discover.wxml</text>
+  <view style="position: absolute; top: 100px; right: 100px; z-index: 1000;">
+<view>
+<input type="text" placeholder="搜索"/>
+</view>
+</view>
+<text>test</text>
+
+<text>test</text>
+
+<image src="{{tempFilePathA}}" style="width: 100px;" mode="widthFix"></image>
+<image src="{{tempFilePathB}}" style="width: 100px;" mode="widthFix"></image>
+</view>
+
+<van-button plain type="primary">按钮</van-button>
+

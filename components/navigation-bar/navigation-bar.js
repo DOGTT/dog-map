@@ -60,7 +60,7 @@ Component({
   lifetimes: {
     attached() {
       const rect = wx.getMenuButtonBoundingClientRect()
-      wx.getSystemInfo({
+      wx.getSystemSetting({
         success: (res) => {
           const isAndroid = res.platform === 'android'
           const isDevtools = res.platform === 'devtools'

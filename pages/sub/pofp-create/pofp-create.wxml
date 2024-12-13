@@ -1,0 +1,73 @@
+<!--pages/sub/pofp-create/pofp-fullshow.wxml-->
+<view class="terms-page">
+  <navigation-bar title="新建" back="{{false}}" color="black"></navigation-bar>
+  <view class="header">
+    <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
+    <text class="header-title">足迹发布</text>
+  </view>
+  <scroll-view class="scroll-content" enable-flex="true">
+    <!-- 预览组件 -->
+    <photo-preview show="{{previewShow}}" current-photo="{{currentPhoto}}" photo-index="{{currentPhotoIndex}}" bind:close="closePreview" bind:setCover="setAsCover" bind:delete="deletePhoto"></photo-preview>
+    <view class="photo-selection">
+      <block wx:for="{{photos}}" wx:key="*this">
+        <view class="photo-wrapper" bindtap="openPreview" data-index="{{index}}">
+          <image src="{{item}}" class="photo" />
+        </view>
+      </block>
+      <view class="add-photo-button" bindtap="addPhoto">
+        +
+      </view>
+    </view>
+    <view class="title-input-wrapper">
+      <input type="text" class="title-input" placeholder="添加标题" bindinput="onInputTitle" maxlength="50" focus="true" />
+    </view>
+
+    <!-- 标签选择区域 -->
+
+    <scroll-view class="tags-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
+      <view class="tags-selection">
+        <block wx:for="{{ tagsList }}" wx:key="index">
+          <view class="tag-button {{item.select ? 'selected' : ''}}" bindtap="onTagTap" data-index="{{index}}">#{{item.value}}</view>
+        </block>
+      </view>
+    </scroll-view>
+
+    <!-- 内容输入栏 -->
+    <view class="content-input-wrapper">
+      <textarea class="content-input" placeholder="添加正文" bindinput="onInputContent" maxlength="600"></textarea>
+    </view>
+
+    <view class="location-container">
+      <!-- 显示地点信息 -->
+      <view class="location-info">
+        <text class="location-info-text">📍添加位置：</text>
+        <text>{{currentLocation.name || "未选择地点"}}</text>
+      </view>
+      <!-- 地图缩略图 -->
+      <view class="location-map" bindtap="chooseLocation">
+        <map id="mini-map" class="location-map" latitude="{{currentLocation.latitude}}" longitude="{{currentLocation.longitude}}" scale="15" show-location></map>
+      </view>
+    </view>
+    <!-- 地点选择框 -->
+    <!-- <view class="location-selection">
+  <view class="location-display" bindtap="chooseLocation">
+    <text>{{locationName || '请选择地点'}}</text>
+  </view>
+</view> -->
+
+    <!-- </view> -->
+
+    <!-- <mp-uploader
+    title="图片上传"
+    tips="点击"
+    delete="true"
+    max-count="9"
+    files="{{photos}}"
+    >  </mp-uploader> -->
+  </scroll-view>
+  <!-- 底部按钮 -->
+  <view class="bottom-bar">
+    <button class="save-button" bindtap="onSave">暂存</button>
+    <button class="publish-button" bindtap="onPublish">发布</button>
+  </view>
+</view>

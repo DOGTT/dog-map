@@ -1,0 +1,15 @@
+<view class="terms-page">
+  <navigation-bar title="用户协议" back="{{false}}" color="black"></navigation-bar>
+  <view class="header">
+    <image 
+      class="back-icon" 
+      src="/static/png/return.png" 
+      bindtap="goBack" 
+    />
+    <text class="header-title">足迹详情页</text>
+  </view>
+  <scroll-view class="terms-content">
+    <!-- 模拟用户协议内容 -->
+    <text>这里是用户协议的具体内容...</text>
+  </scroll-view>
+</view>

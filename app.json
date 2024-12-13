@@ -1,11 +1,57 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/mine/mine",
     "pages/map/map",
-    "pages/discover/discover"
+    "pages/discover/discover",
+    "pages/mine/mine",
+    "pages/message/message",
+    "pages/sub/user-terms/user-terms",
+    "pages/sub/pofp-create/pofp-create",
+    "pages/sub/pofp-fullshow/pofp-fullshow",
+    "pages/sub/search/search"
   ],
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "backgroundColor": "#FFF",
+    "list": [
+      {
+        "pagePath": "pages/map/map",
+        "text": "地图",
+        "iconPath": "static/png/map-pin.png",
+        "selectedIconPath": "static/png/map-pin.png"
+      },
+      {
+        "pagePath": "pages/discover/discover",
+        "text": "发现",
+        "iconPath": "static/png/grass.png",
+        "selectedIconPath": "static/png/grass.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "static/png/message.png",
+        "selectedIconPath": "static/png/message.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我们",
+        "iconPath": "static/png/dog-13.png",
+        "selectedIconPath": "static/png/dog-13.png"
+      }
+    ]
+  },
   "window": {
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"

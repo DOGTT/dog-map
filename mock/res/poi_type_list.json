@@ -1,0 +1,43 @@
+{
+  "message":"OK",
+  "data":{
+    "poi_type_list":[
+      {
+        "id":"1",
+        "name":"大草地",
+        "icon":"/static/png/poi-type/1.png",
+        "icon_bg_color": "#33ff57"
+      },
+      {
+        "id":"2",
+        "name":"探险",
+        "icon":"/static/png/poi-type/2.png",
+        "icon_bg_color": "#00FF7F"
+      },
+      {
+        "id":"3",
+        "name":"乐园",
+        "icon":"/static/png/poi-type/3.png",
+        "icon_bg_color": "#FF8C00"
+      },
+      {
+        "id":"4",
+        "name":"餐厅",
+        "icon":"/static/png/poi-type/4.png",
+        "icon_bg_color": "#FFFF00"
+      },
+      {
+        "id":"5",
+        "name":"医疗",
+        "icon":"/static/png/poi-type/5.png",
+        "icon_bg_color": "#FF0000"
+      },
+      {
+        "id":"6",
+        "name":"危险",
+        "icon":"/static/png/poi-type/6.png",
+        "icon_bg_color": "#FFFFFF"
+      }
+    ]
+  }
+}

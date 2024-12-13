@@ -1,2 +1,61 @@
 <!--pages/mine.wxml-->
-<text>pages/mine.wxml</text>
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="container">
+  <!-- 上部分 -->
+  <view class="header">
+  </view>
+  <view class="user-info-section">
+    <!-- <text>这是上半部分</text> -->
+    <!-- 上部分 -->
+    <!-- <view class="user-base-info">
+      <image class="avatar" src="/static/png/dog-undefine.png" />
+      <text class="user-name">用户昵称</text>
+    </view> -->
+    <view class="dog-info-card">
+      <!-- 狗狗头像 -->
+      <image class="dog-avatar" src="/static/png/dog-undefine.png" />
+      <!-- 狗狗信息 -->
+      <view class="dog-info">
+        <text class="dog-name">🐾 小黄</text>
+        <text class="dog-detail">🐕 体重: 40kg</text>
+        <text class="dog-detail">🎂 生日: 2022-08-15</text>
+        <text class="dog-gender">🐶 性别: ♀️</text>
+      </view>
+    </view>
+    <view class="user-sum-info">
+      <view class="info-buttons">
+        <view class="info-button">
+          <text class="info-number">123</text>
+          <text class="info-label">伙伴</text>
+        </view>
+        <view class="info-button">
+          <text class="info-number">45</text>
+          <text class="info-label">发现</text>
+        </view>
+        <view class="info-button">
+          <text class="info-number">678</text>
+          <text class="info-label">踩过</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 下部分 -->
+  <view class="bottom-section">
+    <!-- <text>这是下半部分</text> -->
+    <view class="sticky-tab-bar">
+      <block wx:for="{{tabs}}" wx:key="index">
+        <view class="tab-item {{activeTab === index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}">
+          {{item}}
+        </view>
+      </block>
+      <view class="underline" style="left: {{activeTab * 33.33+'%'}};"></view>
+    </view>
+  </view>
+
+  <!-- 登陆注册页 -->
+    <login-popup
+    show="{{loginPopupShow}}"
+    bind:close="onLoginPopupClose"
+    bind:login="onUserLogin"
+  />
+</view>
