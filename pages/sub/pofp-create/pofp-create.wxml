@@ -1,6 +1,6 @@
 <!--pages/sub/pofp-create/pofp-fullshow.wxml-->
 <view class="terms-page">
-  <navigation-bar title="新建" back="{{false}}" color="black"></navigation-bar>
+  <navigation-bar title="足迹发布" back="{{false}}" color="black"></navigation-bar>
   <view class="header">
     <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
     <text class="header-title">足迹发布</text>
@@ -19,11 +19,10 @@
       </view>
     </view>
     <view class="title-input-wrapper">
-      <input type="text" class="title-input" placeholder="添加标题" bindinput="onInputTitle" maxlength="50" focus="true" />
+      <input type="text" class="title-input" placeholder="添加小标题" bindinput="onInputTitle" maxlength="50" focus="true" />
     </view>
-
+    
     <!-- 标签选择区域 -->
-
     <scroll-view class="tags-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
       <view class="tags-selection">
         <block wx:for="{{ tagsList }}" wx:key="index">
@@ -45,7 +44,7 @@
       </view>
       <!-- 地图缩略图 -->
       <view class="location-map" bindtap="chooseLocation">
-        <map id="mini-map" class="location-map" latitude="{{currentLocation.latitude}}" longitude="{{currentLocation.longitude}}" scale="15" show-location></map>
+        <map id="mini-map" class="location-map" latitude="{{currentLocation.latitude}}" longitude="{{currentLocation.longitude}}" markers="{{mapData.markers}}"  scale="15" show-location></map>
       </view>
     </view>
     <!-- 地点选择框 -->

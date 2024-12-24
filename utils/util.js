@@ -14,7 +14,18 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+// 将参数对象转换为 URL 查询字符串
+const buildUrlWithParams = (baseUrl, params) => {
+  const queryString = Object.keys(params)
+      .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+      .join('&');
+  // 返回完整的 URL
+  return `${baseUrl}?${queryString}`;
+}
+
+
 module.exports = {
-  formatTime
+  formatTime,
+  buildUrlWithParams
 }
 

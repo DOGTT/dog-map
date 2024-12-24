@@ -18,7 +18,24 @@ Page({
 				value: "标签2",
 				select: false
 			}
-		],
+    ],
+    mapData: {
+      markers:[{
+				id: 1,
+				title: "选中位置",
+				latitude: 22.55329,
+				longitude: 113.90308,
+				iconPath: "/static/png/marker/Marker3_Activated@3x.png",
+				width: "38px",
+				height: "38px",
+				callout: {
+					content: "当前选中位置",
+					display: "ALWAYS",
+					padding: 10,
+					borderRadius: 10
+				}
+			}],
+    },
 		locationName: '', // 用于存储选择的位置名称
 		selectedTags: [], // 存储已选择的标签
 		photos: [], // 存储已选择的媒体文件路径
@@ -45,16 +62,21 @@ Page({
 	},
 	// 选择位置
 	chooseLocation() {
-		console.log("chooseLocation");
+    console.log("chooseLocation");
+    const _this = this;
 		wx.chooseLocation({
 			success: (res) => {
-				console.log(res);
+        console.log(res,_this.data.mapData);
+        var marker = _this.data.mapData.markers[0];
+        marker.latitude = res.latitude;
+        marker.longitude = res.longitude;
 				this.setData({
 					currentLocation: {
 						name: res.name || "未知地点",
 						latitude: res.latitude,
 						longitude: res.longitude,
-					},
+          },
+          mapData: _this.data.mapData
 				});
 			},
 			fail: (err) => {
@@ -174,11 +196,22 @@ Page({
 			},
 		});
   },
-  onLoad: function () {
-		console.log("onLoad")
-		// this.reLocation();
-		// Toast('加载中');
-		// this.pofpTypeListReload();
+  onLoad: function (options) {
+    console.log("onLoad",options);
+    wx.showToast({
+      title: '加载中'
+    });
+    var marker = this.data.mapData.markers[0];
+    marker.latitude = options.lat;
+    marker.longitude = options.lon;
+    this.setData({
+      currentLocation:{
+        latitude:options.lat,
+        longitude:options.lon,
+      },
+      mapData: this.data.mapData
+    });
+  
   },
   onShow() {
 		console.log("onShow")

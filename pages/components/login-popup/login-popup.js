@@ -1,6 +1,4 @@
 // components/login-popup/login-popup.js
-
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 const app = getApp();
 
 Component({
@@ -12,63 +10,50 @@ Component({
 	},
 	data: {
 		canIUseGetUserProfile: wx.canIUse('getUserProfile'),
-		phoneNumber: '',
-		password: '',
-		userInfo: {
-			avatarUrl: "/static/png/dog-undefine.png",
-			nickName: '',
+		wxUserInfo: {
     },
-    isAgreed: false,
-		hasUserInfo: false,
-		canIUseGetUserProfile: wx.canIUse('getUserProfile'),
-		canIUseNicknameComp: wx.canIUse('input.type.nickname'),
-	},
+    petInfo: {
+      avatar: '/static/png/dog-undefine.png',
+      name:'',
+      avatar_data: ''
+    },
+		isAgreed: false,
+  },
+  lifetimes: {
+    attached() {
+    }
+},
 	methods: {
+    onLoad() {
+      console.log("onload");
+    },
 		onClose() {
 			this.setData({
 				show: false
 			});
 			this.triggerEvent('close'); // 通知父级页面关闭
 		},
-		// onWeChatLogin(event) {
-		// 	// 微信一键登录逻辑
-		// 	if (event.detail.errMsg === "getPhoneNumber:ok") {
-		// 		const phoneInfo = event.detail;
-		// 		wx.showToast({
-		// 			title: "登录成功",
-		// 			icon: "success",
-		// 		});
-		// 		this.triggerEvent("login", phoneInfo); // 通知父级页面登录成功
-		// 		this.onClose();
-		// 	} else {
-		// 		wx.showToast({
-		// 			title: "登录失败，请重试",
-		// 			icon: "none",
-		// 		});
-		// 	}
-		// },
 		getUserProfile(e) {
-			// 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+			// 使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
 			wx.getUserProfile({
-				desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+				desc: '注册用户头像', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
 				success: (res) => {
-					console.log(res)
+					console.log(res);
 					this.setData({
-						userInfo: res.userInfo,
-						hasUserInfo: true
+						wxUserInfo: res.userInfo
 					})
 				}
 			})
-    },
-    onChooseAvatar(e) {
-      const { avatarUrl } = e.detail
-      // const { nickName } = this.data.userInfo
-      this.setData({
-        "userInfo.avatarUrl": avatarUrl,
-        // hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
-      })
-    },
-		onCheckboxChange(e) {
+		},
+		onChooseAvatar(e) {
+			const {
+				avatarUrl
+			} = e.detail
+			this.setData({
+				"userInfo.avatarUrl": avatarUrl,
+			})
+		},
+		onTermsCheckboxChange(e) {
 			const isAgreed = e.detail.value.includes("agree");
 			this.setData({
 				isAgreed
@@ -82,52 +67,53 @@ Component({
 		},
 		onLogin() {
       console.log("login click");
-      if (!this.data.isAgreed) {
-        wx.showToast({
-          title: '请确认同意用户协议',
-          icon: 'none',
-        });
-        return;
+      if (app.globalData.userInfo) {
+        console.error("login is done, can't reg");
+        return
       }
-			wx.request({
-				url: app.globalData.baseUrl + '/login', // 替换为实际接口地址
-				method: 'POST',
-				data: {
-					username: 'test', // 示例数据
-					password: '123456',
-				},
-				success: (res) => {
-          console.log(res);
-          // todo 检查
-					// if (res.data.message === 'OK') {
-            // wx.showToast({
-						// 	title: '登录失败',
-						// 	icon: 'none',
-						// });
-          // }
-						const loginRes = res.data;
-						// 将 data 存储到本地
-						// wx.setStorageSync('userInfo', loginRes.user_info);
-						wx.setStorageSync('token', loginRes.token);
-						// 更新全局数据（若需要）
-						app.globalData.userInfo = loginRes.user_info;
-						// 设置页面 data
-						// this.setData({
-						// 	userInfo,
-						// });
-            // this.triggerEvent("login", userInfo); // 通知父级页面登录成功
-            this.onClose();
-						wx.showToast({
-							title: '登录成功',
-							icon: 'success',
-						});
-				},
-				fail: () => {
-					wx.showToast({
-						title: '登陆接口请求失败',
-						icon: 'none',
+			if (!this.data.isAgreed) {
+				wx.showToast({
+					title: '请确认同意用户协议',
+					icon: 'none',
+				});
+				return;
+      }
+      var _this = this
+			wx.login({
+				success: res => {
+          console.log('fastreg get code:', res.code);
+					wx.request({
+						url: app.globalData.baseUrl + '/user/wx/reg/fast',
+						method: 'POST',
+						data: {
+							wx_code: res.code,
+							pet: {
+								name: _this.data.petInfo.name,
+								avatar_data: _this.data.petInfo.a
+							}
+						},
+						success: (regRes) => {
+              console.log('fastreg success',regRes);
+              if (regRes.statusCode != 200) {
+                console.error("fastreg fail:", regRes);
+                return
+              }
+              const res = regRes.data;
+              wx.setStorageSync('userInfo', res.user_info);
+              wx.setStorageSync('token', res.token);
+							app.globalData.userInfo = res.user_info;
+							this.triggerEvent("reg", app.globalData.userInfo); // 通知父级页面登录成功
+							this.onClose();
+							wx.showToast({
+								title: '注册成功',
+								icon: 'success',
+							});
+						},
+            fail: (res) => {
+              console.error("get res fail:", res);
+            },
 					});
-				},
+				}
 			});
 		}
 	},
