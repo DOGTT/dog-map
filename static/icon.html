@@ -25,6 +25,7 @@
 </head>
 
 <body>
+    <button id="saveBtn">保存图像</button>
     <canvas id="d1" width="300" height="300"></canvas>
     <canvas id="d1Set" width="300" height="300"></canvas>
     <canvas id="d2" width="300" height="300"></canvas>
@@ -33,6 +34,15 @@
     <canvas id="d3Set" width="300" height="300"></canvas>
     <script>
 
+        function saveCanvasAsImage() {
+            const canvas = document.getElementById('d1');
+            const link = document.createElement('a');
+            link.download = 'd1.png'; // 设置下载文件名
+            link.href = canvas.toDataURL('image/png'); // 将 Canvas 转换为数据 URL
+            link.click(); // 触发下载
+        }
+        // 添加保存按钮的点击事件
+        document.getElementById('saveBtn').addEventListener('click', saveCanvasAsImage);
 
         function drawIcon(id, borderFill, iconFill, iconFilePath) {
 
