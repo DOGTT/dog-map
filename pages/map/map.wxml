@@ -14,7 +14,7 @@
         <block wx:for="{{ pofpTypeList }}" wx:key="id">
           <canvas id="icon-{{item.id}}" type="2d" style="display: none;"></canvas>
           <canvas id="iconSet-{{item.id}}" type="2d" style="display: none;"></canvas>
-          <van-button plain size="small" icon="{{pofpTypeStateMap[item.id].icon}}" icon-size="54px" type="primary" data-id="{{item.id}}" class="pofp-type-button" custom-class="pofp-type-button-custom {{pofpTypeStateMap[item.id].select ? 'selected' : 'default'}}" bind:tap="onPOFPTypeButtonClick">{{item.name}}</van-button>
+          <van-button plain size="small" icon="{{pofpTypeStateMap[item.id].icon}}" icon-size="54px" type="primary" data-id="{{item.id}}" class="pofp-type-button" custom-class="pofp-type-button-custom {{pofpTypeStateMap[item.id].select ? 'selected' : 'default'}}" bind:tap="onPofpTypeButtonClick">{{item.name}}</van-button>
         </block>
       </view>
     </scroll-view>
@@ -43,7 +43,7 @@
               <image class="pofp-detail-avatar" src="/static/png/dog-13.png" />
               <text class="pofp-detail-avatar-text">香香</text>
             </view>
-            <view class="pofp-detail-content" bindtap="showPOFPFullPage">
+            <view class="pofp-detail-content" bindtap="showPofpFullPage">
               <view class="pofp-detail-title">
                 <text>{{pofpDetailCard.data.title}}
                 </text>

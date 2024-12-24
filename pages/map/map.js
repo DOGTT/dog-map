@@ -98,6 +98,7 @@ Page({
 		touchStartTime: 0, // 记录触摸开始时间
 		longPressTimeout: null, // 记录长按定时器
 	},
+	// 长按交互控制
 	onMapTouchStart(e) {
 		console.log("onMapTouchStart");
 		const {
@@ -116,10 +117,12 @@ Page({
 			});
 		}, 3000); // 长按 3 秒
 	},
+	// 长按交互控制
 	onMapTouchEnd() {
 		// 清除长按检测
 		clearTimeout(this.data.longPressTimeout);
 	},
+	// 长按交互控制
 	onMapLongPress({
 		latitude,
 		longitude
@@ -129,7 +132,8 @@ Page({
 			icon: 'success',
 		});
 	},
-	onPOFPTypeButtonClick(e) {
+	// 过滤poi类型按钮点击事件
+	onPofpTypeButtonClick(e) {
 		// console.log("tap id e:",e)
 		var id = e.currentTarget.dataset.id; // 获取按钮的唯一标识
 		var ps = this.data.pofpTypeStateMap;
@@ -187,27 +191,16 @@ Page({
 		}
 
 	},
+	// 地图标签点击事件
 	onLabelTap(event) {
 		console.log("onLabelTap")
 	},
+	// 地图气泡点击事件
 	onCalloutTap(event) {
 		console.log("onCalloutTap")
 		this.navigateToPofpCreate();
-
 	},
-	popFullsize() {
-		console.log("popFullsize")
-		this.setData({
-			popupStyle: "height: 80%;"
-		})
-	},
-	onClose() {
-		this.setData({
-			show: false,
-			popupStyle: "height: 30%;"
-		});
-	},
-
+	// 重置图标到圆形
 	markerIconReset() {
 		let markers = this.data.mapData.markers;
 		for (let i = 1; i < markers.length; i++) {
@@ -248,7 +241,6 @@ Page({
 		this.pofpDetailCardUp();
 
 	},
-
 	// poi点击回调
 	onTapPoi(event) {
 		const name = event.detail.name.length <= 8 ? event.detail.name : event.detail.name.substring(0, 8) + '...';
@@ -258,10 +250,9 @@ Page({
 		this.setData({
 			poiInfo: name + '：' + latitude.toFixed(6) + ',' + longitude.toFixed(6),
 		})
-		// this.setData({
-		// poiCallbackTxt: name + '：' + latitude.toFixed(6) + ',' + longitude.toFixed(6)
-		// });
+
 	},
+	// 足迹卡片弹出加载
 	pofpDetailCardUp() {
 		// load pofp detail info
 		// check token
@@ -299,7 +290,8 @@ Page({
 			pofpDetailCard
 		});
 	},
-	pofpDetailDown() {
+	// 足迹卡片收回
+	pofpDetailCardDown() {
 		let pofpDetailCard = this.data.pofpDetailCard;
 		pofpDetailCard.popUpAnimation = 'slideDown';
 		this.setData({
@@ -317,7 +309,7 @@ Page({
 	onChangeRegion(event) {
 		console.log("onChangeRegion")
 		// 关闭弹出框
-		this.pofpDetailDown();
+		this.pofpDetailCardDown();
 		if (event.type === 'end' && event.causedBy === 'drag') {
 			const mapCtx = wx.createMapContext('map', this);
 			mapCtx.getCenterLocation({
@@ -334,12 +326,14 @@ Page({
 			})
 		}
 	},
+	// 移动视野到位置
 	moveViewToLocation: function () {
 		this.reLocation(); // 重新获取位置
 		console.log("moveViewToLocation", this.data.mapData)
 		const mapCtx = wx.createMapContext('map', this);
 		mapCtx.moveToLocation(this.data.mapData.latitude, this.data.mapData.longitude);
 	},
+	// 重新定位
 	reLocation: function () {
 		var mapData = this.data.mapData;
 		// 获取用户的位置信息
@@ -368,7 +362,106 @@ Page({
 			}
 		});
 	},
-	drawPOFPPng() {
+	// 足迹点重渲染
+	pofpReRender() {
+		var markers = [];
+		if (this.data.mapData.markers.length > 0 && this.data.mapData.markers[0].id == 1) {
+			markers.push(this.data.mapData.markers[0]);
+		}
+		console.log("poiListReRender this.pofpMap", this.data.pofpMap);
+		var ptsMap = this.data.pofpTypeStateMap;
+		var pMap = this.data.pofpMap;
+		for (let makerID in pMap) {
+			let poi = pMap[makerID];
+			let pts = ptsMap[poi.type_id];
+			console.log("Debug", makerID, poi, pts);
+			if (pts.select) {
+				markers.push(new PoiMarker(parseInt(makerID, 10),
+					poi.lng_lat.lat, poi.lng_lat.lng,
+					poi.title, pts.icon));
+			}
+		}
+		console.log("markers ", markers);
+		this.data.mapData.markers = markers;
+		this.setData({
+			mapData: this.data.mapData,
+		});
+	},
+	// 足迹列表重加载
+	pofpListReload() {
+		const mapCtx = wx.createMapContext('map', this);
+		mapCtx.getRegion({
+			success: region => {
+				console.log("reload pofp,get center region", region);
+				// 查询附近的poi
+				wx.request({
+					method: 'POST',
+					url: app.globalData.baseUrl + '/popf/base_query_by_bound',
+					header: {
+						WeixinRequestCode: app.globalData.wxCode
+						// Authorization: `Bearer ${token}`
+					},
+					dataType: 'json',
+					data: {
+						type_ids: [],
+						bound: {
+							ne: {
+								lat: region.northeast.latitude,
+								lon: region.northeast.longitude
+							},
+							sw: {
+								lat: region.southwest.latitude,
+								lon: region.southwest.longitude
+							}
+						}
+					},
+					success: (res) => {
+						console.log("pofp list res.data", res.data);
+						let pl = res.data.pofps;
+						for (let i = 0; i < pl.length; i++) {
+							this.data.pofpMap[i + 2] = pl[i];
+						}
+						console.log("this.pofpMap", this.data.pofpMap)
+						this.pofpReRender();
+					},
+					fail: (err) => {
+						console.error('list pofp failed:', err);
+					}
+				});
+			}
+		})
+
+
+	},
+	// 喜欢按钮
+	toggleFavorite() {
+		var d = this.data.pofpDetail;
+		console.log("toggleFavorite", d.is_favorited);
+		d.is_favorited = !d.is_favorited;
+		this.setData({
+			pofpDetail: d
+		});
+	},
+	// 注册框弹出
+	regWithLoginPop() {
+		this.setData({
+			loginPopupShow: true,
+		});
+	},
+	// 足迹完整信息页面
+	showPofpFullPage() {
+
+	},
+	// 足迹创建页面
+	navigateToPofpCreate() {
+    const lon = this.data.mapData.longitude;
+    const lat = this.data.mapData.latitude;
+		wx.navigateTo({
+			url: `/pages/sub/pofp-create/pofp-create?lon=${lon}&lat=${lat}`
+		});
+	},
+	// 绘制足迹图标
+	drawPofpPng() {
 		var canvasConfigs = [];
 		for (let typeID in this.data.pofpTypeStateMap) {
 			let poiData = this.data.pofpTypeStateMap[typeID].data;
@@ -438,6 +531,7 @@ Page({
 				console.error('图片生成失败:', err);
 			});
 	},
+	// 加载足迹类型信息
 	pofpTypeListReload() {
 		var _this = this;
 		app.getPofpTypes().then((listData) => {
@@ -452,102 +546,10 @@ Page({
 				pofpTypeList: listData,
 				pofpTypeStateMap: _this.data.pofpTypeStateMap,
 			});
-			_this.drawPOFPPng();
+			_this.drawPofpPng();
 			_this.pofpListReload();
 		}).catch((err) => {
 			console.error('list poi type failed:', err);
-		});
-	},
-	pofpReRender() {
-		var markers = [];
-		if (this.data.mapData.markers.length > 0 && this.data.mapData.markers[0].id == 1) {
-			markers.push(this.data.mapData.markers[0]);
-		}
-		console.log("poiListReRender this.pofpMap", this.data.pofpMap);
-		var ptsMap = this.data.pofpTypeStateMap;
-		var pMap = this.data.pofpMap;
-		for (let makerID in pMap) {
-			let poi = pMap[makerID];
-			let pts = ptsMap[poi.type_id];
-			console.log("Debug", makerID, poi, pts);
-			if (pts.select) {
-				markers.push(new PoiMarker(parseInt(makerID, 10),
-					poi.lng_lat.lat, poi.lng_lat.lng,
-					poi.title, pts.icon));
-			}
-		}
-		console.log("markers ", markers);
-		this.data.mapData.markers = markers;
-		this.setData({
-			mapData: this.data.mapData,
-		});
-	},
-	pofpListReload() {
-		const mapCtx = wx.createMapContext('map', this);
-		mapCtx.getRegion({
-			success: region => {
-				console.log("reload pofp,get center region", region);
-				// 查询附近的poi
-				wx.request({
-					method: 'POST',
-					url: app.globalData.baseUrl + '/popf/base_query_by_bound',
-					header: {
-						WeixinRequestCode: app.globalData.wxCode
-						// Authorization: `Bearer ${token}`
-					},
-					dataType: 'json',
-					data: {
-						type_ids: [],
-						bound: {
-							ne: {
-								lat: region.northeast.latitude,
-								lon: region.northeast.longitude
-							},
-							sw: {
-								lat: region.southwest.latitude,
-								lon: region.southwest.longitude
-							}
-						}
-					},
-					success: (res) => {
-						console.log("pofp list res.data", res.data);
-						let pl = res.data.pofps;
-						for (let i = 0; i < pl.length; i++) {
-							this.data.pofpMap[i + 2] = pl[i];
-						}
-						console.log("this.pofpMap", this.data.pofpMap)
-						this.pofpReRender();
-					},
-					fail: (err) => {
-						console.error('list pofp failed:', err);
-					}
-				});
-			}
-		})
-
-
-	},
-	toggleFavorite() {
-		var d = this.data.pofpDetail;
-		console.log("toggleFavorite", d.is_favorited);
-		d.is_favorited = !d.is_favorited;
-		this.setData({
-			pofpDetail: d
-		});
-	},
-	regWithLoginPop() {
-		this.setData({
-			loginPopupShow: true,
-		});
-	},
-	showPOFPFullPage() {
-
-	},
-	navigateToPofpCreate() {
-    const lon = this.data.mapData.longitude;
-    const lat = this.data.mapData.latitude;
-		wx.navigateTo({
-			url: `/pages/sub/pofp-create/pofp-create?lon=${lon}&lat=${lat}`
 		});
 	},
 	/**

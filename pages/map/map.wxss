@@ -6,6 +6,8 @@
   position: relative;
 }
 
+/* ===== 搜索栏 ====== */
+
 .search-bar {
   position: absolute; 
   top: 42px; 
@@ -19,6 +21,8 @@
   border-radius: 10rpx;
   height: 30px;
 }
+
+/* ===== 类型选择栏 ====== */
 
 .pofp-type-selecter-scroll-view {
   /* z-index: 1000; */
@@ -80,6 +84,9 @@
   margin-left: -10px;
 }
 /* head ====== */
+
+
+/* ===== 底部控制栏 ====== */
 
 /* 底部容器 */
 .bottom-ctrl {
@@ -150,8 +157,6 @@
   font-size: 10px;
   color: #333;
 }
-
-
 
 
 /* 弹出框样式 */

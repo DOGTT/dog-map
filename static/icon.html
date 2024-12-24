@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图标</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        canvas {
+            border: 1px solid #000;
+            margin: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="d1" width="300" height="300"></canvas>
+    <canvas id="d1Set" width="300" height="300"></canvas>
+    <canvas id="d2" width="300" height="300"></canvas>
+    <canvas id="d2Set" width="300" height="300"></canvas>
+    <canvas id="d3" width="300" height="300"></canvas>
+    <canvas id="d3Set" width="300" height="300"></canvas>
+    <script>
+
+
+        function drawIcon(id, borderFill, iconFill, iconFilePath) {
+
+            const canvasDefault = document.getElementById(id);
+            const ctxDefault = canvasDefault.getContext('2d');
+            drawDefault(ctxDefault, borderFill, iconFill, iconFilePath);
+            const canvasSet = document.getElementById(id + 'Set');
+            const ctxSet = canvasSet.getContext('2d');
+            drawSet(ctxSet, borderFill, iconFill, iconFilePath);
+        }
+
+        drawIcon('d1', '#FFF', '#00FF00', '/Users/tide/mycode/dog-map/static/png/pofp-type/1.png');
+        drawIcon('d2', '#FFF', '#00FF00', '/Users/tide/mycode/dog-map/static/png/pofp-type/2.png');
+        drawIcon('d3', '#FFF', '#00FF00', '/Users/tide/mycode/dog-map/static/png/pofp-type/3.png');
+
+
+        function drawSet(ctx, borderFill, iconFill, iconFilePath) {
+
+            // 绘制背景圆形
+            const img = new Image();
+            img.src = iconFilePath;// 替换为你的本地图标图片路径
+            img.onload = function () {
+                drawDropShape(ctx, 300, 300, 20, borderFill, borderFill);
+                // 耳朵
+                // 绘制熊耳朵
+                const earRadius = 30; // 耳朵的半径
+                const earOffset = 120; // 耳朵与圆心的距离
+
+                // 左耳
+                ctx.fillStyle = borderFill; // 粉色
+                ctx.beginPath();
+                ctx.arc(150 - earOffset, 150 - 60, earRadius, 0, Math.PI * 2); // 左耳
+                ctx.fill();
+                // 右耳
+                ctx.beginPath();
+                ctx.arc(150 + earOffset, 150 - 60, earRadius, 0, Math.PI * 2); // 右耳
+                ctx.fill();
+                ctx.fillStyle = iconFill; // 绿色
+                // ctx.fillStyle = 'rgba(255, 255, 255, 0)'; // 透明色
+                // 填充背景色为绿色
+                ctx.beginPath();
+                ctx.arc(150, 150, 110, 0, Math.PI * 2);
+                ctx.fill(); // 填充背景色
+                ctx.drawImage(img, 75, 75, 150, 150); // 调整图片位置和大小
+            }
+        }
+
+        function drawDefault(ctx, borderFill, iconFill, iconFilePath) {
+
+            // 绘制背景圆形
+            const img = new Image();
+            img.src = iconFilePath; // 替换为你的本地图标图片路径
+            img.onload = function () {
+                drawCircle(ctx, 300, 300, 20, borderFill, borderFill);
+                // 耳朵
+                // 绘制熊耳朵
+                const earRadius = 30; // 耳朵的半径
+                const earOffset = 120; // 耳朵与圆心的距离
+
+                // 左耳
+                ctx.fillStyle = borderFill; // 粉色
+                ctx.beginPath();
+                ctx.arc(150 - earOffset, 150 - 60, earRadius, 0, Math.PI * 2); // 左耳
+                ctx.fill();
+                // 右耳
+                ctx.beginPath();
+                ctx.arc(150 + earOffset, 150 - 60, earRadius, 0, Math.PI * 2); // 右耳
+                ctx.fill();
+                ctx.fillStyle = iconFill; // 绿色
+                // 填充背景色为绿色
+                ctx.beginPath();
+                ctx.arc(150, 150, 110, 0, Math.PI * 2);
+                ctx.fill(); // 填充背景色
+                ctx.drawImage(img, 75, 75, 150, 150); // 调整图片位置和大小
+            }
+        }
+
+
+        // 绘制圆形
+        function drawCircle(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
+            const radius = width / 2 / 1.1;
+            ctx.fillStyle = fillStyle; // 红色背景
+            ctx.beginPath();
+            console.log(radius, width, height);
+            ctx.arc(width / 2, height / 2, radius - lineWidth, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.lineWidth = lineWidth; // 边框宽度
+            ctx.strokeStyle = strokeStyle; // 白色边框
+            ctx.stroke();
+        }
+        // 绘制倒水滴形
+        function drawDropShape(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
+            const centerX = width / 2; // 水滴中心X坐标
+            const centerY = height / 2; // 水滴圆心Y坐标
+            const radius = centerX / 1.1; // 圆形半径
+            const tipY = (height - lineWidth / 2); // 水滴尖端Y坐标
+            // 清空画布
+            console.log(radius, width, height);
+            // ctx.clearRect(0, 0, width, height);
+            // 绘制水滴形状
+            ctx.fillStyle = fillStyle;
+            ctx.beginPath();
+            console.log(radius, centerX, centerY);
+            // 绘制顶部的半圆部分
+            ctx.arc(centerX, centerY, radius - lineWidth, Math.PI, 0);
+            // 从右侧圆弧连接到尖端
+            ctx.quadraticCurveTo(
+                centerX + radius - lineWidth, // 控制点X
+                (centerY + tipY) / 2, // 控制点Y (右侧弧线弯曲的高度)
+                centerX, // 尖端X
+                tipY // 尖端Y
+            );
+            // 从尖端连接到左侧圆弧
+            ctx.quadraticCurveTo(
+                centerX - radius + lineWidth, // 控制点X
+                (centerY + tipY) / 2, // 控制点Y (左侧弧线弯曲的高度)
+                centerX - radius + lineWidth, // 左侧圆弧起点X
+                centerY // 左侧圆弧起点Y
+            );
+            // 闭合路径并填充
+            ctx.closePath();
+            ctx.fill();
+            // 绘制白色边框
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = strokeStyle;
+            ctx.stroke();
+        }
+    </script>
+</body>
+
+</html>
