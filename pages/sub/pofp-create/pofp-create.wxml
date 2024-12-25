@@ -24,8 +24,8 @@
     
     <!-- 标签选择区域 -->
     <scroll-view class="tags-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
-      <view class="tags-selection">
-        <block wx:for="{{ tagsList }}" wx:key="index">
+      <view class="type-selection">
+        <block wx:for="{{ typeList }}" wx:key="index">
           <view class="tag-button {{item.select ? 'selected' : ''}}" bindtap="onTagTap" data-index="{{index}}">#{{item.value}}</view>
         </block>
       </view>

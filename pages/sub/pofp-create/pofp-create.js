@@ -10,14 +10,7 @@ Page({
 			latitude: 22.55329,
 			longitude: 113.90308,
 		},
-		tagsList: [{
-				value: "标签1",
-				select: true
-			},
-			{
-				value: "标签2",
-				select: false
-			}
+		typeList: [
     ],
     mapData: {
       markers:[{

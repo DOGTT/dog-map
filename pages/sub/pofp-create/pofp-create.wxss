@@ -152,13 +152,13 @@
 
 
 /* 标签选择区域 */
-.tags-selection {
+.type-selection {
   display: flex;
   margin-bottom: 30rpx;
-  padding: 20rpx;
+  padding: 10rpx;
   white-space: nowrap;
   overflow-x: auto;
-  /* border-bottom: 1px solid #ddd; */
+  border-bottom: 2px solid #ddd;
   /* border-radius: 10rpx; */
 }
 .tags-list {
