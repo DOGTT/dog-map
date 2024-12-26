@@ -1,4 +1,6 @@
 // pages/sub/pofp-create/pofp-fullshow.js
+const app = getApp();
+
 Page({
 
 	/**
@@ -10,8 +12,6 @@ Page({
 			latitude: 22.55329,
 			longitude: 113.90308,
 		},
-		typeList: [
-    ],
     mapData: {
       markers:[{
 				id: 1,
@@ -29,8 +29,9 @@ Page({
 				}
 			}],
     },
+    pofpTypeStateMap: {},
+    pofpTypeList:[],
 		locationName: '', // 用于存储选择的位置名称
-		selectedTags: [], // 存储已选择的标签
 		photos: [], // 存储已选择的媒体文件路径
 		previewShow: false, // 是否展示预览
 		currentPhoto: '', // 当前预览的图片
@@ -41,7 +42,7 @@ Page({
 		wx.navigateBack(); // 返回到上一页
 	},
 	// 标签点击事件
-	onTagTap(e) {
+	onTypeBtnTap(e) {
 		const index = e.currentTarget.dataset.index; // 获取点击的标签索引
 		const tagsList = this.data.tagsList;
 		console.log(e);
@@ -204,12 +205,32 @@ Page({
       },
       mapData: this.data.mapData
     });
-  
+    // get pofp type
+    this.pofpTypeListReload();
   },
   onShow() {
 		console.log("onShow")
   },
   onReady() {
 		console.log("onReady")
+  },
+  // 加载足迹类型信息
+	pofpTypeListReload() {
+		var _this = this;
+		app.getPofpTypes().then((listData) => {
+			console.log("get pofp list res.data", listData);
+			for (let i = 0; i < listData.length; i++) {
+				_this.data.pofpTypeStateMap[listData[i].id] = {
+					select: true,
+					data: listData[i],
+				};
+			}
+			_this.setData({
+				pofpTypeList: listData,
+				pofpTypeStateMap: _this.data.pofpTypeStateMap,
+			});
+		}).catch((err) => {
+			console.error('list poi type failed:', err);
+		});
 	}
 })

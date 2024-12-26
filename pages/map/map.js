@@ -145,7 +145,7 @@ Page({
 			}
 		}
 		this.data.pofpTypeStateMap[id].select = !ps[id].select;
-		this.poiListReRender();
+		this.pofpReRender();
 		// 更新数据
 		this.setData({
 			pofpTypeStateMap: this.data.pofpTypeStateMap,
@@ -368,7 +368,7 @@ Page({
 		if (this.data.mapData.markers.length > 0 && this.data.mapData.markers[0].id == 1) {
 			markers.push(this.data.mapData.markers[0]);
 		}
-		console.log("poiListReRender this.pofpMap", this.data.pofpMap);
+		console.log("pofpReRender this.pofpMap", this.data.pofpMap);
 		var ptsMap = this.data.pofpTypeStateMap;
 		var pMap = this.data.pofpMap;
 		for (let makerID in pMap) {

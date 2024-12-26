@@ -59,7 +59,7 @@ App({
     const _this = this;
     return new Promise((resolve) => {
       if (_this.globalData.pofpTypes) {
-        resolve(_this.globalData.someData);
+        resolve(_this.globalData.pofpTypes);
       } else {
         // 数据未加载，进行加载
         _this.loadPopfTypes().then(resolve);

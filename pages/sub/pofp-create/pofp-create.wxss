@@ -161,12 +161,12 @@
   border-bottom: 2px solid #ddd;
   /* border-radius: 10rpx; */
 }
-.tags-list {
+.type-list {
   display: flex; 
   /* 使用 Flexbox */
 }
 
-.tag-button {
+.type-button {
   display: flex; 
   font-size: 26rpx;
   border-radius: 20rpx;
@@ -182,7 +182,7 @@
 }
 
 
-.tag-button.selected {
+.type-button.selected {
   color: #fff;
   background-color: #007aff;
   /* background-color: #333; */

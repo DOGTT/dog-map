@@ -23,10 +23,10 @@
     </view>
     
     <!-- 标签选择区域 -->
-    <scroll-view class="tags-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <scroll-view class="type-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
       <view class="type-selection">
-        <block wx:for="{{ typeList }}" wx:key="index">
-          <view class="tag-button {{item.select ? 'selected' : ''}}" bindtap="onTagTap" data-index="{{index}}">#{{item.value}}</view>
+        <block wx:for="{{ pofpTypeList }}" wx:key="index">
+          <view class="type-button {{item.select ? 'selected' : ''}}" bindtap="onTypeBtnTap" data-index="{{index}}">#{{item.value}}</view>
         </block>
       </view>
     </scroll-view>
