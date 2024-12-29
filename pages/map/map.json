@@ -1,9 +1,9 @@
 {
-  "usingComponents": {
-    "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
-    "van-button": "/miniprogram_npm/@vant/weapp/button/index",
-    "van-card": "/miniprogram_npm/@vant/weapp/card/index",
-    "van-search": "/miniprogram_npm/@vant/weapp/search/index",
-    "login-popup": "/components/login-popup/login-popup"
-  }
+    "usingComponents": {
+        "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
+        "van-button": "/miniprogram_npm/@vant/weapp/button/index",
+        "van-card": "/miniprogram_npm/@vant/weapp/card/index",
+        "van-search": "/miniprogram_npm/@vant/weapp/search/index",
+        "login-popup": "/components/login-popup/login-popup"
+    }
 }

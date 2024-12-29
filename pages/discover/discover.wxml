@@ -22,3 +22,14 @@ bindtap="onCanvasClick"
 
 <van-button plain type="primary">按钮</van-button>
 
+<view>
+  附近的狗狗
+</view>
+
+<view>
+  今天去哪里？
+</view>
+
+<view>
+  异次元狗狗
+</view>

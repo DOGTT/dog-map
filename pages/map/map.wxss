@@ -37,17 +37,18 @@
 .pofp-type-tab-button-container {
   display: flex;
   /* align-items: center; */
-  margin-left: 10rpx;
+  margin-left: 20rpx;
 }
 
 .pofp-type-button-custom.selected {
   justify-content: flex-start !important; /* 左对齐 */
   text-align: left !important; /* 确保文字左对齐 */
-  border-color: #FFF !important;
+  border-color: #FFFAFA !important;
   color: #000000 !important;
   transition: all 0.3s !important;
   /* padding-left: 10px !important; */
 }
+
 .pofp-type-button-custom.default {
   justify-content: flex-start !important; /* 左对齐 */
   text-align: left !important; /* 确保文字左对齐 */
@@ -70,7 +71,7 @@
   /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
   /* width: 80px;
   height: 100px; */
-  width: 100px;
+  width: 150rpx;
   margin: 0 2px;
   /* flex-direction: column; */
   /* align-items: center; */
@@ -80,8 +81,9 @@
 
 .pofp-type-button .van-button__icon {
   /* margin-right: 5px; 设置图标和文字的间距 */
-  font-size: 30px; 
-  margin-left: -10px;
+  font-size: 36rpx; 
+  /* padding-left: -10rpx; */
+  margin-left: -10rpx;
 }
 /* head ====== */
 

@@ -1,1 +1,11 @@
 /* pages/message/message.wxss */
+
+.content {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}

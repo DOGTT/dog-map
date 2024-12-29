@@ -9,9 +9,9 @@
     <!-- 预览组件 -->
     <photo-preview show="{{previewShow}}" current-photo="{{currentPhoto}}" photo-index="{{currentPhotoIndex}}" bind:close="closePreview" bind:setCover="setAsCover" bind:delete="deletePhoto"></photo-preview>
     <view class="photo-selection">
-      <block wx:for="{{photos}}" wx:key="*this">
+      <block wx:for="{{pofpInfo.photos}}" wx:key="*this">
         <view class="photo-wrapper" bindtap="openPreview" data-index="{{index}}">
-          <image src="{{item}}" class="photo" />
+          <image src="{{item.tempFilePath}}" class="photo" />
         </view>
       </block>
       <view class="add-photo-button" bindtap="addPhoto">
@@ -19,14 +19,14 @@
       </view>
     </view>
     <view class="title-input-wrapper">
-      <input type="text" class="title-input" placeholder="添加小标题" bindinput="onInputTitle" maxlength="50" focus="true" />
+      <input id="title" type="text" class="title-input" placeholder="添加小标题" bindinput="onInputTitle" maxlength="50" focus="true" />
     </view>
     
     <!-- 标签选择区域 -->
     <scroll-view class="type-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
       <view class="type-selection">
         <block wx:for="{{ pofpTypeList }}" wx:key="index">
-          <view class="type-button {{item.select ? 'selected' : ''}}" bindtap="onTypeBtnTap" data-index="{{index}}">#{{item.value}}</view>
+          <view class="type-button {{item.select ? 'selected' : ''}}" bindtap="onTypeBtnTap" data-index="{{index}}">{{item.name}}</view>
         </block>
       </view>
     </scroll-view>
@@ -40,11 +40,11 @@
       <!-- 显示地点信息 -->
       <view class="location-info">
         <text class="location-info-text">📍添加位置：</text>
-        <text>{{currentLocation.name || "未选择地点"}}</text>
+        <text>{{pofpInfo.address || "未选择地点"}}</text>
       </view>
       <!-- 地图缩略图 -->
       <view class="location-map" bindtap="chooseLocation">
-        <map id="mini-map" class="location-map" latitude="{{currentLocation.latitude}}" longitude="{{currentLocation.longitude}}" markers="{{mapData.markers}}"  scale="15" show-location></map>
+        <map id="mini-map" class="location-map" latitude="{{pofpInfo.lonLat.lat}}" longitude="{{pofpInfo.lonLat.lon}}" setting="{{mapData.mapSetting}}" markers="{{mapData.markers}}"  scale="15" show-location></map>
       </view>
     </view>
     <!-- 地点选择框 -->
@@ -67,6 +67,6 @@
   <!-- 底部按钮 -->
   <view class="bottom-bar">
     <button class="save-button" bindtap="onSave">暂存</button>
-    <button class="publish-button" bindtap="onPublish">发布</button>
+    <button class="publish-button" bindtap="onPublishBtnTap">发布</button>
   </view>
 </view>
