@@ -5,7 +5,7 @@ const geolib = require('geolib');
 import { sendRequest, sendRequestNoAuth } from '../../utils/util.js';
 
 const markerIconSizeDefault = "35px";
-const markerIconSizeSet = "45px";
+const markerIconSizeSet = "55px";
 class PoiMarker {
     constructor(id, latitude, longitude, title, icon) {
         this.id = id;

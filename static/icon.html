@@ -52,10 +52,10 @@
 
             const canvasDefault = document.getElementById(id);
             const ctxDefault = canvasDefault.getContext('2d');
-            drawDefault(ctxDefault, borderFill, iconFill, iconFilePath);
+            drawDefault(ctxDefault, '#FAFAD2', iconFill, iconFilePath);
             const canvasSet = document.getElementById(id + 'Set');
             const ctxSet = canvasSet.getContext('2d');
-            drawSet(ctxSet, borderFill, iconFill, iconFilePath);
+            drawSet(ctxSet, '#FFD700', iconFill, iconFilePath);
         }
 
         drawIcon('d1', '#FFD700', '#98D98E', '/Users/tide/mycode/dog-map/static/png/todo/1.png');
