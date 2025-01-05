@@ -37,6 +37,7 @@ Page({
         pofpDetailCard: {
             show: false,
             popUpAnimation: 'slideUp',
+            isLiked:false,
             data: {
                 uuid: "",
                 type_id: 1,
@@ -81,19 +82,19 @@ Page({
                 title: "发布气泡",
                 latitude: 22.55329,
                 longitude: 113.90308,
-                iconPath: "/static/png/marker/Marker3_Activated@3x.png",
+                iconPath: "/static/png/marker/m.png",
                 width: "38px",
                 height: "38px",
                 callout: {
-                    content: "点击-发布",
+                    content: "在此发布",
                     display: "ALWAYS",
                     padding: 5,
-                    borderRadius: 2,
-                    borderWidth: 1,
-                    fontSize: "12",
+                    borderRadius: 10,
+                    borderWidth: 2,
+                    fontSize: "15",
                     color: "#FFF",
-                    borderColor: "#000",
-                    bgColor: "#ccc",
+                    borderColor: "#FFF",
+                    bgColor: "#00BFFF",
                 }
             }
         },
@@ -446,12 +447,12 @@ Page({
 
     },
     // 喜欢按钮
-    toggleFavorite() {
-        var d = this.data.pofpDetail;
-        console.log("toggleFavorite", d.is_favorited);
-        d.is_favorited = !d.is_favorited;
+    toggleLike() {
+        const d = this.data.pofpDetailCard;
+        console.log("toggleLike", d.isLiked);
+        d.isLiked = !d.isLiked;
         this.setData({
-            pofpDetail: d
+          pofpDetailCard: d
         });
     },
     // 注册框弹出

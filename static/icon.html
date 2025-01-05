@@ -52,7 +52,8 @@
 
             const canvasDefault = document.getElementById(id);
             const ctxDefault = canvasDefault.getContext('2d');
-            drawDefault(ctxDefault, '#FAFAD2', iconFill, iconFilePath);
+            drawDefault(ctxDefault, '#FFF', iconFill, iconFilePath);
+            // drawDefault(ctxDefault, '#000', iconFill, iconFilePath);
             const canvasSet = document.getElementById(id + 'Set');
             const ctxSet = canvasSet.getContext('2d');
             drawSet(ctxSet, '#FFD700', iconFill, iconFilePath);
@@ -81,19 +82,19 @@
                 // 左耳
                 ctx.fillStyle = borderFill; // 粉色
                 ctx.beginPath();
-                ctx.arc(150 - earOffset, 150 - 60, earRadius, 0, Math.PI * 2); // 左耳
+                ctx.arc(150 - earOffset, 150 - 80, earRadius, 0, Math.PI * 2); // 左耳
                 ctx.fill();
                 // 右耳
                 ctx.beginPath();
-                ctx.arc(150 + earOffset, 150 - 60, earRadius, 0, Math.PI * 2); // 右耳
+                ctx.arc(150 + earOffset, 150 - 80, earRadius, 0, Math.PI * 2); // 右耳
                 ctx.fill();
                 ctx.fillStyle = iconFill; // 绿色
                 // ctx.fillStyle = 'rgba(255, 255, 255, 0)'; // 透明色
                 // 填充背景色为绿色
                 ctx.beginPath();
-                ctx.arc(150, 150, 110, 0, Math.PI * 2);
+                ctx.arc(150, 130, 110, 0, Math.PI * 2);
                 ctx.fill(); // 填充背景色
-                ctx.drawImage(img, 75, 75, 150, 150); // 调整图片位置和大小
+                ctx.drawImage(img, 75, 60, 150, 150); // 调整图片位置和大小
             }
         }
 
@@ -132,9 +133,9 @@
         // 绘制圆形
         function drawCircle(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
             ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'; // 阴影颜色
-            ctx.shadowBlur = 10; // 模糊程度
-            ctx.shadowOffsetX = 5; // 水平偏移
-            ctx.shadowOffsetY = 5; // 垂直偏移
+            ctx.shadowBlur = 20; // 模糊程度
+            ctx.shadowOffsetX = 15; // 水平偏移
+            ctx.shadowOffsetY = 15; // 垂直偏移
 
             const radius = width / 2 / 1.1;
             ctx.fillStyle = fillStyle; // 红色背景
@@ -154,15 +155,52 @@
         }
         // 绘制倒水滴形
         function drawDropShape(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
-            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'; // 阴影颜色
-            ctx.shadowBlur = 10; // 模糊程度
-            ctx.shadowOffsetX = 5; // 水平偏移
-            ctx.shadowOffsetY = 5; // 垂直偏移
+
+
+            // ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'; // 阴影颜色
+            // ctx.shadowBlur = 30; // 模糊程度
+            // ctx.shadowOffsetX = 20; // 水平偏移
+            // ctx.shadowOffsetY = 40; // 垂直偏移
+            const gradient = ctx.createRadialGradient(
+                width / 2, height - 10, 0,    // 内圆中心点(x, y, 半径)
+                width / 2, height - 10, 40    // 外圆中心点(x, y, 半径)
+            );
+
+            // 设置渐变颜色停止点
+            // 设置渐变颜色停止点，增加更多的颜色停止点使渐变更加平滑
+            gradient.addColorStop(0, 'rgba(0, 0, 0, 0.8)');   // 中心点颜色
+            gradient.addColorStop(0.3, 'rgba(0, 0, 0, 0.5)'); // 中间过渡色
+            gradient.addColorStop(0.7, 'rgba(0, 0, 0, 0.3)'); // 中间过渡色
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0.1)');  // 边缘颜色
+
+
+            ctx.fillStyle = gradient; // 半透明黑色作为阴影
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+            ctx.shadowBlur = 50;
+            ctx.shadowOffsetX = 30;
+            ctx.shadowOffsetY = 30;
+            ctx.beginPath();
+            // 绘制椭圆
+            ctx.ellipse(
+                width / 2,  // 中心点x坐标
+                height - 10,  // 中心点y坐标（靠近底部）
+                50,  // 水平半径
+                10,  // 垂直半径
+                0,  // 旋转角度
+                0,  // 起始角度
+                Math.PI * 2  // 结束角度
+            );
+            ctx.fill();
+            ctx.shadowColor = 'transparent'; // 或者 ctx.shadowBlur = 0;
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+
 
             const centerX = width / 2; // 水滴中心X坐标
-            const centerY = height / 2; // 水滴圆心Y坐标
+            const centerY = height / 2 - 20; // 水滴圆心Y坐标
             const radius = centerX / 1.1; // 圆形半径
-            const tipY = (height - lineWidth / 2); // 水滴尖端Y坐标
+            const tipY = (height - lineWidth / 2) - 5; // 水滴尖端Y坐标
             // 清空画布
             console.log(radius, width, height);
             // ctx.clearRect(0, 0, width, height);
@@ -189,15 +227,14 @@
             // 闭合路径并填充
             ctx.closePath();
             ctx.fill();
+
             // 绘制白色边框
             ctx.lineWidth = lineWidth;
             ctx.strokeStyle = strokeStyle;
             ctx.stroke();
 
-            ctx.shadowColor = 'transparent'; // 或者 ctx.shadowBlur = 0;
-            ctx.shadowBlur = 0;
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 0;
+
+
         }
     </script>
 </body>
