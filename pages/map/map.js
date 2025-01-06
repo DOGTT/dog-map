@@ -106,6 +106,23 @@ Page({
         touchStartTime: 0, // 记录触摸开始时间
         longPressTimeout: null, // 记录长按定时器
     },
+    onSearchFocus(){
+      console.log("onSearchFocus,chooseLocation");
+      const mapData = this.data.mapData;
+      wx.chooseLocation({
+          success: (res) => {
+              console.debug("chooseLocation",res);
+              mapData.latitude = res.latitude;
+              mapData.longitude = res.longitude;
+              this.setData({
+                  mapData: mapData
+              });
+          },
+          fail: (err) => {
+              console.error("选择地点失败：", err);
+          },
+      });
+    },
     // 长按交互控制
     onMapTouchStart(e) {
         console.log("onMapTouchStart");

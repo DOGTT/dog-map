@@ -10,38 +10,44 @@ page {
     position: relative;
 }
 
-/* ===== 搜索栏 ====== */
-
-.search-bar {
-    position: fixed;
-    top: 80rpx;
-    left: 20rpx;
-    width: 600rpx;
+.head-zone{
+  /* position: relative; */
+  display: flex;
+  position: fixed;
+  top: 80rpx;
+  width: 100%;
+  flex-direction:column;
+  padding-left: 20rpx;
+  /* left: 20rpx; */
 }
 
+/* ===== 搜索栏 ====== */
+
 .search-input {
-    /* background-color: rgb(255, 255, 255) !important;
-  border-radius: 10rpx !important;
-  height: 70px !important; */
+  width: 500rpx;
+  /* background-color: ragb(0,0,0,0.1) !important; */
+  /* border-radius: 10rpx !important; */
+  /* height: 70px !important; */
+  padding-left: 0px !important;
 }
 
 /* ===== 类型选择栏 ====== */
 
 .pofp-type-selecter-scroll-view {
     /* z-index: 1000; */
-    width: 100%;
-    position: absolute;
-    top: 200rpx;
-    height: 50px;
+    /* width: 100%; */
+    /* position: absolute; */
+    /* top: 200rpx; */
+    /* height: 50px; */
     /* 根据内容适当调整 */
-    white-space: nowrap;
-    overflow-x: auto;
+    /* white-space: nowrap; */
+    /* overflow-x: auto; */
 }
 
 .pofp-type-tab-button-container {
     display: flex;
     /* align-items: center; */
-    margin-left: 20rpx;
+    /* margin-left: 20rpx; */
 }
 
 .pofp-type-button-custom.selected {
@@ -50,8 +56,10 @@ page {
     text-align: left !important;
     /* 确保文字左对齐 */
     border-color: #FFFAFA !important;
-    color: #000000 !important;
+    color: #333 !important;
     transition: all 0.3s !important;
+    padding-left: 0px;
+    font-size: 28rpx;
     /* padding-left: 10px !important; */
 }
 
@@ -60,10 +68,13 @@ page {
     /* 左对齐 */
     text-align: left !important;
     /* 确保文字左对齐 */
-    border-color: #eee !important;
-    color: #666 !important;
+    border: 1px dashed #888;
+    /* border-color: #888 !important; */
+    color: #888 !important;
     background-color: #eee;
     transition: all 0.3s !important;
+    padding-left: 0px;
+    font-size: 26rpx;
     /* border-color: #ccc !important; */
     /* color: #409eff !important; */
     /* padding-left: 10px !important; */
@@ -71,17 +82,17 @@ page {
 
 .pofp-type-button {
     display: flex;
-    padding-left: 5px;
+    /* padding-left: 5px; */
     /* 可根据需求调整内边距 */
     /* margin-right: 10px; */
     /* background-color: #fcfcfc; */
-    /* border-radius: 12px; */
+    
     /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
     /* width: 80px;
   height: 100px; */
     width: 150rpx;
-    margin: 0 2px;
-    /* flex-direction: column; */
+    margin-right: 10px;
+    flex-direction: row;
     /* align-items: center; */
     /* justify-content: center; */
 }
@@ -89,9 +100,10 @@ page {
 
 .pofp-type-button .van-button__icon {
     /* margin-right: 5px; 设置图标和文字的间距 */
-    font-size: 36rpx;
+    font-size: 45rpx;
+    /* border-radius: 12px !important; */
     /* padding-left: -10rpx; */
-    margin-left: -10rpx;
+    /* margin-left: -10rpx; */
 }
 
 /* head ====== */
@@ -208,15 +220,16 @@ page {
 
 /*NEW*/
 .pofp-detail-card-head {
-    background-color: #eee;
+    /* background-color: #eee; */
     height: 120rpx;
     /* 固定头部高度 */
-    width: 100%;
+    /* width: 100%; */
     /* 宽度100% */
-    padding: 5rpx 20rpx;
+    padding: 5rpx 0rpx;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1rpx solid #aaa;
+    margin: 0 15rpx;
+    border-bottom: 1rpx solid #ddd;
 }
 
 .pofp-detail-card-head .meta-box {
@@ -351,4 +364,3 @@ page {
     transition: fill 0.3s;
     /* 颜色切换过渡效果 */
 }
-
