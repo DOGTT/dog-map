@@ -1,6 +1,6 @@
 <!--pages/mine.wxml-->
 <navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<view class="container">
+<view class="root">
   <!-- 上部分 -->
   <view class="header">
   </view>
@@ -11,10 +11,14 @@
       <image class="dog-avatar" src="/static/png/dog-undefine.png" />
       <!-- 狗狗信息 -->
       <view class="dog-info">
-        <text class="dog-name">🐾 小黄</text>
-        <text class="dog-detail">🐕 体重: 40kg</text>
-        <!-- <text class="dog-detail">🎂 生日: 2022-08-15</text> -->
-        <text class="dog-gender">🐶 性别: ♀️</text>
+        <text class="dog-name">香香</text>
+        <text class="dog-detail-item">汪汪号: 123321321</text>
+        <view class="info-tags">
+          <van-tag round type="primary">30kg</van-tag>
+          <van-tag round type="primary">GG</van-tag>
+          <van-tag round type="primary">3岁</van-tag>
+        </view>
+       
       </view>
     </view>
     <view class="user-sum-info">
@@ -32,11 +36,13 @@
           <text class="info-label">踩过</text>
         </view>
       </view>
+      <view class="config-zone">
+        <van-button plain round color="#FFF" type="primary" size="small" block custom-class="config-btn" >修改资料</van-button>
     </view>
-  </view>
-  <!-- 下部分 -->
-  <view class="bottom-section">
-    <!-- <text>这是下半部分</text> -->
+    </view>
+
+ 
+
     <view class="sticky-tab-bar">
       <block wx:for="{{tabs}}" wx:key="index">
         <view class="tab-item {{activeTab === index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}">
@@ -44,6 +50,28 @@
         </view>
       </block>
       <view class="underline" style="left: {{activeTab * 33.33+'%'}};"></view>
+    </view>
+  </view>
+  <!-- 下部分 -->
+  <view class="bottom-section">
+    <!-- <text>这是下半部分</text> -->
+    <view class="item-card">
+      aaa
+    </view>
+    <view class="item-card">
+      bbb
+    </view>
+    <view class="item-card">
+      ccc
+    </view>
+    <view class="item-card">
+      ddd
+    </view>
+    <view class="item-card">
+      ddd
+    </view>
+    <view class="item-card">
+      ddd
     </view>
   </view>
 

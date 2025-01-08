@@ -7,7 +7,7 @@ Page({
 	 */
 	data: {
     loginPopupShow: false,
-		tabs: ["标签1", "标签2", "标签3"], // 标签内容
+		tabs: ["发布", "点赞", "踩过"], // 标签内容
 		activeTab: 0 // 当前激活的标签索引
 	},
 	// 切换标签

@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "navigation-bar": "/components/navigation-bar/navigation-bar",
-    "login-popup": "/components/login-popup/login-popup"
+    "login-popup": "/components/login-popup/login-popup",
+    "van-tag": "/miniprogram_npm/@vant/weapp/tag/index",
+    "van-button": "/miniprogram_npm/@vant/weapp/button/index"
   }
 }

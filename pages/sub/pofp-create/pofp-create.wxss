@@ -8,19 +8,19 @@
   display: flex;
   align-items: center;
   height: 80rpx;
-  padding: 0 20rpx;
+  /* padding: 0 20rpx; */
   border-bottom: 1px solid #f0f0f0;
 }
 
 .back-icon {
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 20rpx;
-  cursor: pointer;
+  width: 50rpx;
+  height: 50rpx;
+  padding-right: 20rpx;
+  /* cursor: pointer; */
 }
 
 .header-title {
-  font-size: 32rpx;
+  font-size: 38rpx;
   font-weight: bold;
   color: #333;
 }
@@ -66,10 +66,11 @@
   justify-content: space-between; /* 两个按钮左右分布 */
   align-items: center;
   padding: 20rpx;
-  background-color: #ffffff;
+  padding-bottom: 40rpx;
+  background-color: #eee;
   border-top: 1px solid #e5e5e5;
   position: fixed; /* 固定在底部 */
-  bottom: 40rpx;
+  bottom: 0;
   left: 0;
   width: 100%;
   box-shadow: 0 -2rpx 5rpx rgba(0, 0, 0, 0.1);
@@ -77,11 +78,11 @@
 
 /* 按钮样式 */
 .save-button {
-  background-color: #f0f0f0;
+  background-color: #ccc;
   color: #333;
   border: none;
   border-radius: 8rpx;
-  padding: 15rpx 30rpx;
+  /* padding: 15rpx 80rpx; */
   font-size: 28rpx;
 }
 
@@ -90,7 +91,7 @@
   color: #ffffff;
   border: none;
   border-radius: 8rpx;
-  padding: 15rpx 50rpx;
+  /* padding: 15rpx 80rpx; */
   font-size: 28rpx;
 }
 
