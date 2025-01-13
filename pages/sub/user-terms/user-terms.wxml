@@ -10,7 +10,7 @@
   </view>
   <scroll-view class="terms-content">
     <!-- 模拟用户协议内容 -->
-    <text>这里是用户协议的具体内容...</text>
+    <text>这里是用户协议的具体内容...balabala..</text>
   </scroll-view>
 
  

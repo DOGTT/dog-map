@@ -1,0 +1,16 @@
+<!--components/avatar-editer/avatar-editer.wxml-->
+<view class="photo-preview" wx:if="{{show}}">
+  <!-- 遮罩层 -->
+  <view class="overlay" bindtap="closePreview"></view>
+  
+  <!-- 图片预览内容 -->
+  <view class="content">
+  <canvas id="avatarCropper" type="2d" style="display: none;" />
+    <image src="{{avatarNew || avatar}}" class="preview-image" mode="aspectFit" />
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="action-button" bindtap="avatarUpdate">更新头像</button>
+    </view>
+  </view>
+</view>

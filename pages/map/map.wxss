@@ -121,37 +121,37 @@ page {
 }
 
 .pub-button {
-    bottom: 50rpx;
+    bottom: 60rpx;
     left: 30rpx;
 }
 
 .pub-button-up {
-    bottom: calc(50rpx + var(--card-height));
+    bottom: calc(60rpx + var(--card-height));
 }
 
 .mark-button {
-    bottom: 150rpx;
+    bottom: 180rpx;
     right: 30rpx;
 }
 
 .mark-button-up {
-    bottom: calc(150rpx + var(--card-height));
+    bottom: calc(180rpx + var(--card-height));
 }
 
 .reloc-button {
-    bottom: 50rpx;
+    bottom: 60rpx;
     right: 30rpx;
 }
 
 .reloc-button-up {
-    bottom: calc(50rpx + var(--card-height));
+    bottom: calc(60rpx + var(--card-height));
 }
 
 .rect-button {
     position: fixed;
     display: flex;
-    width: 50px;
-    height: 50px;
+    width: 90rpx;
+    height: 90rpx;
     background-color: #fcfcfc;
     flex-direction: column;
     align-items: center;

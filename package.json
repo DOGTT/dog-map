@@ -17,8 +17,10 @@
     "eslint-plugin-html": "^4.0.0"
   },
   "dependencies": {
+    "@dw/wx-cropper": "^1.0.6",
     "@vant/weapp": "^1.11.7",
     "geolib": "^3.3.4",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "we-cropper": "^1.4.0"
   }
 }

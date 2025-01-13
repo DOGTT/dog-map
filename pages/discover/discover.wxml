@@ -3,6 +3,10 @@
 
 
 
+ <canvas id="myCanvas" type="2d" style="width: 200px; height: 200px;" />
+
+
+ <image src="{{tempFilePathA}}" style="border: 1px solid; width: 200px; height: 200px;"/>
 <view>
   附近的狗狗
 </view>

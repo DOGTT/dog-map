@@ -1,5 +1,94 @@
 // utils/canvasUtils.js
 
+// 裁剪图片为正方形
+function cropImage({
+  ctx = null,
+	canvasId = '#dynamicCanvas',
+  tempFilePath = '',
+  width = 200, // 画布宽度，默认值为 200
+	height = 200, // 画布高度，默认值为 200
+}) {
+	return new Promise((resolve, reject) => {
+    console.log("canvasId",canvasId)
+    wx.createSelectorQuery().in(this)
+    var sl = wx.createSelectorQuery()
+    if (ctx) {
+      sl.in(ctx)
+    }
+    sl.select(canvasId) // 在 WXML 中填入的 id
+			.fields({
+				node: true,
+				size: true
+			})
+			.exec((res) => {
+        console.log("node",res)
+        if (!res || !res[0]) {
+					reject(new Error('Canvas not found'));
+					return;
+				}
+
+				const canvas = res[0].node;
+				const ctx = canvas.getContext('2d');
+				// 渲染上下文
+        const dpr = wx.getWindowInfo().pixelRatio
+        canvas.width = width * dpr
+        canvas.height = height * dpr
+				// 初始化画布大小
+
+				// 绘制裁剪后的图片
+				// ctx.drawImage(tempFilePath, x, y, size, size, 0, 0, 200, 200); // 裁剪为 200x200 的正方形
+				const img = canvas.createImage();
+				img.src = tempFilePath;
+				img.onload = (ic) => {
+					console.log(ic);
+            const	imgWidth= ic.path[0].width;
+            const	imgHeight= ic.path[0].height;
+					const size = Math.min(imgWidth, imgHeight); // 取宽高中的最小值
+					const x = (imgWidth - size) / 2; // 计算裁剪起始点的 x 坐标
+          const y = (imgHeight - size) / 2; // 计算裁剪起始点的 y 坐标
+          console.log("size",imgWidth, imgHeight,size)
+					console.log("xy", x, y)
+					ctx.drawImage(
+						img,
+						0, y, size, size, 0, 0, canvas.width, canvas.height
+					);
+					// 保存为临时图片
+					wx.canvasToTempFilePath({
+						canvas,
+						x: 0,
+						y: 0,
+						width: canvas.width,
+						height: canvas.height,
+						destWidth: width,
+            destHeight: height,
+            fileType: "jpg",
+            quality: 1,
+						success: (res) => {
+              wx.getFileInfo({
+                filePath: res.tempFilePath,
+                success: (fileInfo) => {
+                  console.log(fileInfo.size/1024,"kb");
+                },
+                fail: (err) => {
+                  reject(err); // 处理错误
+                }
+              });
+							resolve(res.tempFilePath);
+						},
+						fail: (err) => {
+							reject(err);
+						},
+					});
+				};
+
+				img.onerror = () => {
+					reject(new Error('Failed to load icon image'));
+				};
+
+
+			});
+	})
+}
 
 function darwAndsaveCanvasAsImage({
 	canvasId = '#dynamicCanvas', // 画布 ID，默认值为 '#dynamicCanvas'
@@ -153,4 +242,5 @@ function drawDropShape(ctx, width, height, lineWidth, strokeStyle, fillStyle) {
 
 module.exports = {
 	darwAndsaveCanvasAsImage,
+	cropImage
 };

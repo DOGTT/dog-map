@@ -1,8 +1,12 @@
 {
-  "usingComponents": {
-    "navigation-bar": "/components/navigation-bar/navigation-bar",
-    "login-popup": "/components/login-popup/login-popup",
-    "van-tag": "/miniprogram_npm/@vant/weapp/tag/index",
-    "van-button": "/miniprogram_npm/@vant/weapp/button/index"
-  }
+  "enablePullDownRefresh": false,
+    "usingComponents": {
+        "navigation-bar": "/components/navigation-bar/navigation-bar",
+        "login-popup": "/components/login-popup/login-popup",
+        "avatar-editor": "/components/avatar-editor/avatar-editor",
+        "van-tag": "/miniprogram_npm/@vant/weapp/tag/index",
+        "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
+        "van-loading": "/miniprogram_npm/@vant/weapp/loading/index",
+        "van-button": "/miniprogram_npm/@vant/weapp/button/index"
+    }
 }

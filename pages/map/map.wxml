@@ -39,7 +39,7 @@
         <view class="pofp-detail-card">
           <view class="pofp-detail-card-head">
             <view class="meta-box">
-              <text class="meta-title">{{pofpDetailCard.data.title}}
+              <text class="meta-title" bindtap="navToPofpPage">{{pofpDetailCard.data.title}}
               </text>
               <view class="meta-user-info">
                 <image class="meta-avatar" src="/static/png/dog-13.png" />
@@ -55,9 +55,9 @@
           </view>
           <view class="pofp-detail-card-body">
             <view class="pofp-detail-media-zone">
-              <image class="media-key-photo" src="/static/test/test-photo.jpg" mode="scaleToFill" />
+              <image class="media-key-photo" bindtap="navToPofpPage" src="/static/test/test-photo.jpg" mode="scaleToFill" />
             </view>
-            <view class="pofp-detail-dynamic-zone">
+            <view class="pofp-detail-dynamic-zone" bindtap="navToPofpPage">
               <view>
                 todo
                 动态--
