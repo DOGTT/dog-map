@@ -1,15 +1,51 @@
-<view class="terms-page">
-  <navigation-bar title="用户协议" back="{{false}}" color="black"></navigation-bar>
+<view class="root">
+  <navigation-bar title="show" back="{{false}}" color="black"></navigation-bar>
   <view class="header">
-    <image 
-      class="back-icon" 
-      src="/static/png/return.png" 
-      bindtap="goBack" 
-    />
-    <text class="header-title">足迹详情页</text>
+    <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
+    <!-- 作者 -->
+    <view class="author-info">
+      <image class="author-avatar" src="/static/png/dog-13.png" />
+      <text class="author-name">香香</text>
+    </view>
   </view>
-  <scroll-view class="terms-content">
-    <!-- 模拟用户协议内容 -->
-    <text>这里是用户协议的具体内容...</text>
+  <!-- 内容 -->
+  <scroll-view class="body">
+    <!-- 内容展示 -->
+    <view class="content-box">
+      <!-- 媒体展示 -->
+      <view class="media-box">
+        <swiper indicator-dots="true" autoplay="true" indicator-type="worm" indicator-active-color="#F00" style="height: 400px; background-color: #333;" interval="3000" duration="1000">
+          <swiper-item wx:for="{{images}}" wx:key="index">
+            <image src="{{item}}" class="slide-image" mode="aspectFit"></image>
+          </swiper-item>
+        </swiper>
+      </view>
+
+      <view>
+        标题和内容
+      </view>
+
+      <view>
+        地理坐标
+      </view>
+
+
+      <view>
+        内容尾标
+      </view>
+    </view>
+
+    <!-- 互动区域 -->
+    <view class="inx-box">
+
+      <view>
+        来过的小狗
+      </view>
+
+      <!-- 评论互动区 -->
+      <view>
+      </view>
+    </view>
   </scroll-view>
+
 </view>

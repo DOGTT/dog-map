@@ -516,7 +516,7 @@ Page({
 		const lon = this.data.mapData.longitude;
 		const lat = this.data.mapData.latitude;
 		wx.navigateTo({
-			url: `/pages/sub/pofp-create/pofp-create?lon=${lon}&lat=${lat}`
+			url: `/pages/sub/pofp-edit/pofp-edit?lon=${lon}&lat=${lat}`
 		});
 	},
 

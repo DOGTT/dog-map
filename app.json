@@ -5,7 +5,7 @@
         "pages/mine/mine",
         "pages/message/message",
         "pages/sub/user-terms/user-terms",
-        "pages/sub/pofp-create/pofp-create",
+        "pages/sub/pofp-edit/pofp-edit",
         "pages/sub/pofp-fullshow/pofp-fullshow",
         "pages/sub/search/search",
         "pages/sub/user-edit/user-edit"

@@ -1,7 +1,26 @@
-.terms-page {
+.root {
   position: relative;
   padding: 0 20rpx;
 }
+
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 5rpx;
+}
+
+.author-avatar {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.author-name {
+font-size: 25rpx;
+color: #555;
+font-weight: lighter;
+}
+
 
 .header {
   display: flex;
@@ -24,11 +43,22 @@
   color: #333;
 }
 
-.terms-content {
+
+.body {
   margin-top: 20rpx;
   height: calc(100vh - 80rpx); /* 扣除顶部标题栏的高度 */
   overflow-y: scroll;
   font-size: 28rpx;
   line-height: 40rpx;
   color: #333;
+}
+
+.media-box{
+    width: 100%;
+    height: 600rpx; 
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
 }
