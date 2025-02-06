@@ -4,7 +4,7 @@
     <!-- 地图 -->
     <map id="map" class="full-screen" latitude="{{mapData.latitude}}" longitude="{{mapData.longitude}}" scale="{{mapData.scale}}" setting="{{mapSetting}}" markers="{{mapData.markers}}" circles="{{mapData.circles}}" bindtap="onTapMap" bindtouchstart="onMapTouchStart" bindtouchend="onMapTouchEnd" bindregionchange="onChangeRegion" bindpoitap="onTapPoi" bindlabeltap="onLabelTap" bindcallouttap="onCalloutTap" bindmarkertap="onTapMarker">
     </map>
-    <view class="head-zone">
+    <view class="head-zone" style="{{headZoneStyle}}">
       <!-- 搜索 -->
         <van-search custom-class="search-input" background="ragb(0,0,0,0)" value="{{ value }}" placeholder="点击选择位置" bind:focus="onSearchFocus" />
       <!-- 上方类型tab -->

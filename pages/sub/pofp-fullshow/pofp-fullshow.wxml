@@ -10,9 +10,8 @@
   </view>
   <!-- 内容 -->
   <scroll-view class="body">
-    <!-- 内容展示 -->
+  <!--
     <view class="content-box">
-      <!-- 媒体展示 -->
       <view class="media-box">
         <swiper indicator-dots="true" autoplay="true" indicator-type="worm" indicator-active-color="#F00" style="height: 400px; background-color: #333;" interval="3000" duration="1000">
           <swiper-item wx:for="{{images}}" wx:key="index">
@@ -34,18 +33,29 @@
         内容尾标
       </view>
     </view>
-
-    <!-- 互动区域 -->
     <view class="inx-box">
 
       <view>
         来过的小狗
       </view>
 
-      <!-- 评论互动区 -->
-      <view>
-      </view>
-    </view>
-  </scroll-view>
+    
+    </view>  -->
+ 
+ 
+ </scroll-view>
 
+
+  <!-- 评论互动区 -->
+  <view class="input-container" style="bottom: {{inputBottom}};">
+    <textarea class="chat-input"  show-confirm-bar="{{false}}" fixed cursor-spacing="100" auto-height maxlength="200" value="ssss" placeholder="分享动态//动态展示 todo"/>
+
+    <view class="input-tail">
+      <view class="inx-zone">
+      todo
+      </view>
+      <button class="send-button" size="mini" bindtap="sendMessage">发送</button>
+    </view>
+   
+  </view>
 </view>
