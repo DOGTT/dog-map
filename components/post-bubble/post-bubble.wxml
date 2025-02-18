@@ -1,9 +1,7 @@
 <!--components/post-bubble/post-bubble.wxml-->
 <view class="message-bubble">
   <!-- 头像 -->
-  <view class="avatar">
-    <image src="{{avatarUrl}}" mode="aspectFill"></image>
-  </view>
+  <image class="avatar-zone" src="{{avatarUrl}}" mode="aspectFill"></image>
 
   <!-- 内容气泡 -->
   <view class="bubble">
@@ -22,9 +20,26 @@
 
     <!-- 内容区 -->
     <view class="content">
-      <block wx:for="{{images}}" wx:key="index">
-        <image src="{{item}}" mode="aspectFill"></image>
-      </block>
+      <!-- 轮播图 -->
+      <view class="swiper-container">
+        <swiper
+          class="image-swiper"
+          current="{{currentIndex}}"
+          bindchange="onSwiperChange"
+          autoplay="{{false}}"
+          circular="{{false}}" indicator-dots="true" 
+        >
+          <block wx:for="{{images}}" wx:key="index">
+            <swiper-item>
+              <image class="swiper-image" src="{{item}}" mode="aspectFill"></image>
+            </swiper-item>
+          </block>
+        </swiper>
+        <!-- 角标 -->
+        <view class="index-indicator">
+          {{currentIndex + 1}}/{{images.length}}
+        </view>
+      </view>
       <text class="text">{{text}}</text>
     </view>
 

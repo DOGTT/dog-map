@@ -47,7 +47,7 @@
   username="用户名称"
   date="2025-02-18"
   tags="{{['标签1', '标签2']}}"
-  images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.jpg']}}"
+  images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}"
   text="这里是发布的内容"
   reactions="{{['👍', '❤️', '😄']}}"
   bind:reactiontap="onReactionTap"
