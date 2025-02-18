@@ -1,2 +1,38 @@
 <!--components/post-bubble/post-bubble.wxml-->
-<text>components/post-bubble/post-bubble.wxml</text>
+<view class="message-bubble">
+  <!-- 头像 -->
+  <view class="avatar">
+    <image src="{{avatarUrl}}" mode="aspectFill"></image>
+  </view>
+
+  <!-- 内容气泡 -->
+  <view class="bubble">
+    <!-- 头部区 -->
+    <view class="header">
+      <view class="user-info">
+        <text class="username">{{username}}</text>
+        <text class="date">{{date}}</text>
+      </view>
+      <view class="tags">
+        <block wx:for="{{tags}}" wx:key="index">
+          <text class="tag">{{item}}</text>
+        </block>
+      </view>
+    </view>
+
+    <!-- 内容区 -->
+    <view class="content">
+      <block wx:for="{{images}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill"></image>
+      </block>
+      <text class="text">{{text}}</text>
+    </view>
+
+    <!-- 尾部互动区 -->
+    <view class="footer">
+      <button wx:for="{{reactions}}" wx:key="index" bindtap="onReactionTap" data-index="{{index}}">
+        {{item}}
+      </button>
+    </view>
+  </view>
+</view>
