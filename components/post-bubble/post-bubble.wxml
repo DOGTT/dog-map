@@ -20,6 +20,7 @@
 
     <!-- 内容区 -->
     <view class="content">
+      <text class="text">{{text}}</text>
       <!-- 轮播图 -->
       <view class="swiper-container">
         <swiper
@@ -40,7 +41,7 @@
           {{currentIndex + 1}}/{{images.length}}
         </view>
       </view>
-      <text class="text">{{text}}</text>
+     
     </view>
 
     <!-- 尾部互动区 -->

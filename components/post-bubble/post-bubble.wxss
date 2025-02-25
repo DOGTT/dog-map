@@ -29,12 +29,15 @@
 }
 
 .header {
-  margin-bottom: 10px;
+  margin-bottom: 10rpx;
+  padding-bottom: 10rpx;
+  border-bottom: solid 1px #ccc;
 }
 
 .user-info {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 10rpx;
   margin-bottom: 5px;
 }
 
@@ -98,17 +101,19 @@
 }
 
 .text {
+  display: block;
   width: 100%;
-  margin-top: 10px;
+  margin: 10px 0px;
 }
 
 .content text {
-  font-size: 14px;
+  font-size: 30rpx;
 }
 
 .footer {
   display: flex;
   justify-content: flex-end;
+  border-top: solid 1px #ccc;
 }
 
 .footer button {

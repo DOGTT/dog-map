@@ -10,7 +10,8 @@ Page({
       "/static/test/test-photo2.png",
       // "/static/test/test-photo3.jpg",
       // "/static/test/test-photo4.jpg"
-    ]
+    ], 
+    imageForUpload:[]
 	},
 
 	goBack() {
@@ -28,5 +29,16 @@ Page({
         inputValue: '' // 清空输入框
       });
     }
-  }
+  },
+  onAfterRead(e) {
+    const { file } = e.detail;
+    this.setData({
+      imageForUpload: this.data.imageForUpload.concat(file)
+    });
+  },
+  onDeleteImage(e) {
+    const { index } = e.detail;
+    const imageForUpload = this.data.imageForUpload.filter((_, i) => i !== index);
+    this.setData({ imageForUpload });
+  },
 })

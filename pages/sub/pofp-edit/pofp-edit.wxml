@@ -48,21 +48,7 @@
       </view>
     </view>
     <!-- 地点选择框 -->
-    <!-- <view class="location-selection">
-  <view class="location-display" bindtap="chooseLocation">
-    <text>{{locationName || '请选择地点'}}</text>
-  </view>
-</view> -->
 
-    <!-- </view> -->
-
-    <!-- <mp-uploader
-    title="图片上传"
-    tips="点击"
-    delete="true"
-    max-count="9"
-    files="{{photos}}"
-    >  </mp-uploader> -->
   </scroll-view>
   <!-- 底部按钮 -->
   <view class="bottom-bar">

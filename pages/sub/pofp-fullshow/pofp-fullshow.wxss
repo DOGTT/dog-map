@@ -4,18 +4,18 @@
 }
 
 
-.author-info {
+.pofp-info {
   display: flex;
   align-items: center;
   gap: 5rpx;
 }
 
-.author-avatar {
-  width: 30rpx;
-  height: 30rpx;
+.pofp-avatar {
+  width: 30px;
+  height: 30px;
 }
 
-.author-name {
+.pofp-name {
 font-size: 25rpx;
 color: #555;
 font-weight: lighter;
@@ -86,19 +86,45 @@ font-weight: lighter;
   width: 100%;
 }
 
+.van-uploader__upload{
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.van-uploader__preview-image{
+  width: 60px !important;
+  height: 60px !important;
+}
+
 .input-tail {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  
+}
+
+.input-ctrl-box {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
 }
 
 .inx-zone {
+  gap: 5px;
+}
 
+.inx-icon{
+  font-size: 35px;
+  margin-right: 10px;
 }
 
 .send-button {
-  width: 80px;
+  width: 100px;
   margin: 0;
   /* margin-right: 10rpx; */
+  font-size: 20px !important;
   background-color: #007aff;
   color: white;
   border: none;
