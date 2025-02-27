@@ -1,8 +1,52 @@
 .root {
   /* position: relative; */
   /* padding: 0 20rpx; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; 
+  overflow: hidden;
 }
 
+.nav {
+  position: sticky; 
+  top: 0;
+  background-color: #f0f0f0;
+}
+
+.header {
+  display: flex;
+
+  background-color: #f0f0f0;
+  align-items: center;
+  height: 80rpx;
+  padding: 0 20rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+
+.body {
+  /* margin-top: 20rpx; */
+  flex: 1;
+  /* margin-top: 60px;  */
+  /* 为 header 留出空间 */
+  /* margin-bottom: 100px; */
+  /* bottom: 100px; */
+  /* top: 100px; */
+  /* bottom: 100px; */
+  height: calc(100vh - 80rpx); /* 扣除顶部标题栏的高度 */
+  overflow-y: scroll;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #333;
+}
+
+.tail {
+  /* position: sticky;  */
+  bottom: 0;
+  z-index: 10;
+  height: 140px;
+  overflow: hidden;
+}
 
 .pofp-info {
   display: flex;
@@ -21,15 +65,6 @@ color: #555;
 font-weight: lighter;
 }
 
-
-.header {
-  display: flex;
-  align-items: center;
-  height: 80rpx;
-  padding: 0 20rpx;
-  border-bottom: 1px solid #f0f0f0;
-}
-
 .back-icon {
   width: 40rpx;
   height: 40rpx;
@@ -43,15 +78,6 @@ font-weight: lighter;
   color: #333;
 }
 
-
-.body {
-  margin-top: 20rpx;
-  height: calc(100vh - 80rpx); /* 扣除顶部标题栏的高度 */
-  overflow-y: scroll;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  color: #333;
-}
 
 .media-box{
     width: 100%;
@@ -74,7 +100,6 @@ font-weight: lighter;
   left: 0;
   right: 0;
   bottom: 0px;
-  padding: 30rpx;
   gap: 20px;
   transition: bottom 0.3s; /* 添加过渡效果 */
 }

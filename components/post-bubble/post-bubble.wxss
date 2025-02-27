@@ -5,6 +5,7 @@
   align-items: flex-start;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 10px;
   margin-bottom: 20px;
   /* align-items: flex-end; */
 }

@@ -1,5 +1,5 @@
 <view class="root">
-  <navigation-bar title="show" back="{{false}}" color="black"></navigation-bar>
+  <navigation-bar class="nav" title="" back="{{false}}"></navigation-bar>
   <view class="header">
     <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
     <!-- 作者 -->
@@ -10,81 +10,45 @@
     </view>
   </view>
   <!-- 内容 -->
-  <scroll-view class="body">
-  <!--
-    <view class="content-box">
-      <view class="media-box">
-        <swiper indicator-dots="true" autoplay="true" indicator-type="worm" indicator-active-color="#F00" style="height: 400px; background-color: #333;" interval="3000" duration="1000">
-          <swiper-item wx:for="{{images}}" wx:key="index">
-            <image src="{{item}}" class="slide-image" mode="aspectFit"></image>
-          </swiper-item>
-        </swiper>
-      </view>
-
-      <view>
-        标题和内容
-      </view>
-
-      <view>
-        地理坐标
-      </view>
-
-
-      <view>
-        内容尾标
-      </view>
-    </view>
-    <view class="inx-box">
-
-      <view>
-        来过的小狗
-      </view>
-
+  <scroll-view class="body" scroll-y>
     
-    </view>  -->
- 
-    <post-bubble
-  avatarUrl="/static/png/dog-13.png"
-  username="用户名称"
-  date="2025-02-18"
-  tags="{{['标签1', '标签2']}}"
-  images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}"
-  text="这里是发布的内容"
-  reactions="{{['👍', '❤️', '😄']}}"
-  bind:reactiontap="onReactionTap"
-/>
- </scroll-view>
+    <post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
+
+    <post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
+
+
+    <view>
+      ---------
+    </view>
+  </scroll-view>
 
 
   <!-- 评论互动区 -->
-  <view class="input-container" style="bottom: {{inputBottom}};">
-    <textarea class="chat-input"  show-confirm-bar="{{false}}" fixed cursor-spacing="100" auto-height maxlength="200" value="ssss" placeholder="分享动态//动态展示 todo"/>
-    <view class="input-tail">
 
-      <view class="media-uploader-box" wx:if="{{imageForUpload.length>0}}">
-        <van-uploader
-        file-list="{{ imageForUpload }}"
-        max-count="3"
-        preview-full-image="{{true}}"
-        bind:after-read="onAfterRead"
-        bind:delete="onDeleteImage"
-       /> 
-      </view>
+  <view class="tail">
+    <view class="input-container" style="bottom: {{inputBottom}};">
+      <textarea class="chat-input" show-confirm-bar="{{false}}" fixed cursor-spacing="10" auto-height maxlength="200" value="" placeholder="分享动态//动态展示 todo"  placeholder-style="fontSize:10px" />
+      <view class="input-tail">
 
-      <view class="input-ctrl-box">
-   
+        <view class="media-uploader-box" wx:if="{{imageForUpload.length>0}}">
+          <van-uploader file-list="{{ imageForUpload }}" max-count="3" preview-full-image="{{true}}" bind:after-read="onAfterRead" bind:delete="onDeleteImage" />
+        </view>
 
-      <view class="inx-zone">
+        <view class="input-ctrl-box">
 
-        <van-uploader max-count="3" bind:after-read="onAfterRead"> 
-          <van-icon class="inx-icon" name="photo-o"/>
-        </van-uploader>
-        <van-icon class="inx-icon" name="like-o" />
-      </view>
-      <button class="send-button" size="mini" bindtap="sendMessage"> 发送 </button>
+
+          <view class="inx-zone">
+
+            <van-uploader max-count="3" bind:after-read="onAfterRead">
+              <van-icon class="inx-icon" name="photo-o" />
+            </van-uploader>
+            <van-icon class="inx-icon" name="like-o" />
+          </view>
+          <button class="send-button" size="mini" bindtap="sendMessage"> 发送 </button>
+        </view>
+
       </view>
 
     </view>
-   
   </view>
 </view>
