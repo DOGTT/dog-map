@@ -48,18 +48,19 @@
   overflow: hidden;
 }
 
-.pofp-info {
+.channel-head {
   display: flex;
   align-items: center;
+  justify-self: center;
   gap: 5rpx;
 }
 
-.pofp-avatar {
+.channel-avatar {
   width: 30px;
   height: 30px;
 }
 
-.pofp-name {
+.channel-name {
 font-size: 25rpx;
 color: #555;
 font-weight: lighter;

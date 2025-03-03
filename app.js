@@ -5,7 +5,7 @@ App({
         wxCode: '',
         userInfo: null,
         baseUrl: 'http://localhost:8080/v1',
-        pofpTypes: null,
+        channelTypes: null,
         // theme: 'dark',
     },
     onLaunch() {
@@ -14,7 +14,7 @@ App({
         logs.unshift(Date.now());
         wx.setStorageSync('logs', logs);
         this.tryUserLogin();
-        this.loadPopfTypes();
+        this.loadChannelTypes();
     },
     decodeJWT(token) {
         // 检查 token 是否有效
@@ -33,20 +33,20 @@ App({
         return decodedPayload;
     },
     // 
-    loadPopfTypes: function () {
+    loadChannelTypes: function () {
         const _this = this;
         return new Promise((resolve, reject) => {
             wx.request({
                 method: "GET",
-                url: _this.globalData.baseUrl + '/popf/type',
+                url: _this.globalData.baseUrl + '/channel/type',
                 header: {
                     WeixinRequestCode: _this.globalData.wxCode
                 },
                 dataType: 'json',
                 success: (res) => {
-                    console.log("get pofp list res.data", res.data);
-                    _this.globalData.pofpTypes = res.data.pofp_types;
-                    resolve(_this.globalData.pofpTypes)
+                    console.log("get channel list res.data", res.data);
+                    _this.globalData.channelTypes = res.data.channel_types;
+                    resolve(_this.globalData.channelTypes)
                 },
                 fail: (err) => {
                     console.error('list poi type failed:', err);
@@ -55,14 +55,14 @@ App({
             });
         });
     },
-    getPofpTypes: function () {
+    getChannelTypes: function () {
         const _this = this;
         return new Promise((resolve) => {
-            if (_this.globalData.pofpTypes) {
-                resolve(_this.globalData.pofpTypes);
+            if (_this.globalData.channelTypes) {
+                resolve(_this.globalData.channelTypes);
             } else {
                 // 数据未加载，进行加载
-                _this.loadPopfTypes().then(resolve);
+                _this.loadChannelTypes().then(resolve);
             }
         });
     },

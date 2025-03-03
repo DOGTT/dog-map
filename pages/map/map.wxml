@@ -8,10 +8,10 @@
       <!-- 搜索 -->
         <van-search custom-class="search-input" background="ragb(0,0,0,0)" value="{{ value }}" placeholder="点击选择位置" bind:focus="onSearchFocus" />
       <!-- 上方类型tab -->
-      <scroll-view class="pofp-type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
-        <view class="pofp-type-tab-button-container">
-          <block wx:for="{{ pofpTypeList }}" wx:key="id">
-            <van-button plain size="small" icon="{{pofpTypeStateMap[item.id].icon}}" icon-size="54px" type="primary" data-id="{{item.id}}" class="pofp-type-button" custom-class="pofp-type-button-custom {{pofpTypeStateMap[item.id].select ? 'selected' : 'default'}}" bind:tap="onPofpTypeButtonClick">{{item.name}}</van-button>
+      <scroll-view class="channel-type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
+        <view class="channel-type-tab-button-container">
+          <block wx:for="{{ channelTypeList }}" wx:key="id">
+            <van-button plain size="small" icon="{{channelTypeStateMap[item.id].icon}}" icon-size="54px" type="primary" data-id="{{item.id}}" class="channel-type-button" custom-class="channel-type-button-custom {{channelTypeStateMap[item.id].select ? 'selected' : 'default'}}" bind:tap="onChannelTypeButtonClick">{{item.name}}</van-button>
           </block>
         </view>
       </scroll-view>
@@ -20,26 +20,26 @@
     <!-- 下方控制展示区 -->
     <view class="bottom-ctrl">
       <!-- 发布按钮 -->
-      <view class="rect-button pub-button {{pofpDetailCard.show  ? 'pub-button-up' : ''}}" bindtap="navigateToPofpCreate">
+      <view class="rect-button pub-button {{channelDetailCard.show  ? 'pub-button-up' : ''}}" bindtap="navigateToChannelCreate">
         <image src="/static/svg/pub.svg" class="rect-button-icon" />
         <text class="rect-button-text">发布</text>
       </view>
       <!-- 标记按钮 -->
-      <view class="rect-button mark-button {{pofpDetailCard.show  ? 'mark-button-up' : ''}}" bindtap="">
+      <view class="rect-button mark-button {{channelDetailCard.show  ? 'mark-button-up' : ''}}" bindtap="">
         <image src="/static/svg/pub.svg" class="rect-button-icon" />
         <text class="rect-button-text">踩一踩</text>
       </view>
       <!-- 定位按钮 -->
-      <view class="rect-button reloc-button {{pofpDetailCard.show  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
+      <view class="rect-button reloc-button {{channelDetailCard.show  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
         <image src="/static/svg/location.svg" class="rect-button-icon" />
         <text class="rect-button-text">定位</text>
       </view>
       <!-- 弹出框 -->
-      <view class="pofp-detail-popup {{pofpDetailCard.show  ? 'pofp-detail-popup-show' : 'pofp-detail-popup-hide'}}">
-        <view class="pofp-detail-card">
-          <view class="pofp-detail-card-head">
+      <view class="channel-detail-popup {{channelDetailCard.show  ? 'channel-detail-popup-show' : 'channel-detail-popup-hide'}}">
+        <view class="channel-detail-card">
+          <view class="channel-detail-card-head">
             <view class="meta-box">
-              <text class="meta-title" bindtap="navToPofpPage">{{pofpDetailCard.data.title}}
+              <text class="meta-title" bindtap="navToChannelPage">{{channelDetailCard.data.title}}
               </text>
               <view class="meta-user-info">
                 <image class="meta-avatar" src="/static/png/dog-13.png" />
@@ -48,16 +48,16 @@
             </view>
 
             <view class="ixn-box">
-              <van-icon name="{{pofpDetailCard.isLiked ? 'like' : 'like-o'}}" color="#F00" size="50rpx" info="19" bindclick='toggleLike' />
+              <van-icon name="{{channelDetailCard.isLiked ? 'like' : 'like-o'}}" color="#F00" size="50rpx" info="19" bindclick='toggleLike' />
               <van-icon info-class="inx-icon-info" name="chat-o" size="50rpx" info="3" />
               <van-icon info-class="inx-icon-info" name="/static/paw.svg" size="50rpx" info="9" />
             </view>
           </view>
-          <view class="pofp-detail-card-body">
-            <view class="pofp-detail-media-zone">
-              <image class="media-key-photo" bindtap="navToPofpPage" src="/static/test/test-photo.jpg" mode="scaleToFill" />
+          <view class="channel-detail-card-body">
+            <view class="channel-detail-media-zone">
+              <image class="media-key-photo" bindtap="navToChannelPage" src="/static/test/test-photo.jpg" mode="scaleToFill" />
             </view>
-            <view class="pofp-detail-dynamic-zone" bindtap="navToPofpPage">
+            <view class="channel-detail-dynamic-zone" bindtap="navToChannelPage">
               <view>
                 todo
                 动态--
@@ -66,7 +66,7 @@
                 “每天晚上9点狗狗玩耍聚会”
               </view>
             </view>
-            <view class="pofp-detail-location-zone">
+            <view class="channel-detail-location-zone">
 
               <text class="location-text">宝安区海天路交叉口南300米</text>
               <view class="location-nav-button">
@@ -84,7 +84,7 @@
     <!-- end -->
   </view>
 
-  <!-- pofp详情页面 -->
+  <!-- channel详情页面 -->
   <view>
 
   </view>

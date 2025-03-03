@@ -1,8 +1,7 @@
-// pages/sub/pofp-create/pofp-fullshow.js
 const app = getApp();
 import { uploadMedia, sendRequest } from '../../../utils/util.js';
 
-const pofpCacheKey = 'pofpCreateCache';
+const channelCacheKey = 'channelCreateCache';
 
 Page({
 
@@ -35,13 +34,13 @@ Page({
                 enableScroll: false,
             },
         },
-        pofpTypeList: [],
+        channelTypeList: [],
         previewShow: false, // 是否展示预览
         currentPhoto: '', // 当前预览的图片
         currentPhotoIndex: null, // 当前预览图片的索引
 
 
-        pofpInfo: {
+        channelInfo: {
             typeID: 0,
             title: "",
             content: "",
@@ -54,30 +53,30 @@ Page({
         }
     },
     goBack() {
-        wx.setStorageSync(pofpCacheKey, this.data.pofpInfo);
+        wx.setStorageSync(channelCacheKey, this.data.channelInfo);
         wx.navigateBack(); // 返回到上一页
     },
     onInputTitle(e) {
-        this.data.pofpInfo.title = e.detail.value;
+        this.data.channelInfo.title = e.detail.value;
     },
     onInputContent(e) {
-        this.data.pofpInfo.content = e.detail.value;
+        this.data.channelInfo.content = e.detail.value;
     },
     // 标签点击事件
     onTypeBtnTap(e) {
         const index = e.currentTarget.dataset.index; // 获取点击的标签索引
-        var pofpTypeList = this.data.pofpTypeList;
-        this.data.pofpInfo.typeID = pofpTypeList[index].id;
+        var channelTypeList = this.data.channelTypeList;
+        this.data.channelInfo.typeID = channelTypeList[index].id;
         // 切换选中状态
-        for (let i = 0; i < pofpTypeList.length; i++) {
-            pofpTypeList[i].select = false;
+        for (let i = 0; i < channelTypeList.length; i++) {
+            channelTypeList[i].select = false;
             if (i == index) {
-                pofpTypeList[i].select = true;
+                channelTypeList[i].select = true;
             }
         }
         // 更新数据
         this.setData({
-            pofpTypeList
+            channelTypeList
         });
     },
     // 选择位置
@@ -90,12 +89,12 @@ Page({
                 var marker = _this.data.mapData.markers[0];
                 marker.latitude = res.latitude;
                 marker.longitude = res.longitude;
-                var lonLat = _this.data.pofpInfo.lonLat;
+                var lonLat = _this.data.channelInfo.lonLat;
                 lonLat.lat = res.latitude;
                 lonLat.lon = res.longitude;
-                _this.data.pofpInfo.address = res.name || "未知地点";
+                _this.data.channelInfo.address = res.name || "未知地点";
                 this.setData({
-                    pofpInfo: _this.data.pofpInfo,
+                    channelInfo: _this.data.channelInfo,
                     mapData: _this.data.mapData
                 });
             },
@@ -109,7 +108,7 @@ Page({
         const _this = this;
         const photoMax = 9;
         // 计算剩余可选数量
-        const maxSelectable = photoMax - _this.data.pofpInfo.photos.length;
+        const maxSelectable = photoMax - _this.data.channelInfo.photos.length;
         if (maxSelectable <= 0) {
             wx.showToast({
                 title: '最多只能选择' + photoMax + '张图片',
@@ -124,12 +123,12 @@ Page({
             success(res) {
                 console.log(res);
                 for (let i = 0; i < res.tempFiles.length; i++) {
-                    _this.data.pofpInfo.photos.push(res.tempFiles[i]);
+                    _this.data.channelInfo.photos.push(res.tempFiles[i]);
                 }
                 _this.setData({
-                    pofpInfo: _this.data.pofpInfo
+                    channelInfo: _this.data.channelInfo
                 });
-                console.log('photo set:', _this.data.pofpInfo);
+                console.log('photo set:', _this.data.channelInfo);
             },
             fail(err) {
                 console.error('Media selection failed:', err);
@@ -141,7 +140,7 @@ Page({
         const index = e.currentTarget.dataset.index;
         this.setData({
             previewShow: true,
-            currentPhoto: this.data.pofpInfo.photos[index].tempFilePath,
+            currentPhoto: this.data.channelInfo.photos[index].tempFilePath,
             currentPhotoIndex: index,
         });
     },
@@ -156,13 +155,13 @@ Page({
         const {
             index
         } = e.detail;
-        const photos = this.data.pofpInfo.photos;
+        const photos = this.data.channelInfo.photos;
         const photoSet = photos[index];
         // 将当前图片置于第一位
         photos.splice(index, 1);
         photos.unshift(photoSet);
         this.setData({
-            pofpInfo: this.data.pofpInfo
+            channelInfo: this.data.channelInfo
         });
         wx.showToast({
             title: '已设为首图',
@@ -175,11 +174,11 @@ Page({
         const {
             index
         } = e.detail;
-        const photos = this.data.pofpInfo.photos;
+        const photos = this.data.channelInfo.photos;
         // 删除当前图片
         photos.splice(index, 1);
         this.setData({
-            pofpInfo: this.data.pofpInfo
+            channelInfo: this.data.channelInfo
         });
         wx.showToast({
             title: '照片已删除',
@@ -187,7 +186,7 @@ Page({
         });
     },
     onSave() {
-        wx.setStorageSync(pofpCacheKey, this.data.pofpInfo);
+        wx.setStorageSync(channelCacheKey, this.data.channelInfo);
         wx.showToast({
             title: '内容已暂存',
             icon: 'success'
@@ -206,30 +205,30 @@ Page({
             }
         });
     },
-    doPofpCreate() {
-        wx.setStorageSync(pofpCacheKey, this.data.pofpInfo);
-        var pofp = this.data.pofpInfo;
+    doChannelCreate() {
+        wx.setStorageSync(channelCacheKey, this.data.channelInfo);
+        var channel = this.data.channelInfo;
         // 显示加载进度
         wx.showLoading({
             title: '发布中',
         });
-        const pofpData = {
-            type_id: pofp.typeID,
-            title: pofp.title,
-            content: pofp.content,
+        const channelData = {
+            type_id: channel.typeID,
+            title: channel.title,
+            content: channel.content,
             lng_lat: {
-                lon: pofp.lonLat.lon,
-                lat: pofp.lonLat.lat
+                lon: channel.lonLat.lon,
+                lat: channel.lonLat.lat
             },
-            address: pofp.address,
+            address: channel.address,
         };
-        const photoList = pofp.photos.map(photo => photo.tempFilePath);
+        const photoList = channel.photos.map(photo => photo.tempFilePath);
         uploadMedia(app, photoList, 1).then((res) => {
             console.log(res);
-            sendRequest(app, '/pofp', 'POST', pofpData).then((res) => {
+            sendRequest(app, '/channel', 'POST', channelData).then((res) => {
                 wx.hideLoading();
                 console.log(res);
-                wx.removeStorageSync(pofpCacheKey);
+                wx.removeStorageSync(channelCacheKey);
                 wx.showToast({
                     title: '发布成功',
                     icon: 'success'
@@ -246,7 +245,7 @@ Page({
         })
     },
     onPublishBtnTap() {
-        const pofp = this.data.pofpInfo;
+        const channel = this.data.channelInfo;
         const _this = this;
         wx.showModal({
             title: '确认发布',
@@ -254,19 +253,19 @@ Page({
             success(res) {
                 if (res.confirm) {
                     // 检查清单
-                    if (pofp.title.length < 1) {
+                    if (channel.title.length < 1) {
                         _this.toastFormError('请添加标题', 'title');
                         return;
                     }
-                    if (pofp.content.length < 1) {
+                    if (channel.content.length < 1) {
                         _this.toastFormError('请添加正文', 'title');
                         return;
                     }
-                    if (pofp.lonLat.lon == 0) {
+                    if (channel.lonLat.lon == 0) {
                         _this.toastFormError('请选择位置', 'title');
                         return;
                     }
-                    _this.doPofpCreate();
+                    _this.doChannelCreate();
                     wx.showToast({
                         title: '发布成功',
                         icon: 'success'
@@ -282,28 +281,28 @@ Page({
         });
 
         // load cache
-        var pofpCache = wx.getStorageSync('pofpCreateCache');
-        if (pofpCache) {
-            this.data.pofpInfo = pofpCache;
+        var channelCache = wx.getStorageSync('channelCreateCache');
+        if (channelCache) {
+            this.data.channelInfo = channelCache;
         }
 
         if (options.lat && options.lon) {
             var marker = this.data.mapData.markers[0];
             marker.latitude = options.lat;
             marker.longitude = options.lon;
-            var lonLat = this.data.pofpInfo.lonLat;
+            var lonLat = this.data.channelInfo.lonLat;
             lonLat.lat = options.lat;
             lonLat.lon = options.lon;
         }
         if (options.address) {
-            this.data.pofpInfo.address = options.address || "未知地点";
+            this.data.channelInfo.address = options.address || "未知地点";
         }
         this.setData({
             mapData: this.data.mapData,
-            pofpInfo: this.data.pofpInfo
+            channelInfo: this.data.channelInfo
         });
-        // get pofp type
-        this.pofpTypeListReload();
+        // get channel type
+        this.channelTypeListReload();
     },
     onShow() {
         console.log("onShow")
@@ -312,15 +311,15 @@ Page({
         console.log("onReady")
     },
     // 加载足迹类型信息
-    pofpTypeListReload() {
-        app.getPofpTypes().then((listData) => {
-            console.log("get pofp list res.data", listData);
+    channelTypeListReload() {
+        app.getChannelTypes().then((listData) => {
+            console.log("get channel list res.data", listData);
             for (let i = 0; i < listData.length; i++) {
                 listData[i].select = false;
             }
             listData[0].select = true;
             this.setData({
-                pofpTypeList: listData,
+                channelTypeList: listData,
             });
         }).catch((err) => {
             console.error('list poi type failed:', err);

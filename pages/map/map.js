@@ -41,7 +41,7 @@ Page({
   data: {
     loginPopupShow: false,
     // for render
-    pofpDetailCard: {
+    channelDetailCard: {
       show: false,
       popUpAnimation: 'slideUp',
       isLiked: false,
@@ -105,10 +105,10 @@ Page({
         }
       }
     },
-    pofpTypeList: [],
-    pofpTypeStateMap: {},
+    channelTypeList: [],
+    channelTypeStateMap: {},
 
-    pofpDataList: {},
+    channelDataList: {},
 
     touchStartTime: 0, // 记录触摸开始时间
     longPressTimeout: null, // 记录长按定时器
@@ -164,17 +164,17 @@ Page({
       icon: 'success',
     });
   },
-  navToPofpPage() {
-    console.log('navToPofpPage')
+  navToChannelPage() {
+    console.log('navToChannelPage')
     wx.navigateTo({
-      url: `/pages/sub/pofp-fullshow/pofp-fullshow?id=1`
+      url: `/pages/sub/channel-main/channel-main?id=1`
     });
   },
   // 过滤poi类型按钮点击事件
-  onPofpTypeButtonClick(e) {
+  onChannelTypeButtonClick(e) {
     // console.log("tap id e:",e)
     var id = e.currentTarget.dataset.id; // 获取按钮的唯一标识
-    var ps = this.data.pofpTypeStateMap;
+    var ps = this.data.channelTypeStateMap;
     console.log("tap id:", id, ps)
     const allTrue = Object.values(ps).every(value => value.select === true);
     if (allTrue) {
@@ -182,11 +182,11 @@ Page({
         ps[key].select = !ps[key].select;
       }
     }
-    this.data.pofpTypeStateMap[id].select = !ps[id].select;
-    this.pofpReRender();
+    this.data.channelTypeStateMap[id].select = !ps[id].select;
+    this.channelReRender();
     // 更新数据
     this.setData({
-      pofpTypeStateMap: this.data.pofpTypeStateMap,
+      channelTypeStateMap: this.data.channelTypeStateMap,
     });
   },
   // 点击地图事件
@@ -262,7 +262,7 @@ Page({
   // 地图气泡点击事件
   onCalloutTap(event) {
     console.log("onCalloutTap")
-    this.navigateToPofpCreate();
+    this.navigateToChannelCreate();
   },
   // 重置图标到圆形
   markerIconReset() {
@@ -271,8 +271,8 @@ Page({
       if (markers[i].id == this.data.mapData.markerSet.id) {
         continue;
       }
-      const poiInfo = this.data.pofpDataList[i];
-      markers[i].iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].icon;
+      const poiInfo = this.data.channelDataList[i];
+      markers[i].iconPath = this.data.channelTypeStateMap[poiInfo.type_id].icon;
       markers[i].width = markerIconSizeDefault;
       markers[i].height = markerIconSizeDefault;
     }
@@ -293,23 +293,23 @@ Page({
     }
 
 
-    const poiInfo = this.data.pofpDataList[event.markerId];
+    const poiInfo = this.data.channelDataList[event.markerId];
     console.log("onTapMarker poiInfo", poiInfo);
     // 重置其他图标
     this.markerIconReset();
     // change icon
     const markerSelect = this.data.mapData.markers[event.markerId];
-    markerSelect.iconPath = this.data.pofpTypeStateMap[poiInfo.type_id].iconSet;
+    markerSelect.iconPath = this.data.channelTypeStateMap[poiInfo.type_id].iconSet;
     markerSelect.width = markerIconSizeSet;
     markerSelect.height = markerIconSizeSet;
     // update marker info to detail
-    const pofpDetailCard = this.data.pofpDetailCard;
-    pofpDetailCard.data = poiInfo;
+    const channelDetailCard = this.data.channelDetailCard;
+    channelDetailCard.data = poiInfo;
     this.setData({
       mapData: this.data.mapData,
-      pofpDetailCard
+      channelDetailCard
     })
-    this.pofpDetailCardUp();
+    this.channelDetailCardUp();
 
     // 一段时间后重置标志
     setTimeout(() => {
@@ -328,18 +328,18 @@ Page({
 
   },
   // 足迹卡片弹出加载
-  pofpDetailCardUp() {
-    // load pofp detail info
+  channelDetailCardUp() {
+    // load channel detail info
     // check token
     const token = wx.getStorageSync('token');
     if (!token || !app.globalData.userInfo) {
       this.regWithLoginPop();
       return
     }
-    sendRequest(app, '/popf/detail_query_by_id', 'GET', {
-      uuid: this.data.pofpDetailCard.data.uuid
+    sendRequest(app, '/Channel/detail_query_by_id', 'GET', {
+      uuid: this.data.channelDetailCard.data.uuid
     }).then((res) => {
-      console.info('get pofp res', res);
+      console.info('get channel res', res);
 
       // cropImage({
       // 	canvasId: "#myCanvas",
@@ -358,28 +358,28 @@ Page({
 
 
     }).catch((err) => {
-      console.error('get pofp failed', err);
+      console.error('get channel failed', err);
     })
 
-    const pofpDetailCard = this.data.pofpDetailCard;
-    pofpDetailCard.show = true;
-    pofpDetailCard.popUpAnimation = 'slideUp';
+    const channelDetailCard = this.data.channelDetailCard;
+    channelDetailCard.show = true;
+    channelDetailCard.popUpAnimation = 'slideUp';
     this.setData({
-      pofpDetailCard
+      channelDetailCard
     });
   },
   // 足迹卡片收回
-  pofpDetailCardDown() {
-    const pofpDetailCard = this.data.pofpDetailCard;
-    pofpDetailCard.popUpAnimation = 'slideDown';
+  channelDetailCardDown() {
+    const channelDetailCard = this.data.channelDetailCard;
+    channelDetailCard.popUpAnimation = 'slideDown';
     this.setData({
-      pofpDetailCard
+      channelDetailCard
     });
     // 动画完成后再隐藏组件
-    pofpDetailCard.show = false;
+    channelDetailCard.show = false;
     setTimeout(() => {
       this.setData({
-        pofpDetailCard
+        channelDetailCard
       });
     }, 300); // 动画时长与 CSS 定义一致
   },
@@ -387,9 +387,9 @@ Page({
   onChangeRegion(event) {
     console.log("onChangeRegion")
     // 关闭弹出框
-    this.pofpDetailCardDown();
+    this.channelDetailCardDown();
     if (event.type === 'end' && event.causedBy === 'drag') {
-      this.pofpListReload();
+      this.channelListReload();
       const mapCtx = wx.createMapContext('map', this);
       mapCtx.getCenterLocation({
         success: res => {
@@ -437,19 +437,19 @@ Page({
     });
   },
   // 足迹点重渲染
-  pofpReRender() {
+  channelReRender() {
     var markers = [];
-    console.log("pofpReRender this.pofpDataList", this.data.pofpDataList);
-    var ptsMap = this.data.pofpTypeStateMap;
-    var pList = this.data.pofpDataList;
+    console.log("channelReRender this.channelDataList", this.data.channelDataList);
+    var ptsMap = this.data.channelTypeStateMap;
+    var pList = this.data.channelDataList;
     for (let i = 0; i < pList.length; i++) {
-      let pofp = pList[i];
-      let pts = ptsMap[pofp.type_id];
-      console.debug("pofp info", i, pofp, pts);
+      let channel = pList[i];
+      let pts = ptsMap[channel.type_id];
+      console.debug("channel info", i, channel, pts);
       if (pts.select) {
         markers.push(new PoiMarker(i,
-          pofp.lng_lat.lat, pofp.lng_lat.lng,
-          pofp.title, pts.icon));
+          channel.lng_lat.lat, channel.lng_lat.lng,
+          channel.title, pts.icon));
       }
     }
     console.log("markers ", markers);
@@ -459,13 +459,13 @@ Page({
     });
   },
   // 足迹列表重加载
-  pofpListReload() {
-    console.log('pofpListReload');
+  channelListReload() {
+    console.log('channelListReload');
     const mapCtx = wx.createMapContext('map', this);
     mapCtx.getRegion({
       success: region => {
-        console.log("reload pofp,get center region", region);
-        sendRequestNoAuth(app, '/popf/base_query_by_bound', 'POST', {
+        console.log("reload channel,get center region", region);
+        sendRequestNoAuth(app, '/channel/base_query_by_bound', 'POST', {
           type_ids: [],
           bound: {
             ne: {
@@ -478,13 +478,13 @@ Page({
             }
           }
         }).then((res) => {
-          console.log("pofp list res.data", res.data);
-          this.data.pofpDataList = res.data.pofps;
-          console.log("this.pofpDataList", this.data.pofpDataList)
-          this.pofpReRender();
-          console.log("pofp list res.data", res.data);
+          console.log("channel list res.data", res.data);
+          this.data.channelDataList = res.data.channels;
+          console.log("this.channelDataList", this.data.channelDataList)
+          this.channelReRender();
+          console.log("channel list res.data", res.data);
         }).catch((err) => {
-          console.error('list pofp failed:', err);
+          console.error('list channel failed:', err);
         })
       },
       fail: err => {
@@ -495,11 +495,11 @@ Page({
   },
   // 喜欢按钮
   toggleLike() {
-    const d = this.data.pofpDetailCard;
+    const d = this.data.channelDetailCard;
     console.log("toggleLike", d.isLiked);
     d.isLiked = !d.isLiked;
     this.setData({
-      pofpDetailCard: d
+      channelDetailCard: d
     });
   },
   // 注册框弹出
@@ -509,34 +509,34 @@ Page({
     });
   },
   // 足迹完整信息页面
-  showPofpFullPage() {
+  showChannelFullPage() {
 
   },
   // 足迹创建页面
-  navigateToPofpCreate() {
+  navigateToChannelCreate() {
     const lon = this.data.mapData.longitude;
     const lat = this.data.mapData.latitude;
     wx.navigateTo({
-      url: `/pages/sub/pofp-edit/pofp-edit?lon=${lon}&lat=${lat}`
+      url: `/pages/sub/channel-edit/channel-edit?lon=${lon}&lat=${lat}`
     });
   },
 
   // 加载足迹类型信息
-  pofpTypeListReload() {
+  channelTypeListReload() {
     var _this = this;
-    app.getPofpTypes().then((listData) => {
-      console.log("get pofp list res.data", listData);
+    app.getChannelTypes().then((listData) => {
+      console.log("get channel list res.data", listData);
       for (let i = 0; i < listData.length; i++) {
         listData[i].select = true;
-        listData[i].icon = '/static/png/pofp-type-show/' + listData[i].id + '.png';
-        listData[i].iconSet = '/static/png/pofp-type-show/' + listData[i].id + '-set.png';
-        _this.data.pofpTypeStateMap[listData[i].id] = listData[i];
+        listData[i].icon = '/static/png/channel-type-show/' + listData[i].id + '.png';
+        listData[i].iconSet = '/static/png/channel-type-show/' + listData[i].id + '-set.png';
+        _this.data.channelTypeStateMap[listData[i].id] = listData[i];
       }
       _this.setData({
-        pofpTypeList: listData,
-        pofpTypeStateMap: _this.data.pofpTypeStateMap,
+        channelTypeList: listData,
+        channelTypeStateMap: _this.data.channelTypeStateMap,
       });
-      _this.pofpListReload();
+      _this.channelListReload();
     }).catch((err) => {
       console.error('list poi type failed:', err);
     });
@@ -563,10 +563,10 @@ Page({
 
     console.log("onload", capsuleHeight, capsuleTop)
     this.reLocation();
-    this.pofpTypeListReload();
+    this.channelTypeListReload();
 
     // dev
-    this.navToPofpPage();
+    this.navToChannelPage();
   },
   /**
    * 生命周期函数--监听页面显示

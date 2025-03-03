@@ -3,10 +3,15 @@
   <view class="header">
     <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
     <!-- 作者 -->
-    <view class="pofp-info">
-      <image class="pofp-avatar" src="/static/png/dog-13.png" />
-      <text class="pofp-group-mem">5/12</text>
-      <text class="pofp-name">这是标题</text>
+    <view class="channel-head">
+      <text class="item left">5/12</text>
+
+      <view class="item center">
+        <image class="channel-avatar" src="/static/png/dog-13.png" />
+        <text class="channel-title">频道标题</text>
+        <van-icon class="inx-icon" name="star-o" />
+      </view>
+    
     </view>
   </view>
   <!-- 内容 -->
