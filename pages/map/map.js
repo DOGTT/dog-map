@@ -285,14 +285,11 @@ Page({
 		console.debug("onTapMarker", event);
 		// 设置标志，表明正在处理 marker 点击
 		this.isMarkerTapProcessing = true;
-
 		// 清除可能存在的地图点击定时器
 		if (this.mapTapTimer) {
 			clearTimeout(this.mapTapTimer);
 			this.mapTapTimer = null;
 		}
-
-
 		const poiInfo = this.data.channelDataList[event.markerId];
 		console.log("onTapMarker poiInfo", poiInfo);
 		// 重置其他图标
@@ -310,7 +307,6 @@ Page({
 			channelDetailCard
 		})
 		this.channelDetailCardUp();
-
 		// 一段时间后重置标志
 		setTimeout(() => {
 			this.isMarkerTapProcessing = false;
@@ -331,36 +327,18 @@ Page({
 	channelDetailCardUp() {
 		// load channel detail info
 		// check token
-		const token = wx.getStorageSync('token');
-		if (!token || !app.globalData.userInfo) {
-			this.regWithLoginPop();
-			return
-		}
-		sendRequest(app, '/Channel/detail_query_by_id', 'GET', {
+		// const token = wx.getStorageSync('token');
+		// if (!token || !app.globalData.userInfo) {
+		// 	this.regWithLoginPop();
+		// 	return
+		// }
+		sendRequest(app, '/channel/detail_query_by_id', 'GET', {
 			uuid: this.data.channelDetailCard.data.uuid
 		}).then((res) => {
 			console.info('get channel res', res);
-
-			// cropImage({
-			// 	canvasId: "#myCanvas",
-			// 	tempFilePath: '/static/test/test-photo.jpg',
-			// 	width: 500,
-			// 	height: 500
-			// }).then((resPath) => {
-			// 	console.log('图片生成成功A:', resPath);
-			// 	this.setData({
-			// 		tempFilePathA: resPath, // 保存路径到页面数据
-			// 	});
-
-			// }).catch((err) => {
-			// 	console.error('图片生成失败:', err);
-			// });
-
-
 		}).catch((err) => {
 			console.error('get channel failed', err);
 		})
-
 		const channelDetailCard = this.data.channelDetailCard;
 		channelDetailCard.show = true;
 		channelDetailCard.popUpAnimation = 'slideUp';
@@ -441,14 +419,18 @@ Page({
 		var markers = [];
 		console.log("channelReRender this.channelDataList", this.data.channelDataList);
 		var ptsMap = this.data.channelTypeStateMap;
-		var pList = this.data.channelDataList;
+    var pList = this.data.channelDataList;
+    if (!pList) {
+      return
+    }
 		for (let i = 0; i < pList.length; i++) {
 			let channel = pList[i];
 			let pts = ptsMap[channel.type_id];
 			console.debug("channel info", i, channel, pts);
 			if (pts.select) {
+        let loc = channel.location;
 				markers.push(new PoiMarker(i,
-					channel.lng_lat.lat, channel.lng_lat.lng,
+					loc.lng_lat.lat, loc.lng_lat.lng,
 					channel.title, pts.icon));
 			}
 		}
@@ -466,21 +448,20 @@ Page({
 			success: region => {
 				console.log("reload channel,get center region", region);
 				sendRequestNoAuth(app, '/channel/base_query_by_bound', 'POST', {
-					type_ids: [],
+					type_ids: [1],
 					bound: {
 						ne: {
 							lat: region.northeast.latitude,
-							lon: region.northeast.longitude
+							lng: region.northeast.longitude
 						},
 						sw: {
 							lat: region.southwest.latitude,
-							lon: region.southwest.longitude
+							lng: region.southwest.longitude
 						}
 					}
 				}).then((res) => {
-					console.log("channel list res.data", res.data);
+          console.log("this.channelDataList res", res)
 					this.data.channelDataList = res.data.channels;
-					console.log("this.channelDataList", this.data.channelDataList)
 					this.channelReRender();
 					console.log("channel list res.data", res.data);
 				}).catch((err) => {

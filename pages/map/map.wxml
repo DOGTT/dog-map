@@ -41,10 +41,10 @@
             <view class="meta-box">
               <text class="meta-title" bindtap="navToChannelPage">{{channelDetailCard.data.title}}
               </text>
-              <view class="meta-user-info">
+              <!-- <view class="meta-user-info">
                 <image class="meta-avatar" src="/static/png/dog-13.png" />
                 <text class="meta-name">香香</text>
-              </view>
+              </view> -->
             </view>
 
             <view class="ixn-box">
@@ -59,16 +59,14 @@
             </view>
             <view class="channel-detail-dynamic-zone" bindtap="navToChannelPage">
               <view>
-                todo
-                动态--
-                10分钟前可乐来过
-                评论--
-                “每天晚上9点狗狗玩耍聚会”
+                介绍
+              </view>
+              <view>
+                动态-可选
               </view>
             </view>
             <view class="channel-detail-location-zone">
-
-              <text class="location-text">宝安区海天路交叉口南300米</text>
+              <text class="location-text">宝安区海天路</text>
               <view class="location-nav-button">
                 <image class="nav-icon" src="/static/nav.png" />
                 <text class="nav-text">1.5km</text>
