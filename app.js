@@ -87,7 +87,7 @@ App({
                 console.log('login get code:', res.code);
                 this.globalData.wxCode = res.code;
                 wx.request({
-                    url: _this.globalData.baseUrl + '/user/wx/login',
+                    url: _this.globalData.baseUrl + '/user/login/wx',
                     method: 'POST',
                     data: {
                         wx_code: res.code

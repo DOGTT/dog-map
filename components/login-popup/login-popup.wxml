@@ -13,7 +13,7 @@
     </button>
     <view class="name-wrapper">
       <text class="name-label">汪汪大名</text>
-      <input class="name-input" placeholder="请输入狗狗昵称" bind:change="onNameInputChange" />
+      <input class="name-input" placeholder="请输入狗狗昵称" value="{{petInfo.name}}" bind:change="onNameInputChange" />
     </view>
     <van-button open-type="getPhoneNumber" type="primary" bindclick="onLogin">微信一键登陆</van-button>
   </view>
