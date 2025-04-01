@@ -8,7 +8,7 @@ const {
 import {
 	sendRequest,
 	sendRequestNoAuth
-} from '../../utils/util.js';
+} from '../../utils/http.js';
 
 const markerIconSizeDefault = "35px";
 const markerIconSizeSet = "55px";

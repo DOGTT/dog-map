@@ -1,4 +1,3 @@
-// utils/canvasUtils.js
 
 // 裁剪图片为正方形
 function cropImage({

@@ -10,16 +10,17 @@
       <!-- 狗狗头像 -->
       <!-- 预览组件 -->
       <avatar-editor show="{{avatarEditorShow}}" avatar="{{avatar}}" bind:close="onAvatarEditorClose" bind:update="onAvatarEditorUpdate"></avatar-editor>
-      <image class="dog-avatar" src="{{avatar}}" bindtap="onAvatarTap" />
+      <image class="dog-avatar" src="{{pet.avatar}}" bindtap="onAvatarTap" />
       <!-- 狗狗信息 -->
       <view class="dog-info">
-        <text class="dog-name">香香</text>
-        <text class="dog-detail-item">汪汪号: 123321321</text>
-        <text class="dog-detail-item">这是简介</text>
+        <text class="dog-name">{{pet.name}}</text>
+        <text class="dog-detail-item">汪汪号: {{pet.id}}</text>
+        <text class="dog-detail-item">{{pet.intro}}</text>
         <view class="info-tags">
-          <van-tag round type="primary">30kg</van-tag>
-          <van-tag round type="primary">GG</van-tag>
-          <van-tag round type="primary">3岁</van-tag>
+
+          <block wx:for="{{pet.tags}}" wx:key="index">
+            <van-tag round type="primary">{{item}}</van-tag>
+          </block>
         </view>
 
       </view>

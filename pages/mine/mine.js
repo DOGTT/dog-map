@@ -1,16 +1,27 @@
 // pages/mine.js
-const app = getApp();
+const app = getApp()
+const JWTManager = require('../../utils/jwt.js')
+import {
+	sendRequest,
+	sendRequestNoAuth
+} from '../../utils/http.js';
 Page({
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
+    pet: {
+      avatar: "/static/png/dog-undefine.png",
+      name:"汪汪",
+      id:10001,
+      intro: "默认简介",
+      tags: ["GG","3岁"]
+    },
 		loginPopupShow: false,
 		tabs: ["发布", "点赞", "踩过"], // 标签内容
 		activeTab: 0, // 当前激活的标签索引
-
+    // 头像编辑
 		avatarEditorShow: false,
-		avatar: "/static/png/dog-undefine.png",
 
 		// bottom card
 		leftColumnItems: [], // 左列数据
@@ -22,42 +33,42 @@ Page({
 
 	onLoadMore() {
 		console.log('onLoadMore')
-		if (this.data.isLoading || this.data.noMoreData) return;
+		if (this.data.isLoading || this.data.noMoreData) return
 		this.setData({
 			isLoading: true
-		});
+		})
 
 		// 调用获取数据的API
 		this.loadMoreItems().then(newItems => {
 			if (newItems.length === 0) {
 				this.setData({
 					noMoreData: true
-				});
+				})
 			} else {
 				// 将新数据分配到左右两列（瀑布流布局）
 				const {
 					leftColumnItems,
 					rightColumnItems
-				} = this.distributeItems(newItems);
+				} = this.distributeItems(newItems)
 
 				this.setData({
 					leftColumnItems: [...this.data.leftColumnItems, ...leftColumnItems],
 					rightColumnItems: [...this.data.rightColumnItems, ...rightColumnItems],
 					page: this.data.page + 1
-				});
+				})
 			}
 		}).finally(() => {
 			this.setData({
 				isLoading: false
-			});
-		});
+			})
+		})
 	},
 	// 切换标签
 	switchTab(e) {
-		const index = e.currentTarget.dataset.index;
+		const index = e.currentTarget.dataset.index
 		this.setData({
 			activeTab: index
-		});
+		})
 	},
 
 	onAvatarTap() {
@@ -65,11 +76,12 @@ Page({
 		this.setData({
 			avatarEditorShow: true
 		})
-	},
+  },
+  
 	onAvatarEditorUpdate(e) {
 		console.log('onAvatarEditorUpdate', e)
 		this.setData({
-			avatar: e.detail
+			'pet.avatar': e.detail
 		})
 	},
 
@@ -82,7 +94,7 @@ Page({
 	navigateToUserEdit() {
 		wx.navigateTo({
 			url: '/pages/sub/user-edit/user-edit', // 替换为实际的协议页面路径
-		});
+		})
 	},
 
 	/**
@@ -99,20 +111,36 @@ Page({
 
 	},
 
+  onUserLogin() {
+    this.reloadPets()
+  },
+
+  reloadPets() {
+    const userInfo = wx.getStorageSync('userInfo')
+    console.log("userInfo ",userInfo)
+    let petInfo = userInfo.user_pets[0]
+    let pet = this.data.pet
+    pet.name = petInfo.pet.name
+    pet.id = petInfo.pet.id
+    pet.avatar = petInfo.pet.avatar.get_url
+    this.setData({
+      pet: pet
+    })
+  },
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow() {
-		const token = wx.getStorageSync('token');
+		const token = JWTManager.getValidToken()
 		if (token) {
-			// token 存在
-			console.log('Token exists:', token);
+      // load user
+      this.reloadPets()
 		} else {
 			// token 不存在
-			console.log('Token does not exist');
+			console.log('Token does not exist')
 			this.setData({
 				loginPopupShow: true,
-			});
+			})
 		}
 	},
 
