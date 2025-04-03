@@ -5,7 +5,7 @@
         "pages/mine/mine",
         "pages/message/message",
         "pages/sub/user-terms/user-terms",
-        "pages/sub/channel-edit/channel-edit",
+        "pages/sub/channel-create/channel-create",
         "pages/sub/channel-main/channel-main",
         "pages/sub/channel-home/channel-home",
         "pages/sub/search/search",

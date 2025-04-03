@@ -498,7 +498,7 @@ Page({
 		const lon = this.data.mapData.longitude;
 		const lat = this.data.mapData.latitude;
 		wx.navigateTo({
-			url: `/pages/sub/channel-edit/channel-edit?lon=${lon}&lat=${lat}`
+			url: `/pages/sub/channel-create/channel-create?lon=${lon}&lat=${lat}`
 		});
 	},
 
