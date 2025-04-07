@@ -15,12 +15,12 @@
       <!-- 地图缩略图 -->
       <!-- 地点选择框 -->
       <view class="location-map" bindtap="chooseLocation">
-        <map id="mini-map" class="location-map" latitude="{{channelCreatForm.lonLat.lat}}" longitude="{{channelCreatForm.lonLat.lon}}" setting="{{mapData.mapSetting}}" markers="{{mapData.markers}}"  scale="15" show-location></map>
+        <map id="mini-map" class="location-map" latitude="{{channelCreatForm.lngLat.lat}}" longitude="{{channelCreatForm.lngLat.lng}}" setting="{{mapData.mapSetting}}" markers="{{mapData.markers}}"  scale="15" show-location></map>
       </view>
     </view>
    
     <view class="title-input-wrapper">
-      <input id="title" type="text" class="title-input" placeholder="添加频道标题" bindinput="onInputTitle" maxlength="50" focus="true" />
+      <input id="title" type="text" class="title-input" placeholder="添加频道标题" value="{{channelCreatForm.title}}" bindinput="onInputTitle" maxlength="50" focus="true" />
     </view>
     <!-- 类型标签选择区域 -->
     <!-- TODO 点击类型标签展示描述 -->
@@ -47,10 +47,8 @@
     </view>
     <!-- 内容输入栏 -->
     <view class="content-input-wrapper">
-      <textarea class="content-input" placeholder="第一条帖子内容" bindinput="onInputContent" maxlength="600"></textarea>
+      <textarea class="content-input" placeholder="第一条帖子内容" value="{{channelCreatForm.postContent}}" bindinput="onInputContent" maxlength="600"></textarea>
     </view>
-
-   
 
   </scroll-view>
   <!-- 底部按钮 -->

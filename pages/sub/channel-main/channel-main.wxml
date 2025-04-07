@@ -1,59 +1,59 @@
 <view class="root">
-  <navigation-bar class="nav" title="" back="{{false}}"></navigation-bar>
-  <view class="header">
-    <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
-    <!-- 作者 -->
-    <view class="channel-head">
-      <text class="item left">5/12</text>
+	<navigation-bar class="nav" title="" back="{{false}}"></navigation-bar>
+	<view class="header">
+		<image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
+		<!-- 作者 -->
+		<view class="channel-head">
+			<text class="item left">5/12</text>
 
-      <view class="item center">
-        <image class="channel-avatar" src="/static/png/dog-13.png" />
-        <text class="channel-title">频道标题</text>
-        <van-icon class="inx-icon" name="star-o" />
-      </view>
-    
-    </view>
-  </view>
-  <!-- 内容 -->
-  <scroll-view class="body" scroll-y>
-    
-    <post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
+			<view class="item center">
+				<image class="channel-avatar" src="/static/png/dog-13.png" />
+				<text class="channel-title">{{channelInfo.title}}</text>
+				<van-icon class="inx-icon" name="star-o" />
+			</view>
 
-    <post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
+		</view>
+	</view>
+	<!-- 内容 -->
+	<scroll-view class="body" scroll-y>
 
+		<post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
 
-    <view>
-      ---------
-    </view>
-  </scroll-view>
+		<post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
 
 
-  <!-- 评论互动区 -->
-
-  <view class="tail">
-    <view class="input-container" style="bottom: {{inputBottom}};">
-      <textarea class="chat-input" show-confirm-bar="{{false}}" fixed cursor-spacing="10" auto-height maxlength="200" value="" placeholder="分享动态//动态展示 todo"  placeholder-style="fontSize:10px" />
-      <view class="input-tail">
-
-        <view class="media-uploader-box" wx:if="{{imageForUpload.length>0}}">
-          <van-uploader file-list="{{ imageForUpload }}" max-count="3" preview-full-image="{{true}}" bind:after-read="onAfterRead" bind:delete="onDeleteImage" />
-        </view>
-
-        <view class="input-ctrl-box">
+		<view>
+			---------
+		</view>
+	</scroll-view>
 
 
-          <view class="inx-zone">
+	<!-- 评论互动区 -->
 
-            <van-uploader max-count="3" bind:after-read="onAfterRead">
-              <van-icon class="inx-icon" name="photo-o" />
-            </van-uploader>
-            <van-icon class="inx-icon" name="like-o" />
-          </view>
-          <button class="send-button" size="mini" bindtap="sendMessage"> 发送 </button>
-        </view>
+	<view class="tail">
+		<view class="input-container" style="bottom: {{inputBottom}};">
+			<textarea class="chat-input" show-confirm-bar="{{false}}" fixed cursor-spacing="10" auto-height maxlength="200" value="" placeholder="分享动态//动态展示 todo" placeholder-style="fontSize:10px" />
+			<view class="input-tail">
 
-      </view>
+				<view class="media-uploader-box" wx:if="{{imageForUpload.length>0}}">
+					<van-uploader file-list="{{ imageForUpload }}" max-count="3" preview-full-image="{{true}}" bind:after-read="onAfterRead" bind:delete="onDeleteImage" />
+				</view>
 
-    </view>
-  </view>
+				<view class="input-ctrl-box">
+
+
+					<view class="inx-zone">
+
+						<van-uploader max-count="3" bind:after-read="onAfterRead">
+							<van-icon class="inx-icon" name="photo-o" />
+						</van-uploader>
+						<van-icon class="inx-icon" name="like-o" />
+					</view>
+					<button class="send-button" size="mini" bindtap="sendMessage"> 发送 </button>
+				</view>
+
+			</view>
+
+		</view>
+	</view>
 </view>

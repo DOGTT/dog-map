@@ -1,122 +1,87 @@
 <!--pages/mine.wxml-->
 <navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <view class="root">
-  <!-- 上部分 -->
-  <view class="header">
-  </view>
-  <view class="user-info-section">
-    <!-- <text>这是上半部分</text> -->
-    <view class="dog-info-card">
-      <!-- 狗狗头像 -->
-      <!-- 预览组件 -->
-      <avatar-editor show="{{avatarEditorShow}}" avatar="{{avatar}}" bind:close="onAvatarEditorClose" bind:update="onAvatarEditorUpdate"></avatar-editor>
-      <image class="dog-avatar" src="{{pet.avatar}}" bindtap="onAvatarTap" />
-      <!-- 狗狗信息 -->
-      <view class="dog-info">
-        <text class="dog-name">{{pet.name}}</text>
-        <text class="dog-detail-item">汪汪号: {{pet.id}}</text>
-        <text class="dog-detail-item">{{pet.intro}}</text>
-        <view class="info-tags">
+	<!-- 上部分 -->
+	<view class="header">
+	</view>
+	<view class="user-info-section">
+		<!-- <text>这是上半部分</text> -->
+		<view class="dog-info-card">
+			<!-- 狗狗头像 -->
+			<!-- 预览组件 -->
+			<avatar-editor show="{{avatarEditorShow}}" avatar="{{avatar}}" bind:close="onAvatarEditorClose" bind:update="onAvatarEditorUpdate"></avatar-editor>
+			<image class="dog-avatar" src="{{pet.avatar}}" bindtap="onAvatarTap" />
+			<!-- 狗狗信息 -->
+			<view class="dog-info">
+				<text class="dog-name">{{pet.name}}</text>
+				<text class="dog-detail-item">汪汪号: {{pet.id}}</text>
+				<text class="dog-detail-item">{{pet.intro}}</text>
+				<view class="info-tags">
 
-          <block wx:for="{{pet.tags}}" wx:key="index">
-            <van-tag round type="primary">{{item}}</van-tag>
-          </block>
-        </view>
+					<block wx:for="{{pet.tags}}" wx:key="index">
+						<van-tag round type="primary">{{item}}</van-tag>
+					</block>
+				</view>
 
-      </view>
+			</view>
 
-    </view>
-    <view class="user-sum-info">
-      <view class="info-buttons">
-        <view class="info-button">
-          <text class="info-number">123</text>
-          <text class="info-label">伙伴</text>
-        </view>
-        <view class="info-button">
-          <text class="info-number">45</text>
-          <text class="info-label">发现</text>
-        </view>
-        <view class="info-button">
-          <text class="info-number">678</text>
-          <text class="info-label">踩过</text>
-        </view>
-      </view>
-      <view class="config-zone">
-        <van-button plain round color="#FFF" type="primary" size="small" block custom-class="config-btn" bindtap="navigateToUserEdit">修改资料</van-button>
-      </view>
-    </view>
-
-
-
-    <view class="sticky-tab-bar">
-      <block wx:for="{{tabs}}" wx:key="index">
-        <view class="tab-item {{activeTab === index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}">
-          {{item}}
-        </view>
-      </block>
-      <view class="underline" style="left: {{activeTab * 33.33+'%'}};"></view>
-    </view>
-  </view>
-  <!-- 下部分 -->
-  <scroll-view class="bottom-section" enable-flex scroll-y="true" bindscrolltolower="onLoadMore" lower-threshold="50">
-    <!-- <text>第一列</text> -->
-    <view class="bottom-column" bindscrolltolower="onLoadMore">
-      <view class="item-card">
-        <view class="item-card-media">
-          <image class="media-key-photo" src="/static/test/test-photo.jpg" mode="scaleToFill" />
-        </view>
-        <text class="item-card-title">这是标题</text>
-        <view class="item-card-tail">
-          <view class="author-info">
-            <image class="author-avatar" src="/static/png/dog-13.png" />
-            <text class="author-name">香香</text>
-          </view>
-          <view class="ixn-info">
-            <view class="ixn-item">
-              <van-icon name="like-o" color="#F00" size="30rpx" />
-              <text class="ixn-text">10</text>
-            </view>
-          </view>
-        </view>
-      </view>
+		</view>
+		<view class="user-sum-info">
+			<view class="info-buttons">
+				<view class="info-button">
+					<text class="info-number">123</text>
+					<text class="info-label">伙伴</text>
+				</view>
+				<view class="info-button">
+					<text class="info-number">45</text>
+					<text class="info-label">发现</text>
+				</view>
+				<view class="info-button">
+					<text class="info-number">678</text>
+					<text class="info-label">踩过</text>
+				</view>
+			</view>
+			<view class="config-zone">
+				<van-button plain round color="#FFF" type="primary" size="small" block custom-class="config-btn" bindtap="navigateToUserEdit">修改资料</van-button>
+			</view>
+		</view>
 
 
-      <view class="item-card" style="height: 400rpx;">
-        1b
-      </view>
 
-      <view class="item-card" style="height: 450rpx;">
-        1c
-      </view>
+		<view class="sticky-tab-bar">
+			<block wx:for="{{tabs}}" wx:key="index">
+				<view class="tab-item {{activeTab === index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}">
+					{{item}}
+				</view>
+			</block>
+			<view class="underline" style="left: {{activeTab * 33.33+'%'}};"></view>
+		</view>
+	</view>
+	<!-- 下部分 -->
+	<scroll-view class="bottom-section" enable-flex scroll-y="true" bindscrolltolower="onLoadMore" lower-threshold="50">
+		<!-- <text>第一列</text> -->
+		<view class="bottom-column" bindscrolltolower="onLoadMore">
+			<item-card title="1a" />
+			<item-card title="1b" />
+			<item-card title="1c" />
+			<item-card title="1d" />
+		</view>
+		<!-- <text>第二列</text> -->
+		<view class="bottom-column" bindscrolltolower="onLoadMore">
+			<item-card title="2a" />
+			<item-card title="2b" />
+			<item-card title="2c" />
+			<item-card title="2d" />
+		</view>
 
-      <view class="item-card" style="height: 450rpx;">
-        1d
-      </view>
+		<view class="loading-status">
+			<!-- <van-loading wx:if="{{isLoading}}" size="24px">加载中...</van-loading> -->
+			<text wx:if="{{noMoreData}}">没有更多了</text>
+			<text>没有更多了</text>
+		</view>
 
-    </view>
-    <!-- <text>第二列</text> -->
-    <view class="bottom-column" bindscrolltolower="onLoadMore">
+	</scroll-view>
 
-      <view class="item-card" style="height: 500rpx;">
-        2a
-      </view>
-
-      <view class="item-card" style="height: 350rpx;">
-        2b
-      </view>
-      <view class="item-card" style="height: 400rpx;">
-        2c
-      </view>
-    </view>
-
-    <view class="loading-status">
-      <!-- <van-loading wx:if="{{isLoading}}" size="24px">加载中...</van-loading> -->
-      <text wx:if="{{noMoreData}}">没有更多了</text>
-      <text>没有更多了</text>
-    </view>
-
-  </scroll-view>
-
-  <!-- 登陆注册页 -->
-  <login-popup show="{{loginPopupShow}}" bind:close="onLoginPopupClose" bind:login="onUserLogin" />
+	<!-- 登陆注册页 -->
+	<login-popup show="{{loginPopupShow}}" bind:close="onLoginPopupClose" bind:login="onUserLogin" />
 </view>

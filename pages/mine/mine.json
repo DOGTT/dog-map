@@ -1,6 +1,7 @@
 {
-  "enablePullDownRefresh": false,
+    "enablePullDownRefresh": false,
     "usingComponents": {
+        "item-card": "/components/item-card/item-card",
         "navigation-bar": "/components/navigation-bar/navigation-bar",
         "login-popup": "/components/login-popup/login-popup",
         "avatar-editor": "/components/avatar-editor/avatar-editor",

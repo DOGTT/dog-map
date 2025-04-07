@@ -5,8 +5,7 @@ const {
 } = require('../../utils/canvas')
 const JWTManager = require('../../utils/jwt.js')
 import {
-	sendRequest,
-	sendRequestNoAuth
+	sendRequest
 } from '../../utils/http.js';
 Component({
 	properties: {
@@ -127,7 +126,7 @@ Component({
 			wx.login({
 				success: res => {
           console.log('fastreg get code:', res.code, 'petinfo', _this.data.petInfo)
-          sendRequestNoAuth(app,'/user/fast_reg/wx','POST',{
+          sendRequest(app,'/user/fast_reg/wx','POST',{
             wx_code: res.code,
             reg_data: {
               pet_name: _this.data.petInfo.name,

@@ -1,10 +1,11 @@
-const app = getApp();
+const app = getApp()
 import {
+	MediaType,
 	uploadMedia,
 	sendRequest
-} from '../../../utils/util.js';
+} from '../../../utils/http.js'
 
-const channelCacheKey = 'channelCreateCache';
+const channelCacheKey = 'channelCreateCache'
 
 Page({
 
@@ -44,12 +45,12 @@ Page({
 
 
 		channelCreatForm: {
-			lonLat: {
-				lon: 0,
+			lngLat: {
+				lng: 0,
 				lat: 0
 			},
-      address: "",
-      loctionName: "",
+			address: "",
+			loctionName: "",
 			typeID: "1",
 			title: "",
 			photos: [], // 存储已选择的媒体文件路径
@@ -57,146 +58,146 @@ Page({
 		}
 	},
 	goBack() {
-		wx.setStorageSync(channelCacheKey, this.data.channelCreatForm);
-		wx.navigateBack(); // 返回到上一页
+		wx.setStorageSync(channelCacheKey, this.data.channelCreatForm)
+		wx.navigateBack() // 返回到上一页
 	},
 	onInputTitle(e) {
-		this.data.channelCreatForm.title = e.detail.value;
+		this.data.channelCreatForm.title = e.detail.value
 	},
 	onInputContent(e) {
-		this.data.channelCreatForm.postContent = e.detail.value;
+		this.data.channelCreatForm.postContent = e.detail.value
 	},
 	// 标签点击事件
 	onTypeBtnTap(e) {
-		const index = e.currentTarget.dataset.index; // 获取点击的标签索引
-		var channelTypeList = this.data.channelTypeList;
-		this.data.channelCreatForm.typeID = channelTypeList[index].id;
+		const index = e.currentTarget.dataset.index // 获取点击的标签索引
+		var channelTypeList = this.data.channelTypeList
+		this.data.channelCreatForm.typeID = channelTypeList[index].id
 		// 切换选中状态
 		for (let i = 0; i < channelTypeList.length; i++) {
-			channelTypeList[i].select = false;
+			channelTypeList[i].select = false
 			if (i == index) {
-				channelTypeList[i].select = true;
+				channelTypeList[i].select = true
 			}
 		}
 		// 更新数据
 		this.setData({
 			channelTypeList
-		});
+		})
 	},
 	// 选择位置
 	chooseLocation() {
-		console.log("chooseLocation");
-		const _this = this;
+		console.log("chooseLocation")
+		const _this = this
 		wx.chooseLocation({
 			success: (res) => {
-				console.log(res, _this.data.mapData);
-				var marker = _this.data.mapData.markers[0];
-				marker.latitude = res.latitude;
-				marker.longitude = res.longitude;
-				var lonLat = _this.data.channelCreatForm.lonLat;
-				lonLat.lat = res.latitude;
-				lonLat.lon = res.longitude;
-        _this.data.channelCreatForm.address = res.address || "未知地点";
-        _this.data.channelCreatForm.loctionName = res.name || "未知地点";
+				console.log(res, _this.data.mapData)
+				var marker = _this.data.mapData.markers[0]
+				marker.latitude = res.latitude
+				marker.longitude = res.longitude
+				var lngLat = _this.data.channelCreatForm.lngLat
+				lngLat.lat = res.latitude
+				lngLat.lng = res.longitude
+				_this.data.channelCreatForm.address = res.address || "未知地点"
+				_this.data.channelCreatForm.loctionName = res.name || "未知地点"
 				this.setData({
 					channelCreatForm: _this.data.channelCreatForm,
 					mapData: _this.data.mapData
-				});
+				})
 			},
 			fail: (err) => {
-				console.error("选择地点失败：", err);
+				console.error("选择地点失败：", err)
 			},
-		});
+		})
 	},
 	// 添加照片
 	addPhoto() {
-		const _this = this;
-		const photoMax = 9;
+		const _this = this
+		const photoMax = 9
 		// 计算剩余可选数量
-		const maxSelectable = photoMax - _this.data.channelCreatForm.photos.length;
+		const maxSelectable = photoMax - _this.data.channelCreatForm.photos.length
 		if (maxSelectable <= 0) {
 			wx.showToast({
 				title: '最多只能选择' + photoMax + '张图片',
 				icon: 'error',
-			});
-			return;
+			})
+			return
 		}
 		wx.chooseMedia({
 			count: maxSelectable,
 			mediaType: ['image'], // 只允许选择图片
 			sourceType: ['album', 'camera'], // 可以从相册选择或拍摄
 			success(res) {
-				console.log(res);
+				console.log(res)
 				for (let i = 0; i < res.tempFiles.length; i++) {
-					_this.data.channelCreatForm.photos.push(res.tempFiles[i]);
+					_this.data.channelCreatForm.photos.push(res.tempFiles[i])
 				}
 				_this.setData({
 					channelCreatForm: _this.data.channelCreatForm
-				});
-				console.log('photo set:', _this.data.channelCreatForm);
+				})
+				console.log('photo set:', _this.data.channelCreatForm)
 			},
 			fail(err) {
-				console.error('Media selection failed:', err);
+				console.error('Media selection failed:', err)
 			},
-		});
+		})
 	},
 	// 打开预览
 	openPreview(e) {
-		const index = e.currentTarget.dataset.index;
+		const index = e.currentTarget.dataset.index
 		this.setData({
 			previewShow: true,
 			currentPhoto: this.data.channelCreatForm.photos[index].tempFilePath,
 			currentPhotoIndex: index,
-		});
+		})
 	},
 	// 关闭预览
 	closePreview() {
 		this.setData({
 			previewShow: false
-		});
+		})
 	},
 	// 设为首图
 	setAsCover(e) {
 		const {
 			index
-		} = e.detail;
-		const photos = this.data.channelCreatForm.photos;
-		const photoSet = photos[index];
+		} = e.detail
+		const photos = this.data.channelCreatForm.photos
+		const photoSet = photos[index]
 		// 将当前图片置于第一位
-		photos.splice(index, 1);
-		photos.unshift(photoSet);
+		photos.splice(index, 1)
+		photos.unshift(photoSet)
 		this.setData({
 			channelCreatForm: this.data.channelCreatForm
-		});
+		})
 		wx.showToast({
 			title: '已设为首图',
 			icon: 'success'
-		});
+		})
 	},
 
 	// 删除照片
 	deletePhoto(e) {
 		const {
 			index
-		} = e.detail;
-		const photos = this.data.channelCreatForm.photos;
+		} = e.detail
+		const photos = this.data.channelCreatForm.photos
 		// 删除当前图片
-		photos.splice(index, 1);
+		photos.splice(index, 1)
 		this.setData({
 			channelCreatForm: this.data.channelCreatForm
-		});
+		})
 		wx.showToast({
 			title: '照片已删除',
 			icon: 'success'
-		});
+		})
 	},
 	onSave() {
-		wx.setStorageSync(channelCacheKey, this.data.channelCreatForm);
+		wx.setStorageSync(channelCacheKey, this.data.channelCreatForm)
 		console.log(this.data.channelCreatForm)
 		wx.showToast({
 			title: '内容已暂存',
 			icon: 'success'
-		});
+		})
 	},
 	toastFormError(title, eleID) {
 		wx.showToast({
@@ -206,53 +207,63 @@ Page({
 			success: () => {
 				// 使用 setTimeout 确保提示框显示后再聚焦
 				// setTimeout(() => {
-				//   wx.createSelectorQuery().select(`#${eleID}`).focus().exec();
-				// }, 2000);
+				//   wx.createSelectorQuery().select(`#${eleID}`).focus().exec()
+				// }, 2000)
 			}
-		});
+		})
 	},
 	doChannelCreate() {
-		wx.setStorageSync(channelCacheKey, this.data.channelCreatForm);
-		var channel = this.data.channelCreatForm;
+		wx.setStorageSync(channelCacheKey, this.data.channelCreatForm)
+		var channel = this.data.channelCreatForm
 		// 显示加载进度
 		wx.showLoading({
 			title: '发布中',
-		});
-		const channelData = {
-			type_id: channel.typeID,
-			title: channel.title,
-			content: channel.content,
-			lng_lat: {
-				lon: channel.lonLat.lon,
-				lat: channel.lonLat.lat
-			},
-			address: channel.address,
-		};
-		const photoList = channel.photos.map(photo => photo.tempFilePath);
-		uploadMedia(app, photoList, 1).then((res) => {
-			console.log(res);
-			sendRequest(app, '/channel', 'POST', channelData).then((res) => {
-				wx.hideLoading();
-				console.log(res);
-				wx.removeStorageSync(channelCacheKey);
+		})
+		console.log("channal creating", channel)
+		const photoList = channel.photos.map(photo => photo.tempFilePath)
+		// 创建频道
+		// 取第一个做头像
+		const channelAva = photoList.slice(0, 1)
+		uploadMedia(app, channelAva, MediaType.Channel).then((res) => {
+			console.log("uploadMedia done", res)
+			const channelCreateData = {
+				channel: {
+					type_id: parseInt(channel.typeID),
+					title: channel.title,
+					intro: "",
+					location: {
+						lng_lat: {
+							lng: parseFloat(channel.lngLat.lng),
+							lat: parseFloat(channel.lngLat.lat)
+						},
+						address: channel.address
+					}
+				}
+			}
+			channelCreateData.channel.avatar = res.data.media[0]
+			console.log("channelData creating", channelCreateData)
+			sendRequest(app, '/channel', 'POST', channelCreateData).then((res) => {
+				wx.hideLoading()
+				console.log("channel create res", res)
+				wx.removeStorageSync(channelCacheKey)
 				wx.showToast({
 					title: '发布成功',
 					icon: 'success'
-				});
-				this.goBack();
-			});
+				})
+				wx.navigateBack()
+			})
 		}).catch(err => {
-			wx.hideLoading();
-			console.error('图片上传失败:', err);
+			wx.hideLoading()
+			console.error('频道创建失败', err)
 			wx.showToast({
-				title: '图片上传失败',
+				title: '频道创建失败',
 				icon: 'error'
-			});
+			})
 		})
 	},
 	onPublishBtnTap() {
-		const channel = this.data.channelCreatForm;
-		const _this = this;
+		const channel = this.data.channelCreatForm
+		const _this = this
 		wx.showModal({
 			title: '确认发布',
 			content: '您确定要发布内容吗？',
@@ -260,55 +271,56 @@ Page({
 				if (res.confirm) {
 					// 检查清单
 					if (channel.title.length < 1) {
-						_this.toastFormError('请添加标题', 'title');
-						return;
+						_this.toastFormError('请添加标题', 'title')
+						return
 					}
-					if (channel.content.length < 1) {
-						_this.toastFormError('请添加正文', 'title');
-						return;
+					if (channel.lngLat.lng == 0) {
+						_this.toastFormError('请选择位置', 'title')
+						return
 					}
-					if (channel.lonLat.lon == 0) {
-						_this.toastFormError('请选择位置', 'title');
-						return;
+					if (channel.postContent.length < 1) {
+						_this.toastFormError('请添加正文', 'title')
+						return
 					}
-					_this.doChannelCreate();
+					_this.doChannelCreate()
 					wx.showToast({
 						title: '发布成功',
 						icon: 'success'
-					});
+					})
 				}
 			},
-		});
+		})
 	},
 	onLoad: function (options) {
-		console.log("onLoad", options);
+		console.log("onLoad", options)
 		wx.showToast({
 			title: '加载中'
-		});
+		})
 
 		// load cache
-		var channelCache = wx.getStorageSync('channelCreateCache');
+		var channelCache = wx.getStorageSync(channelCacheKey)
 		if (channelCache) {
-			this.data.channelCreatForm = channelCache;
+			this.data.channelCreatForm = channelCache
+			console.log('load cache', channelCache)
 		}
 
-		if (options.lat && options.lon) {
-			var marker = this.data.mapData.markers[0];
-			marker.latitude = options.lat;
-			marker.longitude = options.lon;
-			var lonLat = this.data.channelCreatForm.lonLat;
-			lonLat.lat = options.lat;
-			lonLat.lon = options.lon;
+		if (options.lat && options.lng) {
+			var marker = this.data.mapData.markers[0]
+			marker.latitude = options.lat
+			marker.longitude = options.lng
+			var lngLat = this.data.channelCreatForm.lngLat
+			lngLat.lat = options.lat
+			lngLat.lng = options.lng
 		}
 		if (options.address) {
-			this.data.channelCreatForm.address = options.address || "未知地点";
+			this.data.channelCreatForm.address = options.address || "未知地点"
 		}
 		this.setData({
 			mapData: this.data.mapData,
 			channelCreatForm: this.data.channelCreatForm
-		});
+		})
 		// get channel type
-		this.channelTypeListReload();
+		this.channelTypeListReload()
 	},
 	onShow() {
 		console.log("onShow")
@@ -319,16 +331,19 @@ Page({
 	// 加载足迹类型信息
 	channelTypeListReload() {
 		app.getChannelTypes().then((listData) => {
-			console.log("get channel list res.data", listData);
+			console.log("get channel list res.data", listData)
+			const idSet = "" || this.data.channelCreatForm.typeID
 			for (let i = 0; i < listData.length; i++) {
-				listData[i].select = false;
+				listData[i].select = (idSet == listData[i].id)
 			}
-			listData[0].select = true;
+			if (idSet == "") {
+				listData[0].select = true
+			}
 			this.setData({
 				channelTypeList: listData,
-			});
+			})
 		}).catch((err) => {
-			console.error('list poi type failed:', err);
-		});
+			console.error('list poi type failed:', err)
+		})
 	}
 })
