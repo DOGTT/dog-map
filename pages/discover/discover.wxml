@@ -2,6 +2,7 @@
 <view class="root">
 	<van-nav-bar
 		title="发现"
+		fixed
 	/>
 	<!-- 头部固定 -->
 	<view class="header">

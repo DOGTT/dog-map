@@ -9,12 +9,12 @@
 }
 
 .header {
-    position: fixed;
-    top: 46px;
+    /* position: fixed; */
+    /* top: 46px; */
     /* 调整位置，避免与van-nav-bar重叠 */
     left: 0;
     right: 0;
-    height: 44px;
+    height: 0px;
     display: flex;
     align-items: center;
     padding: 0 15px;
@@ -24,6 +24,7 @@
 .body {
     flex: 1;
     padding: 20rpx;
+    padding-top: 120rpx;
     overflow-y: auto;
     padding-bottom: 30rpx;
     /* 为底部留出空间 */

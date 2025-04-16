@@ -11,114 +11,67 @@ page {
 }
 
 .head-zone{
-  /* position: relative; */
   display: flex;
   position: fixed;
   top: 100rpx;
   width: 100%;
-  flex-direction:column;
+  flex-direction: column;
   padding-left: 20rpx;
-  /* left: 20rpx; */
 }
 
 /* ===== 搜索栏 ====== */
-
 .search-input {
   width: 500rpx;
-  /* background-color: ragb(0,0,0,0.1) !important; */
-  /* border-radius: 10rpx !important; */
-  /* height: 70px !important; */
   padding: 0px !important;
 }
 
 /* ===== 类型选择栏 ====== */
-
 .channel-type-selecter-scroll-view {
-    /* z-index: 1000; */
-    /* width: 100%; */
-    /* position: absolute; */
-    /* top: 200rpx; */
-    /* height: 50px; */
-    /* 根据内容适当调整 */
-    /* white-space: nowrap; */
-    /* overflow-x: auto; */
     padding-top: 30rpx;
 }
 
 .channel-type-tab-button-container {
     display: flex;
-    /* align-items: center; */
-    /* margin-left: 20rpx; */
 }
 
 .channel-type-button-custom.selected {
     justify-content: flex-start !important;
-    /* 左对齐 */
     text-align: left !important;
-    /* 确保文字左对齐 */
     border-color: #FFFAFA !important;
     color: #333 !important;
     transition: all 0.3s !important;
     padding-left: 0px;
     font-size: 28rpx;
-    /* padding-left: 10px !important; */
 }
 
 .channel-type-button-custom.default {
     justify-content: flex-start !important;
-    /* 左对齐 */
     text-align: left !important;
-    /* 确保文字左对齐 */
     border: 1px dashed #888;
-    /* border-color: #888 !important; */
     color: #888 !important;
     background-color: #eee;
     transition: all 0.3s !important;
     padding-left: 0px;
     font-size: 26rpx;
-    /* border-color: #ccc !important; */
-    /* color: #409eff !important; */
-    /* padding-left: 10px !important; */
 }
 
 .channel-type-button {
     display: flex;
-    /* padding-left: 5px; */
-    /* 可根据需求调整内边距 */
-    /* margin-right: 10px; */
-    /* background-color: #fcfcfc; */
-    
-    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
-    /* width: 80px;
-  height: 100px; */
     width: 150rpx;
     margin-right: 10px;
     flex-direction: row;
-    /* align-items: center; */
-    /* justify-content: center; */
 }
-
 
 .channel-type-button .van-button__icon {
-    /* margin-right: 5px; 设置图标和文字的间距 */
     font-size: 45rpx;
-    /* border-radius: 12px !important; */
-    /* padding-left: -10rpx; */
-    /* margin-left: -10rpx; */
 }
 
-/* head ====== */
-
-
 /* ===== 底部控制栏 ====== */
-
-/* 底部容器 */
 .bottom-ctrl {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    /* z-index: 1000; */
 }
 
 .pub-button {
@@ -162,11 +115,9 @@ page {
     transition: bottom 0.3s ease;
 }
 
-
 .rect-button:active {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
     background-color: #cfcfcf;
-    /* 点击时的颜色变化 */
 }
 
 .rect-button-icon {
@@ -180,7 +131,6 @@ page {
     color: #333;
 }
 
-
 /* 弹出框样式 */
 .channel-detail-popup {
     position: fixed;
@@ -190,42 +140,29 @@ page {
     right: 30rpx;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* margin: 20px 20px 20px 20px; */
     background-color: #ffffff;
-    /* 默认隐藏 */
-    /* transform: translateY(100%);  */
     transition: transform 0.3s ease, bottom 0.3s ease;
-    /* z-index: 1000; */
 }
 
 .channel-detail-popup-show {
     bottom: 30rpx;
-    /* 弹出到可见区域 */
 }
 
 .channel-detail-popup-hide {
     bottom: calc(-1 * var(--card-height));
-    /* 隐藏回屏幕下方 */
 }
 
 .channel-detail-card {
     display: flex;
     flex-direction: column;
-    /* 等分为两行 */
     height: var(--card-height);
     border: 1px solid #ccc;
     border-radius: 10rpx;
     overflow: hidden;
-    /* background-color: #ccc; */
 }
 
-/*NEW*/
 .channel-detail-card-head {
-    /* background-color: #eee; */
     height: 120rpx;
-    /* 固定头部高度 */
-    /* width: 100%; */
-    /* 宽度100% */
     padding: 5rpx 0rpx;
     display: flex;
     justify-content: space-between;
@@ -234,49 +171,21 @@ page {
 }
 
 .channel-detail-card-head .meta-box {
-    /* background-color: rgb(188, 198, 209); */
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    /* height: 80%; */
-    /* width: 100%; */
 }
 
 .meta-title {
     color: #333;
     font-size: 40rpx;
-    /* font-weight: bold; */
-}
-
-.meta-user-info {
-    display: flex;
-    align-items: center;
-}
-
-.meta-avatar {
-    width: 40rpx;
-    height: 40rpx;
-    border-radius: 50%;
-    /* 圆形效果 */
-    border: 4rpx solid white;
-    /* 白色边缘 */
-}
-
-.meta-name {
-    color: #333;
-    font-size: 28rpx;
 }
 
 .channel-detail-card-head .ixn-box {
-    /* background-color: rgb(22, 113, 204); */
     color: #333;
-    /* padding: 20rpx; */
     gap: 30rpx;
     display: flex;
     padding-right: 20rpx;
-    /* height: 80%; */
-    /* width: 100%; */
-    /* font-size: 50rpx; */
 }
 
 .inx-icon-info {
@@ -291,11 +200,8 @@ page {
     height: calc(100% - 120rpx);
     padding: 10rpx 10rpx;
     grid-template-rows: 1fr 80rpx;
-    /* 2行，每行高度相等 */
     grid-template-columns: repeat(3, 1fr);
-    /* 3列，每列宽度相等 */
     gap: 10rpx;
-    /* 格子之间的间距 */
 }
 
 .channel-detail-media-zone {
@@ -309,12 +215,9 @@ page {
 
 .media-key-photo {
     width: 100%;
-    /* 占满容器宽度 */
     height: 100%;
-    /* 占满容器高度 */
     object-fit: cover;
 }
-
 
 .channel-detail-dynamic-zone {
     background-color: hsl(91, 15%, 70%);
@@ -355,13 +258,3 @@ page {
 }
 
 
-.favorite-icon {
-    width: 38rpx;
-    /* 图标大小 */
-    height: 38rpx;
-    margin-left: 20rpx;
-    cursor: pointer;
-    /* 鼠标指针样式 */
-    transition: fill 0.3s;
-    /* 颜色切换过渡效果 */
-}
