@@ -1,4 +1,4 @@
-.terms-page {
+.root {
   position: relative;
   padding: 0 20rpx;
 }

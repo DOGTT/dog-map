@@ -1,3 +1,96 @@
 <!--pages/message/message.wxml-->
-<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<text class="content">👷消息系统施工中...</text>
+<view class="root">
+	<van-nav-bar
+		title="消息中心"
+		fixed
+	/>
+	<!-- 头部固定 -->
+	<view class="header">
+	</view>
+	<!-- <text class="content">👷系统施工中...</text> -->
+	<!-- 标签切换 -->
+	<view class="tabs">
+		<view class="tab {{activeTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">
+			全部消息
+		</view>
+		<view class="tab {{activeTab === 'platform' ? 'active' : ''}}" bindtap="switchTab" data-tab="platform">
+			平台消息
+		</view>
+		<view class="tab {{activeTab === 'user' ? 'active' : ''}}" bindtap="switchTab" data-tab="user">
+			用户消息
+		</view>
+	</view>
+	
+	<!-- 主内容区 -->
+	<view class="body">
+		<block wx:if="{{messageList.length > 0}}">
+			<scroll-view class="message-list" scroll-y enable-flex>
+				<view class="message-item {{item.isRead ? 'read' : 'unread'}} {{item.isExpanded ? 'expanded' : ''}}" 
+					  wx:for="{{messageList}}" 
+					  wx:key="id"
+					  bindtap="toggleExpand"
+					  data-id="{{item.id}}"
+					  data-type="{{item.type}}">
+					
+					<!-- 平台消息 -->
+					<block wx:if="{{item.type === 'platform'}}">
+						<view class="message-icon platform">
+							<image src="/static/png/platform-icon.png" mode="aspectFit"></image>
+						</view>
+						<view class="message-content">
+							<view class="message-header">
+								<view class="message-title">{{item.title}}</view>
+								<view class="message-time">{{item.time}}</view>
+							</view>
+							<view class="message-text {{item.isExpanded ? 'expanded' : ''}}">{{item.content}}</view>
+						</view>
+					</block>
+					
+					<!-- 用户消息 -->
+					<block wx:if="{{item.type === 'user'}}">
+						<view class="message-avatar">
+							<image src="{{item.fromUser.avatar}}" mode="aspectFill"></image>
+						</view>
+						<view class="message-content">
+							<view class="message-header">
+								<view class="message-title">{{item.fromUser.nickname}}</view>
+								<view class="message-time">{{item.time}}</view>
+							</view>
+							<view class="message-text {{item.isExpanded ? 'expanded' : ''}}">{{item.content}}</view>
+						</view>
+					</block>
+					
+					<!-- 未读标记 -->
+					<view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+					
+					<!-- 收起按钮 -->
+					<view class="collapse-btn" wx:if="{{item.isExpanded}}" catchtap="toggleExpand" data-id="{{item.id}}">
+						<text>收起</text>
+						<view class="collapse-icon"></view>
+					</view>
+				</view>
+				
+				<!-- 加载更多 -->
+				<view class="loading-more" wx:if="{{loading}}">
+					<view class="loading-icon"></view>
+					<text>加载中...</text>
+				</view>
+				
+				<!-- 没有更多数据 -->
+				<view class="no-more" wx:if="{{!hasMore && messageList.length > 0}}">
+					<text>没有更多消息了</text>
+				</view>
+			</scroll-view>
+		</block>
+		
+		<!-- 空状态 -->
+		<view class="empty-state" wx:if="{{messageList.length === 0 && !loading}}">
+			<image class="empty-icon" src="/static/png/empty-message.png" mode="aspectFit"></image>
+			<text class="empty-text">暂无消息</text>
+		</view>
+	</view>
+
+	<!-- 尾部固定 -->
+	<view class="tail">
+	</view>
+</view>

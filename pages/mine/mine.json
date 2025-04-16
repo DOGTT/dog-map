@@ -2,7 +2,7 @@
     "enablePullDownRefresh": false,
     "usingComponents": {
         "item-card": "/components/item-card/item-card",
-        "navigation-bar": "/components/navigation-bar/navigation-bar",
+        "van-nav-bar": "/miniprogram_npm/@vant/weapp/nav-bar/index",
         "login-popup": "/components/login-popup/login-popup",
         "avatar-editor": "/components/avatar-editor/avatar-editor",
         "van-tag": "/miniprogram_npm/@vant/weapp/tag/index",

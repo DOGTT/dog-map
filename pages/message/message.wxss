@@ -1,11 +1,243 @@
 /* pages/message/message.wxss */
 
-.content {
-  position: absolute;
+.root {
   display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding-top: 46px; /* 为van-nav-bar预留空间 */
+}
+
+.header {
+  position: fixed;
+  top: 46px; /* 调整位置，避免与van-nav-bar重叠 */
+  left: 0;
+  right: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  z-index: 100;
+}
+
+.back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 10px 0;
+  margin-top: 44px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 90px; /* 调整位置，避免与van-nav-bar和header重叠 */
+  z-index: 99;
+}
+
+.tab {
+  position: relative;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  flex: 1;
+}
+
+.tab.active {
+  color: #07c160;
+  font-weight: bold;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background-color: #07c160;
+  border-radius: 3px;
+}
+
+.body {
+  flex: 1;
+  overflow: hidden;
+  padding: 0 15px;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.message-list {
+  height: 100%;
+}
+
+.message-item {
+  display: flex;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.message-item.expanded {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-item.unread {
+  background-color: #f0f9f0;
+}
+
+.message-icon, .message-avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.message-icon.platform {
+  background-color: #07c160;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-icon.platform image {
+  width: 24px;
+  height: 24px;
+}
+
+.message-avatar image {
   width: 100%;
   height: 100%;
+}
+
+.message-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.message-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.message-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-height: 20px;
+  transition: max-height 0.3s ease;
+}
+
+.message-text.expanded {
+  white-space: normal;
+  max-height: 500px;
+}
+
+.message-time {
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+  margin-left: 10px;
+}
+
+.unread-dot {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 8px;
+  height: 8px;
+  background-color: #ff4d4f;
+  border-radius: 50%;
+}
+
+.collapse-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #07c160;
+  background-color: rgba(7, 193, 96, 0.1);
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.collapse-icon {
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #07c160;
+}
+
+.loading-more, .no-more {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.loading-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #07c160;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 30px;
+}
+
+.empty-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #999;
+}
+
+.tail {
+  height: 20px;
 }

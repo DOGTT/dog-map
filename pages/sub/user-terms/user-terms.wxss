@@ -1,34 +1,58 @@
-.terms-page {
+.root {
   position: relative;
   padding: 0 20rpx;
+  background-color: #f8f8f8;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  height: 80rpx;
-  padding: 0 20rpx;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.back-icon {
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 20rpx;
-  cursor: pointer;
-}
-
-.header-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #333;
+/* 固定导航栏 */
+.van-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 
 .terms-content {
-  margin-top: 20rpx;
-  height: calc(100vh - 80rpx); /* 扣除顶部标题栏的高度 */
+  margin-top: 46px; /* 为固定导航栏留出空间 */
+  height: calc(100vh - 46px); /* 扣除顶部导航栏的高度 */
   overflow-y: scroll;
   font-size: 28rpx;
   line-height: 40rpx;
   color: #333;
+  padding: 30rpx;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.terms-section {
+  margin-bottom: 30rpx;
+}
+
+.terms-section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.terms-section-content {
+  color: #666;
+  line-height: 1.6;
+}
+
+.terms-section-item {
+  margin-bottom: 15rpx;
+}
+
+.terms-section-item-title {
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10rpx;
+}
+
+.terms-section-item-content {
+  color: #666;
+  text-indent: 2em;
 }

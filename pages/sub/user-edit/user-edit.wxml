@@ -1,10 +1,11 @@
 <!--pages/sub/user-edit/user-edit.wxml-->
 <view class="root">
-  <navigation-bar title="用户协议" back="{{false}}" color="black"></navigation-bar>
-  <view class="header">
-    <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
-    <text class="header-title">资料编辑</text>
-  </view>
+  <van-nav-bar
+    title="资料编辑"
+    left-text="返回"
+    left-arrow fixed
+    bind:click-left="goBack"
+  />
   <scroll-view class="body">
 
     <!-- 头像 -->

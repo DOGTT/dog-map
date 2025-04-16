@@ -1,5 +1,5 @@
-<view class="terms-page">
-  <navigation-bar title="足迹发布" back="{{false}}" color="black"></navigation-bar>
+<view class="root">
+  <van-nav-bar title="足迹发布" left-text="返回" left-arrow bind:click-left="goBack"></van-nav-bar>
   <view class="header">
     <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
     <text class="header-title">发布新足迹频道</text>

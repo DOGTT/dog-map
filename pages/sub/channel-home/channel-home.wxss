@@ -1,1 +1,275 @@
 /* pages/sub/channel-home/channel-home.wxss */
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 88rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  z-index: 100;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.back-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.body {
+  flex: 1;
+  margin-top: 88rpx;
+  padding: 30rpx;
+  overflow: hidden;
+}
+
+.channel-title {
+  margin-bottom: 20rpx;
+}
+
+.title-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.status-tag {
+  background-color: #FFF3E0;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+  display: inline-block;
+}
+
+.tag-text {
+  color: #FF9800;
+  font-size: 28rpx;
+}
+
+.channel-description {
+  margin-bottom: 30rpx;
+}
+
+.description-text {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.location-info {
+  background-color: #ffffff;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.distance {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 8rpx;
+}
+
+.nav-btn {
+  background-color: #4CAF50;
+  color: #ffffff;
+  font-size: 24rpx;
+  padding: 10rpx 30rpx;
+  border-radius: 8rpx;
+  border: none;
+}
+
+.settings {
+  margin-bottom: 30rpx;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+
+.setting-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.tab-container {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666666;
+  position: relative;
+}
+
+.tab.active {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background-color: #4CAF50;
+}
+
+.content-scroll {
+  height: calc(100vh - 600rpx);
+}
+
+.members-list {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.member-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: bold;
+}
+
+.member-role {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}
+
+.member-activity {
+  font-size: 24rpx;
+  color: #4CAF50;
+}
+
+.essence-list {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.essence-item {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.essence-title {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.essence-content {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10rpx;
+  padding: 20rpx;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+}
+
+.media-item {
+  width: 100%;
+  height: 200rpx;
+  border-radius: 8rpx;
+}
+
+.links-list {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.link-item {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.link-title {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.link-url {
+  font-size: 24rpx;
+  color: #4CAF50;
+}
+
+.tail {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.join-btn {
+  background-color: #4CAF50;
+  color: #ffffff;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+  border-radius: 8rpx;
+  text-align: center;
+  border: none;
+}

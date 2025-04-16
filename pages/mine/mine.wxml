@@ -1,5 +1,5 @@
 <!--pages/mine.wxml-->
-<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<van-nav-bar title="Weixin" background="#FFF"></van-nav-bar>
 <view class="root">
 	<!-- 上部分 -->
 	<view class="header">

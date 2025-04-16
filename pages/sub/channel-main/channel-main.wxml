@@ -1,5 +1,5 @@
 <view class="root">
-	<navigation-bar class="nav" title="" back="{{false}}"></navigation-bar>
+	<van-nav-bar class="nav" title=""></van-nav-bar>
 	<view class="header">
 		<image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
 		<!-- 作者 -->

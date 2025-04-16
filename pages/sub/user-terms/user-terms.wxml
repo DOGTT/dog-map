@@ -1,17 +1,103 @@
-<view class="terms-page">
-  <navigation-bar title="用户协议" back="{{false}}" color="black"></navigation-bar>
-  <view class="header">
-    <image 
-      class="back-icon" 
-      src="/static/png/return.png" 
-      bindtap="goBack" 
-    />
-    <text class="header-title">用户协议</text>
-  </view>
-  <scroll-view class="terms-content">
-    <!-- 模拟用户协议内容 -->
-    <text>这里是用户协议的具体内容...balabala..</text>
-  </scroll-view>
+<view class="root">
+  <van-nav-bar
+    title="用户协议"
+    left-text="返回"
+    left-arrow fixed
+    bind:click-left="goBack"
+  />
+  
+  <scroll-view class="terms-content" scroll-y="true">
+    <view class="terms-section">
+      <view class="terms-section-title">1. 协议概述</view>
+      <view class="terms-section-content">
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            欢迎您使用宠物社区地图应用（以下简称"本应用"）。本应用是一个为宠物爱好者提供社区交流和地图服务的平台。在使用本应用前，请您仔细阅读本用户协议（以下简称"本协议"）。本协议是您与本应用之间关于使用本应用服务所订立的协议。
+          </view>
+        </view>
+      </view>
+    </view>
 
- 
+    <view class="terms-section">
+      <view class="terms-section-title">2. 服务内容</view>
+      <view class="terms-section-content">
+        <view class="terms-section-item">
+          <view class="terms-section-item-title">2.1 社区交流</view>
+          <view class="terms-section-item-content">
+            本应用提供宠物爱好者交流平台，用户可以分享宠物照片、经验和心得，参与社区讨论。
+          </view>
+        </view>
+        <view class="terms-section-item">
+          <view class="terms-section-item-title">2.2 地图服务</view>
+          <view class="terms-section-item-content">
+            本应用提供宠物相关地点地图服务，包括宠物医院、宠物店、宠物公园等位置的查询和导航。
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="terms-section">
+      <view class="terms-section-title">3. 用户义务</view>
+      <view class="terms-section-content">
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            3.1 用户应当遵守中华人民共和国相关法律法规，不得利用本应用从事违法违规活动。
+          </view>
+        </view>
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            3.2 用户应当尊重他人知识产权，不得发布侵犯他人权益的内容。
+          </view>
+        </view>
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            3.3 用户应当对账号安全负责，不得将账号借给他人使用。
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="terms-section">
+      <view class="terms-section-title">4. 隐私保护</view>
+      <view class="terms-section-content">
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            4.1 本应用重视用户隐私保护，承诺按照隐私政策收集、使用、存储和保护用户个人信息。
+          </view>
+        </view>
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            4.2 未经用户同意，本应用不会向第三方提供、公开或共享用户个人信息，但法律法规另有规定的除外。
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="terms-section">
+      <view class="terms-section-title">5. 免责声明</view>
+      <view class="terms-section-content">
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            5.1 本应用不对用户使用本服务的结果承担责任，用户应当自行承担使用本服务的风险。
+          </view>
+        </view>
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            5.2 本应用不对第三方提供的服务内容承担责任，用户应当自行判断第三方服务的安全性和适用性。
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="terms-section">
+      <view class="terms-section-title">6. 协议修改</view>
+      <view class="terms-section-content">
+        <view class="terms-section-item">
+          <view class="terms-section-item-content">
+            本应用有权在必要时修改本协议条款，用户可以在相关页面查阅最新版本的协议条款。本协议的最终解释权归本应用所有。
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
 </view>

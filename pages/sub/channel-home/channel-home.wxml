@@ -1,2 +1,105 @@
-<!--pages/sub/channel-home/channel-home.wxml-->
-<text>pages/sub/channel-home/channel-home.wxml</text>
+<view class="root">
+	<van-nav-bar class="nav" title=""></van-nav-bar>
+	<!-- 头部固定 -->
+	<view class="header">
+		<image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
+	</view>
+	<!-- 主内容区 -->
+	<view class="body">
+		<!-- 标题 -->
+		<view class="channel-title">
+			<text class="title-text">{{channelInfo.name}}</text>
+		</view>
+
+		<!-- 状态标签 -->
+		<view class="status-tag" wx:if="{{channelInfo.status}}">
+			<text class="tag-text">🔥 {{channelInfo.status}}</text>
+		</view>
+
+		<!-- 描述简介 -->
+		<view class="channel-description">
+			<text class="description-text">{{channelInfo.description}}</text>
+		</view>
+
+		<!-- 位置信息 -->
+		<view class="location-info">
+			<view class="location-text">
+				<text>{{channelInfo.location}}</text>
+				<text class="distance">{{channelInfo.distance}}km</text>
+			</view>
+			<view class="location-actions">
+				<button class="nav-btn" bindtap="navigate">导航</button>
+			</view>
+		</view>
+
+		<!-- 设置项目 -->
+		<view class="settings">
+			<view class="setting-item" bindtap="editChannel">
+				<image class="setting-icon" src="/static/png/settings.png" />
+				<text>频道设置</text>
+			</view>
+		</view>
+
+		<!-- 滑动tab -->
+		<view class="tab-container">
+			<view class="tabs">
+				<view class="tab {{currentTab === 'members' ? 'active' : ''}}" bindtap="switchTab" data-tab="members">
+					<text>成员</text>
+				</view>
+				<view class="tab {{currentTab === 'essence' ? 'active' : ''}}" bindtap="switchTab" data-tab="essence">
+					<text>精华</text>
+				</view>
+				<view class="tab {{currentTab === 'media' ? 'active' : ''}}" bindtap="switchTab" data-tab="media">
+					<text>媒体</text>
+				</view>
+				<view class="tab {{currentTab === 'links' ? 'active' : ''}}" bindtap="switchTab" data-tab="links">
+					<text>链接</text>
+				</view>
+			</view>
+		</view>
+
+		<scroll-view scroll-y class="content-scroll">
+			<!-- 成员列表 -->
+			<view class="members-list" wx:if="{{currentTab === 'members'}}">
+				<view class="member-item" wx:for="{{members}}" wx:key="id">
+					<image class="member-avatar" src="{{item.avatar}}" />
+					<view class="member-info">
+						<text class="member-name">{{item.name}}</text>
+						<text class="member-role">{{item.role}}</text>
+					</view>
+					<text class="member-activity">活跃度: {{item.activity}}</text>
+				</view>
+			</view>
+
+			<!-- 精华内容 -->
+			<view class="essence-list" wx:if="{{currentTab === 'essence'}}">
+				<view class="essence-item" wx:for="{{essenceList}}" wx:key="id">
+					<text class="essence-title">{{item.title}}</text>
+					<text class="essence-content">{{item.content}}</text>
+				</view>
+			</view>
+
+			<!-- 媒体内容 -->
+			<view class="media-list" wx:if="{{currentTab === 'media'}}">
+				<view class="media-grid">
+					<image class="media-item" wx:for="{{mediaList}}" wx:key="id" src="{{item.url}}" mode="aspectFill" />
+				</view>
+			</view>
+
+			<!-- 链接列表 -->
+			<view class="links-list" wx:if="{{currentTab === 'links'}}">
+				<view class="link-item" wx:for="{{linksList}}" wx:key="id" bindtap="openLink" data-url="{{item.url}}">
+					<text class="link-title">{{item.title}}</text>
+					<text class="link-url">{{item.url}}</text>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+
+	<!-- 尾部固定 -->
+	<view class="tail">
+		<view class="action-buttons">
+			<button class="join-btn" bindtap="joinChannel">加入频道</button>
+		</view>
+	</view>
+</view>
