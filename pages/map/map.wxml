@@ -20,59 +20,59 @@
     <!-- 下方控制展示区 -->
     <view class="bottom-ctrl">
       <!-- 发布按钮 -->
-      <view class="rect-button pub-button {{channelDetailCard.show  ? 'pub-button-up' : ''}}" bindtap="navigateToChannelCreate">
+      <view class="rect-button pub-button {{channelDetailCard.show  ? 'pub-button-up' : ''}}" style="{{channelDetailCard.show ? 'bottom: calc(60rpx + ' + buttonOffset + 'px)' : ''}}" bindtap="navigateToChannelCreate">
         <image src="/static/svg/pub.svg" class="rect-button-icon" />
         <text class="rect-button-text">发布</text>
       </view>
       <!-- 标记按钮 -->
-      <view class="rect-button mark-button {{channelDetailCard.show  ? 'mark-button-up' : ''}}" bindtap="">
+      <view class="rect-button mark-button {{channelDetailCard.show  ? 'mark-button-up' : ''}}" style="{{channelDetailCard.show ? 'bottom: calc(180rpx + ' + buttonOffset + 'px)' : ''}}" bindtap="">
         <image src="/static/svg/mark.svg" class="rect-button-icon" />
         <text class="rect-button-text">打卡</text>
       </view>
       <!-- 定位按钮 -->
-      <view class="rect-button reloc-button {{channelDetailCard.show  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
+      <view class="rect-button reloc-button {{channelDetailCard.show  ? 'reloc-button-up' : ''}}" style="{{channelDetailCard.show ? 'bottom: calc(60rpx + ' + buttonOffset + 'px)' : ''}}" bindtap="moveViewToLocation">
         <image src="/static/svg/location.svg" class="rect-button-icon" />
         <text class="rect-button-text">定位</text>
       </view>
       <!-- 弹出框 -->
       <view class="channel-detail-popup {{channelDetailCard.show  ? 'channel-detail-popup-show' : 'channel-detail-popup-hide'}}">
         <view class="channel-detail-card">
-          <view class="channel-detail-card-head">
-            <view class="meta-box">
-              <text class="meta-title" bindtap="navToChannelPage">{{channelDetailCard.data.title}}
-              </text>
-            </view>
-
-            <view class="ixn-box">
-              <van-icon name="{{channelDetailCard.isLiked ? 'like' : 'like-o'}}" color="#F00" size="50rpx" info="19" bindclick='toggleLike' />
-              <van-icon info-class="inx-icon-info" name="chat-o" size="50rpx" info="3" />
-              <van-icon info-class="inx-icon-info" name="/static/svg/mark.svg" size="50rpx" info="9" />
+          <!-- 第一行：大标题 + 类型+位置信息 -->
+          <view class="channel-detail-header">
+            <view class="title-container">
+              <text class="title-text" bindtap="navToChannelPage">{{channelDetailCard.data.title}}</text>
+              <view class="info-container">
+                <text class="type-text">{{channelDetailCard.data.type || '类型'}}</text>
+                <text class="separator">·</text>
+                <text class="location-text">{{channelDetailCard.shortAddress}}</text>
+              </view>
             </view>
           </view>
-          <view class="channel-detail-card-body">
-            <view class="channel-detail-media-zone">
-              <image class="media-key-photo" bindtap="navToChannelPage" src="{{channelDetailCard.avatar || '/static/test/test-photo.jpg'}}" mode="scaleToFill" />
-            </view>
-            <view class="channel-detail-dynamic-zone" bindtap="navToChannelPage">
-              <view>
-                介绍
-              </view>
-              <view>
-                动态-可选
-              </view>
-            </view>
-            <view class="channel-detail-location-zone">
-              <text class="location-text">{{channelDetailCard.shortAddress}}</text>
-              <view class="location-nav-button">
-                <image class="nav-icon" src="/static/nav.png" />
-                <text class="nav-text">{{channelDetailCard.distance}}</text>
-              </view>
-            </view>
-
+          
+          <!-- 第三行：标签 -->
+          <view class="channel-detail-tags">
+            <text class="tag-item">大狗狗</text>
+            <text class="tag-item">友好</text>
+            <text class="tag-item">活跃</text>
           </view>
-
+          
+          <!-- 第四行：简介 -->
+          <view class="channel-detail-intro">
+            <text class="intro-text">{{channelDetailCard.data.intro || '这是一个简介信息，超过一行会显示省略号...'}}</text>
+          </view>
+          
+          <!-- 第五行：状态数据和导航 -->
+          <view class="channel-detail-footer">
+            <view class="status-data">
+              <text class="status-item">成员数量: {{channelDetailCard.data.memberCount || 100}}</text>
+              <text class="status-item">互动数: {{channelDetailCard.data.interactionCount || 199}}</text>
+            </view>
+            <view class="location-nav-button">
+              <image class="nav-icon" src="/static/nav.png" />
+              <text class="nav-text">{{channelDetailCard.distance}}</text>
+            </view>
+          </view>
         </view>
-
       </view>
     </view>
     <!-- end -->

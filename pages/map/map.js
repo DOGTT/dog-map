@@ -22,6 +22,7 @@ Page({
 			isLiked: false,
 			data: {}
 		},
+		buttonOffset: 0, // 按钮位置偏移量
 		poiFullPage: {},
 		mapSetting: { // 使用setting配置，方便统一还原
 			rotate: 0,
@@ -304,6 +305,9 @@ Page({
 			this.setData({
 				channelDetailCard
 			})
+			
+			// 获取弹出框实际高度并调整按钮位置
+			this.adjustButtonPositions();
 		}).catch((err) => {
 			console.error('get channel failed', err)
 		})
@@ -312,7 +316,32 @@ Page({
 		this.setData({
 			channelDetailCard
 		})
+		
+		// 获取弹出框实际高度并调整按钮位置
+		setTimeout(() => {
+			this.adjustButtonPositions();
+		}, 300); // 等待动画完成
 	},
+	
+	// 调整按钮位置
+	adjustButtonPositions() {
+		const query = wx.createSelectorQuery();
+		query.select('.channel-detail-popup').boundingClientRect();
+		query.exec((res) => {
+			if (res && res[0]) {
+				const popupHeight = res[0].height;
+				// 更新按钮位置
+				this.setData({
+					buttonOffset: popupHeight
+				});
+				
+				// 动态设置CSS变量
+				const style = document.documentElement.style;
+				style.setProperty('--popup-height', `${popupHeight}px`);
+			}
+		});
+	},
+	
 	// 足迹卡片收回
 	channelDetailCardDown() {
 		const channelDetailCard = this.data.channelDetailCard;
