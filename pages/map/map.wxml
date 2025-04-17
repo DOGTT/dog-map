@@ -6,7 +6,7 @@
     </map>
     <view class="head-zone" style="{{headZoneStyle}}">
       <!-- 搜索 -->
-        <van-search custom-class="search-input" background="ragb(0,0,0,0)" value="{{ value }}" placeholder="点击选择位置" bind:focus="onSearchFocus" />
+      <van-search custom-class="search-input" background="ragb(0,0,0,0)" value="{{ value }}" placeholder="点击选择位置" bind:focus="onSearchFocus" />
       <!-- 上方类型tab -->
       <scroll-view class="channel-type-selecter-scroll-view" scroll-x="true" bindscroll="scroll" style="width: 100%">
         <view class="channel-type-tab-button-container">
@@ -26,8 +26,8 @@
       </view>
       <!-- 标记按钮 -->
       <view class="rect-button mark-button {{channelDetailCard.show  ? 'mark-button-up' : ''}}" bindtap="">
-        <image src="/static/svg/pub.svg" class="rect-button-icon" />
-        <text class="rect-button-text">踩一踩</text>
+        <image src="/static/svg/mark.svg" class="rect-button-icon" />
+        <text class="rect-button-text">打卡</text>
       </view>
       <!-- 定位按钮 -->
       <view class="rect-button reloc-button {{channelDetailCard.show  ? 'reloc-button-up' : ''}}" bindtap="moveViewToLocation">
@@ -46,7 +46,7 @@
             <view class="ixn-box">
               <van-icon name="{{channelDetailCard.isLiked ? 'like' : 'like-o'}}" color="#F00" size="50rpx" info="19" bindclick='toggleLike' />
               <van-icon info-class="inx-icon-info" name="chat-o" size="50rpx" info="3" />
-              <van-icon info-class="inx-icon-info" name="/static/paw.svg" size="50rpx" info="9" />
+              <van-icon info-class="inx-icon-info" name="/static/svg/mark.svg" size="50rpx" info="9" />
             </view>
           </view>
           <view class="channel-detail-card-body">

@@ -1,11 +1,9 @@
 <view class="root">
-  <van-nav-bar title="足迹发布" left-text="返回" left-arrow bind:click-left="goBack"></van-nav-bar>
+  <van-nav-bar title="发布新足迹频道" left-text="返回" left-arrow bind:click-left="goBack" fixed></van-nav-bar>
   <view class="header">
-    <image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
-    <text class="header-title">发布新足迹频道</text>
   </view>
-  <scroll-view class="scroll-content" enable-flex="true">
-
+    <view class="body">
+     <scroll-view class="scroll-content" enable-flex="true">
     <view class="location-container">
       <!-- 显示地点信息 -->
       <view class="location-info">
@@ -51,9 +49,13 @@
     </view>
 
   </scroll-view>
+  </view>
   <!-- 底部按钮 -->
-  <view class="bottom-bar">
+    <view class="tail">
+      <view class="bottom-bar">
     <button class="save-button" bindtap="onSave">暂存</button>
     <button class="publish-button" bindtap="onPublishBtnTap">发布</button>
   </view>
+  </view>
+
 </view>

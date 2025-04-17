@@ -1,21 +1,34 @@
+
 .root {
-  position: relative;
-  padding: 0 20rpx;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding-top: 46px; /* 为van-nav-bar预留空间 */
 }
 
 .header {
+  /* position: fixed; */
+  /* top: 46px; 
+  left: 0;
+  right: 0;
+  height: 44px;
   display: flex;
   align-items: center;
-  height: 80rpx;
-  /* padding: 0 20rpx; */
-  border-bottom: 1px solid #f0f0f0;
+  padding: 0 15px;
+  z-index: 100; */
 }
 
-.back-icon {
-  width: 50rpx;
-  height: 50rpx;
-  padding-right: 20rpx;
-  /* cursor: pointer; */
+.body {
+  flex: 1;
+  padding: 20rpx;
+  padding-top: 120rpx;
+  overflow-y: auto;
+  padding-bottom: 30rpx;
+}
+
+.tail {
+  height: 20px;
 }
 
 .header-title {
@@ -86,7 +99,7 @@
 }
 
 .publish-button {
-  background-color: #228B22;
+  background-color: #FFBF00;
   color: #ffffff;
   border: none;
   border-radius: 8rpx;
@@ -185,7 +198,7 @@
 
 .type-button.selected {
   color: #fff;
-  background-color: #007aff;
+  background-color: #0057B7;
   transform: scale(1.1); /* 选中时稍微放大 */
 }
 

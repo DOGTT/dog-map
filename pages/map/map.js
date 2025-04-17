@@ -48,9 +48,9 @@ Page({
 				title: "发布气泡",
 				latitude: 22.55329,
 				longitude: 113.90308,
-				iconPath: "/static/png/marker/m.png",
-				width: "38px",
-				height: "38px",
+				iconPath: "/static/png/marker/m-r.png",
+				width: "45px",
+				height: "45px",
 				callout: {
 					content: "在此发布",
 					display: "ALWAYS",

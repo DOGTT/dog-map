@@ -20,9 +20,16 @@
   z-index: 100;
 }
 
-.back-icon {
-  width: 24px;
-  height: 24px;
+.body {
+  flex: 1;
+  overflow: hidden;
+  padding: 0 15px;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.tail {
+  height: 20px;
 }
 
 .tabs {
@@ -63,13 +70,6 @@
   border-radius: 3px;
 }
 
-.body {
-  flex: 1;
-  overflow: hidden;
-  padding: 0 15px;
-  margin-top: 10px;
-  padding-bottom: 20px;
-}
 
 .message-list {
   height: 100%;
@@ -236,8 +236,4 @@
 .empty-text {
   font-size: 16px;
   color: #999;
-}
-
-.tail {
-  height: 20px;
 }

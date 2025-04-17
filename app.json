@@ -27,30 +27,31 @@
     "tabBar": {
         "borderStyle": "white",
         "backgroundColor": "#FFF",
+        "selectedColor": "#FFBF00",
         "list": [
             {
                 "pagePath": "pages/map/map",
                 "text": "地图",
-                "iconPath": "static/png/map-pin.png",
-                "selectedIconPath": "static/png/map-pin.png"
+                "iconPath": "static/png/tab/map-pin.png",
+                "selectedIconPath": "static/png/tab/map-pin-set.png"
             },
             {
                 "pagePath": "pages/discover/discover",
                 "text": "发现",
-                "iconPath": "static/png/grass.png",
-                "selectedIconPath": "static/png/grass.png"
+                "iconPath": "static/png/tab/discovery.png",
+                "selectedIconPath": "static/png/tab/discovery-set.png"
             },
             {
                 "pagePath": "pages/message/message",
                 "text": "消息",
-                "iconPath": "static/png/message.png",
-                "selectedIconPath": "static/png/message.png"
+                "iconPath": "static/png/tab/message.png",
+                "selectedIconPath": "static/png/tab/message-set.png"
             },
             {
                 "pagePath": "pages/mine/mine",
                 "text": "我们",
-                "iconPath": "static/png/dog-13.png",
-                "selectedIconPath": "static/png/dog-13.png"
+                "iconPath": "static/png/tab/home.png",
+                "selectedIconPath": "static/png/tab/home-set.png"
             }
         ]
     },

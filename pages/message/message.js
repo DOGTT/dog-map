@@ -180,6 +180,58 @@ Page({
         time: '2023-12-18 14:30',
         isRead: readMessages.includes('u2'),
         isExpanded: false
+      },
+      {
+        id: 'u3',
+        type: 'user',
+        fromUser: {
+          id: 'user2',
+          nickname: '小红',
+          avatar: '/static/png/default-avatar.png'
+        },
+        content: '谢谢你的帮助，我的问题已经解决了！',
+        time: '2023-12-18 14:30',
+        isRead: readMessages.includes('u2'),
+        isExpanded: false
+      },
+      {
+        id: 'u4',
+        type: 'user',
+        fromUser: {
+          id: 'user2',
+          nickname: '小红',
+          avatar: '/static/png/default-avatar.png'
+        },
+        content: '谢谢你的帮助，我的问题已经解决了！',
+        time: '2023-12-18 14:30',
+        isRead: readMessages.includes('u2'),
+        isExpanded: false
+      },
+      {
+        id: 'u5',
+        type: 'user',
+        fromUser: {
+          id: 'user2',
+          nickname: '小红',
+          avatar: '/static/png/default-avatar.png'
+        },
+        content: '谢谢你的帮助，我的问题已经解决了！',
+        time: '2023-12-18 14:30',
+        isRead: readMessages.includes('u2'),
+        isExpanded: false
+      },
+      {
+        id: 'u3',
+        type: 'user',
+        fromUser: {
+          id: 'user2',
+          nickname: '小红',
+          avatar: '/static/png/default-avatar.png'
+        },
+        content: '谢谢你的帮助，我的问题已经解决了！',
+        time: '2023-12-18 14:30',
+        isRead: readMessages.includes('u2'),
+        isExpanded: false
       }
     ];
     

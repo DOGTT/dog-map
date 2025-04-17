@@ -19,7 +19,7 @@ Page({
 				title: "选中位置",
 				latitude: 22.55329,
 				longitude: 113.90308,
-				iconPath: "/static/png/marker/Marker3_Activated@3x.png",
+				iconPath: "/static/png/marker/m-r.png",
 				width: "38px",
 				height: "38px",
 				callout: {
