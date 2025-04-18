@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #f8f8f8;
+  background-color: #fcfcfc;
   padding-top: 46px; /* 为van-nav-bar预留空间 */
 }
 
@@ -198,11 +198,18 @@
 
 .type-button.selected {
   color: #fff;
-  background-color: #0057B7;
+  background-color: #FFBF00;
   transform: scale(1.1); /* 选中时稍微放大 */
 }
 
-
+.type-hint {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  display: flex;
+  width: 100%;
+  padding: 10rpx 0;
+}
 
 /* 内容输入栏 */
 .content-input-wrapper {

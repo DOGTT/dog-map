@@ -18,12 +18,13 @@
     </view>
    
     <view class="title-input-wrapper">
-      <input id="title" type="text" class="title-input" placeholder="添加频道标题" value="{{channelCreatForm.title}}" bindinput="onInputTitle" maxlength="50" focus="true" />
+      <input id="title" type="text" class="title-input" placeholder="请输入足迹频道标题" value="{{channelCreatForm.title}}" bindinput="onInputTitle" maxlength="50" focus="true" />
     </view>
     <!-- 类型标签选择区域 -->
     <!-- TODO 点击类型标签展示描述 -->
     <scroll-view class="type-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
       <view class="type-selection">
+        <text class="type-hint">请选择类型</text>
         <block wx:for="{{ channelTypeList }}" wx:key="index">
           <view class="type-button {{item.select ? 'selected' : ''}}" bindtap="onTypeBtnTap" data-index="{{index}}">{{item.name}}</view>
         </block>

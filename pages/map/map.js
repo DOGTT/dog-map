@@ -32,7 +32,7 @@ Page({
 			enableZoom: true,
 			enableScroll: true,
 			enableRotate: false,
-			showCompass: true,
+			showCompass: false,
 			enable3D: false,
 			enableOverlooking: false,
 			enableSatellite: false,
@@ -376,13 +376,15 @@ Page({
 	},
 	// 移动视野到位置
 	moveViewToLocation: function () {
-		this.reLocation() // 重新获取位置
-		console.log("moveViewToLocation", this.data.mapData)
-		const mapCtx = wx.createMapContext('map', this)
-		mapCtx.moveToLocation(this.data.mapData.latitude, this.data.mapData.longitude)
+		// 重新获取位置，然后在回调中移动视野
+		this.reLocation(() => {
+			console.log("moveViewToLocation", this.data.mapData)
+			const mapCtx = wx.createMapContext('map', this)
+			mapCtx.moveToLocation(this.data.mapData.latitude, this.data.mapData.longitude)
+		});
 	},
 	// 重新定位
-	reLocation: function () {
+	reLocation: function (callback) {
 		var mapData = this.data.mapData;
 		// 获取用户的位置信息
 		wx.getLocation({
@@ -404,6 +406,9 @@ Page({
 				this.setData({
 					mapData: mapData,
 				})
+				if (callback) {
+					callback();
+				}
 			},
 			fail: (err) => {
 				console.error('获取位置失败', err)
@@ -423,7 +428,7 @@ Page({
 			let channel = pList[i];
 			let pts = ptsMap[channel.type_id];
 			console.debug("channel info", i, channel, pts)
-			if (pts.select) {
+			if (pts && pts.select) {
 				let loc = channel.location;
 				markers.push(new mk.PoiMarker(i,
 					loc.lng_lat.lat, loc.lng_lat.lng,
@@ -434,7 +439,9 @@ Page({
 		this.data.mapData.markers = markers;
 		this.setData({
 			mapData: this.data.mapData,
-		})
+		}, () => {
+			console.log("markers已更新", this.data.mapData.markers);
+		});
 	},
 	// 足迹列表重加载
 	channelListReload() {
@@ -506,11 +513,27 @@ Page({
 		})
 	},
 
+	// 切换卫星图层
+	toggleSatelliteLayer() {
+		const mapSetting = this.data.mapSetting;
+		mapSetting.enableSatellite = !mapSetting.enableSatellite;
+		this.setData({
+			mapSetting: mapSetting
+		});
+		
+		// 显示提示
+		wx.showToast({
+			title: mapSetting.enableSatellite ? '已切换到卫星图层' : '已切换到普通图层',
+			icon: 'none',
+			duration: 1500
+		});
+	},
+
 	// 加载足迹类型信息
 	channelTypeListReload() {
 		var _this = this;
 		app.getChannelTypes().then((listData) => {
-			console.log("get channel list res.data", listData)
+			console.log("get channel-type list res.data", listData)
 			for (let i = 0; i < listData.length; i++) {
 				listData[i].select = true;
 				listData[i].icon = '/static/png/channel-type-show/' + listData[i].id + '.png';
@@ -520,8 +543,10 @@ Page({
 			_this.setData({
 				channelTypeList: listData,
 				channelTypeStateMap: _this.data.channelTypeStateMap,
-			})
-			_this.channelListReload()
+			}, function() {
+				// 在setData的回调中执行channelListReload，确保数据已更新
+				_this.channelListReload();
+			});
 		}).catch((err) => {
 			console.error('list poi type failed:', err)
 		})
@@ -545,14 +570,18 @@ Page({
 			headZoneStyle: `top: ${capsuleTop}px;`
 		})
 		console.log("onload", capsuleHeight, capsuleTop)
-		this.reLocation()
-		this.channelTypeListReload()
+		
+		// 先执行reLocation，然后在回调中执行channelTypeListReload
+		this.reLocation(() => {
+			this.channelTypeListReload();
+		});
 	},
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow() {
 		console.log("onShow")
+		
 	},
 
 	/**

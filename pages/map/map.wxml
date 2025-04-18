@@ -4,6 +4,7 @@
     <!-- 地图 -->
     <map id="map" class="full-screen" latitude="{{mapData.latitude}}" longitude="{{mapData.longitude}}" scale="{{mapData.scale}}" setting="{{mapSetting}}" markers="{{mapData.markers}}" circles="{{mapData.circles}}" bindtap="onTapMap" bindtouchstart="onMapTouchStart" bindtouchend="onMapTouchEnd" bindregionchange="onChangeRegion" bindpoitap="onTapPoi" bindlabeltap="onLabelTap" bindcallouttap="onCalloutTap" bindmarkertap="onTapMarker">
     </map>
+    
     <view class="head-zone" style="{{headZoneStyle}}">
       <!-- 搜索 -->
       <van-search custom-class="search-input" background="ragb(0,0,0,0)" value="{{ value }}" placeholder="点击选择位置" bind:focus="onSearchFocus" />
@@ -15,6 +16,14 @@
           </block>
         </view>
       </scroll-view>
+      
+      <!-- 图层切换按钮 -->
+      <view class="layer-button-container">
+        <view class="rect-button layer-button" bindtap="toggleSatelliteLayer">
+          <image src="/static/svg/layer.svg" class="rect-button-icon" />
+          <text class="rect-button-text">图层</text>
+        </view>
+      </view>
     </view>
 
     <!-- 下方控制展示区 -->
@@ -42,36 +51,56 @@
             <view class="title-container">
               <text class="title-text" bindtap="navToChannelPage">{{channelDetailCard.data.title}}</text>
               <view class="info-container">
-                <text class="type-text">{{channelDetailCard.data.type || '类型'}}</text>
+                <text class="type-text">{{channelTypeStateMap[channelDetailCard.data.type_id].name || '类型'}}</text>
                 <text class="separator">·</text>
                 <text class="location-text">{{channelDetailCard.shortAddress}}</text>
+                <view class="tags-container">
+                  <text class="tag-item">大狗狗</text>
+                  <text class="tag-item">友好</text>
+                  <text class="tag-item">活跃</text>
+                </view>
               </view>
             </view>
           </view>
           
-          <!-- 第三行：标签 -->
-          <view class="channel-detail-tags">
-            <text class="tag-item">大狗狗</text>
-            <text class="tag-item">友好</text>
-            <text class="tag-item">活跃</text>
-          </view>
-          
-          <!-- 第四行：简介 -->
-          <view class="channel-detail-intro">
-            <text class="intro-text">{{channelDetailCard.data.intro || '这是一个简介信息，超过一行会显示省略号...'}}</text>
-          </view>
-          
-          <!-- 第五行：状态数据和导航 -->
+          <!-- 第2行：状态数据和导航 -->
           <view class="channel-detail-footer">
             <view class="status-data">
-              <text class="status-item">成员数量: {{channelDetailCard.data.memberCount || 100}}</text>
-              <text class="status-item">互动数: {{channelDetailCard.data.interactionCount || 199}}</text>
+              <view class="status-item">
+                <van-icon name="chat-o" size="36rpx" />
+                <text class="status-count">{{channelDetailCard.data.interactionCount || 9}}</text>
+              </view>
+              <text class="status-separator">|</text>
+              <view class="status-item">
+                <van-icon name="/static/svg/mark.svg" size="36rpx" />
+                <text class="status-count">{{channelDetailCard.data.memberCount || 13}}</text>
+              </view>
+              <text class="status-separator">|</text>
+              <view class="status-item">
+                <van-icon name="{{channelDetailCard.isLiked ? 'like' : 'like-o'}}" color="#F00" size="36rpx" bindclick='toggleLike' />
+                <text class="status-count">{{channelDetailCard.data.memberCount || 5}}</text>
+              </view>
             </view>
-            <view class="location-nav-button">
-              <image class="nav-icon" src="/static/nav.png" />
+            <view class="location-nav-button" bindtap="openLocation">
+              <image class="nav-icon" src="/static/png/nav.png" />
               <text class="nav-text">{{channelDetailCard.distance}}</text>
             </view>
           </view>
+
+          <!-- 第3行：帖子动态区，左边1个方形图片，右边是帖子的文本内容 -->
+          <view class="channel-detail-dynamic">
+            <view class="dynamic-image-container">
+              <image class="dynamic-image" src="{{channelDetailCard.data.dynamicImage || '/static/png/default-dynamic.png'}}" mode="aspectFill"></image>
+            </view>
+            <view class="dynamic-content">
+              <text class="dynamic-text">{{channelDetailCard.data.dynamicText || '暂无动态内容'}}</text>
+              <view class="dynamic-meta">
+                <text class="dynamic-time">{{channelDetailCard.data.dynamicTime || '刚刚'}}</text>
+                <text class="dynamic-author">{{channelDetailCard.data.dynamicAuthor || '匿名用户'}}</text>
+              </view>
+            </view>
+          </view>
+
         </view>
       </view>
     </view>

@@ -14,7 +14,6 @@ App({
         logs.unshift(Date.now());
         wx.setStorageSync('logs', logs);
         this.tryUserLogin();
-        this.loadChannelTypes();
     },
     decodeJWT(token) {
         // 检查 token 是否有效
@@ -44,7 +43,7 @@ App({
                 },
                 dataType: 'json',
                 success: (res) => {
-                    console.log("get channel list res.data", res.data);
+                    console.log("get channel-type list res.data", res.data);
                     _this.globalData.channelTypes = res.data.channel_types;
                     resolve(_this.globalData.channelTypes)
                 },
