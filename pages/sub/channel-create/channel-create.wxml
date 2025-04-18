@@ -2,61 +2,74 @@
   <van-nav-bar title="发布新足迹频道" left-text="返回" left-arrow bind:click-left="goBack" fixed></van-nav-bar>
   <view class="header">
   </view>
-    <view class="body">
-     <scroll-view class="scroll-content" enable-flex="true">
-    <view class="location-container">
-      <!-- 显示地点信息 -->
-      <view class="location-info">
-        <text class="location-info-text">📍添加位置：</text>
-        <text>{{channelCreatForm.address || "未选择地点"}}</text>
-      </view>
-      <!-- 地图缩略图 -->
-      <!-- 地点选择框 -->
-      <view class="location-map" bindtap="chooseLocation">
-        <map id="mini-map" class="location-map" latitude="{{channelCreatForm.lngLat.lat}}" longitude="{{channelCreatForm.lngLat.lng}}" setting="{{mapData.mapSetting}}" markers="{{mapData.markers}}"  scale="15" show-location></map>
-      </view>
-    </view>
-   
-    <view class="title-input-wrapper">
-      <input id="title" type="text" class="title-input" placeholder="请输入足迹频道标题" value="{{channelCreatForm.title}}" bindinput="onInputTitle" maxlength="50" focus="true" />
-    </view>
-    <!-- 类型标签选择区域 -->
-    <!-- TODO 点击类型标签展示描述 -->
-    <scroll-view class="type-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
-      <view class="type-selection">
-        <text class="type-hint">请选择类型</text>
-        <block wx:for="{{ channelTypeList }}" wx:key="index">
-          <view class="type-button {{item.select ? 'selected' : ''}}" bindtap="onTypeBtnTap" data-index="{{index}}">{{item.name}}</view>
-        </block>
-      </view>
-    </scroll-view>
-
-    <!-- 第一条推文 -->
-    <!-- 图片预览组件 -->
-    <photo-preview show="{{previewShow}}" current-photo="{{currentPhoto}}" photo-index="{{currentPhotoIndex}}" bind:close="closePreview" bind:setCover="setAsCover" bind:delete="deletePhoto"></photo-preview>
-    <view class="photo-selection">
-      <block wx:for="{{channelCreatForm.photos}}" wx:key="*this">
-        <view class="photo-wrapper" bindtap="openPreview" data-index="{{index}}">
-          <image src="{{item.tempFilePath}}" class="photo" />
+  <view class="body">
+    <scroll-view class="scroll-content" enable-flex="true">
+      <view class="channel-init">
+        <view class="section-title">频道基本信息</view>
+        <view class="title-input-wrapper">
+          <input id="title" type="text" class="title-input" placeholder="请输入足迹频道标题" value="{{channelCreatForm.title}}" bindinput="onInputTitle" maxlength="50" focus="true" />
         </view>
-      </block>
-      <view class="add-photo-button" bindtap="addPhoto">
-        +
-      </view>
-    </view>
-    <!-- 内容输入栏 -->
-    <view class="content-input-wrapper">
-      <textarea class="content-input" placeholder="第一条帖子内容" value="{{channelCreatForm.postContent}}" bindinput="onInputContent" maxlength="600"></textarea>
-    </view>
+        <!-- 类型标签选择区域 -->
+        <!-- TODO 点击类型标签展示描述 -->
+        <scroll-view class="type-list" scroll-x="true" bindscroll="scroll" style="width: 100%">
+          <view class="type-selection">
+            <text class="type-hint">类型</text>
+            <view class="type-buttons-container">
+              <block wx:for="{{ channelTypeList }}" wx:key="index">
+                <view class="type-button {{item.select ? 'selected' : ''}}" bindtap="onTypeBtnTap" data-index="{{index}}">{{item.name}}</view>
+              </block>
+            </view>
+          </view>
+        </scroll-view>
+        <view class="location-container">
+          <!-- 显示地点信息 -->
+          <view class="location-info">
+            <text class="location-info-text">📍添加位置：</text>
+            <text>{{channelCreatForm.address || "未选择地点"}}</text>
+          </view>
+          <!-- 地图缩略图 -->
+          <!-- 地点选择框 -->
+          <view class="location-map" bindtap="chooseLocation">
+            <map id="mini-map" class="location-map" latitude="{{channelCreatForm.lngLat.lat}}" longitude="{{channelCreatForm.lngLat.lng}}" setting="{{mapData.mapSetting}}" markers="{{mapData.markers}}" scale="15" show-location></map>
+          </view>
+        </view>
 
-  </scroll-view>
+      </view>
+
+      <!-- 第一条推文 -->
+      <view class="post-first">
+        <view class="section-title">首条推文</view>
+        <view class="section-desc">发布频道的第一条推文，让更多人了解这个频道</view>
+        <!-- 内容输入栏 -->
+        <view class="content-input-wrapper">
+          <textarea class="content-input" placeholder="第一条帖子内容" value="{{channelCreatForm.postContent}}" bindinput="onInputContent" maxlength="600"></textarea>
+        </view>
+        <!-- 图片预览组件 -->
+        <photo-preview show="{{previewShow}}" current-photo="{{currentPhoto}}" photo-index="{{currentPhotoIndex}}" bind:close="closePreview" bind:setCover="setAsCover" bind:delete="deletePhoto"></photo-preview>
+        <view class="photo-selection">
+          <block wx:for="{{channelCreatForm.photos}}" wx:key="*this">
+            <view class="photo-wrapper" bindtap="openPreview" data-index="{{index}}">
+              <image src="{{item.tempFilePath}}" class="photo" />
+            </view>
+          </block>
+          <view class="add-photo-button" bindtap="addPhoto">
+            +
+          </view>
+        </view>
+
+
+      </view>
+
+
+
+    </scroll-view>
   </view>
   <!-- 底部按钮 -->
-    <view class="tail">
-      <view class="bottom-bar">
-    <button class="save-button" bindtap="onSave">暂存</button>
-    <button class="publish-button" bindtap="onPublishBtnTap">发布</button>
-  </view>
+  <view class="tail">
+    <view class="bottom-bar">
+      <button class="save-button" bindtap="onSave">暂存</button>
+      <button class="publish-button" bindtap="onPublishBtnTap">发布</button>
+    </view>
   </view>
 
 </view>

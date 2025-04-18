@@ -1,4 +1,3 @@
-
 .root {
   display: flex;
   flex-direction: column;
@@ -113,10 +112,10 @@
   align-items: center;
   flex-wrap: wrap; /* 自动换行 */
   gap: 10rpx;
-  padding: 10rpx;
-  /* background-color: #ffffff; */
-  border-bottom: 1px solid #ddd;
-  border-radius: 10rpx;
+  padding: 16rpx;
+  background-color: #fafafa;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
 }
 
 .photo-wrapper {
@@ -151,13 +150,13 @@
   display: flex;
   align-items: center;
   margin-bottom: 20rpx;
-  margin-top: 20rpx;
+  margin-top: 0;
 }
 
 .title-input {
   flex: 1;
   height: 80rpx;
-  border-bottom: 1rpx solid #ddd;
+  border-bottom: 1px solid #eee;
   /* border-radius: 10rpx; */
   padding: 0 20rpx;
   font-size: 32rpx;
@@ -168,33 +167,49 @@
 /* 标签选择区域 */
 .type-selection {
   display: flex;
-  margin-bottom: 30rpx;
-  padding: 10rpx;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+  padding: 16rpx 0;
   white-space: nowrap;
   overflow-x: auto;
   border-bottom: 1px solid #ddd;
-  /* border-radius: 10rpx; */
+}
+
+.type-hint {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  display: block;
+  width: 100%;
+  padding: 10rpx 0;
 }
 
 .type-list {
-  display: flex; 
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.type-buttons-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 10rpx 0;
 }
 
 .type-button {
-  display: flex; 
+  display: flex;
   font-size: 28rpx;
   border-radius: 20rpx;
   border: 1px solid #ddd;
   color: #eee;
   background-color: rgb(161, 161, 161);
-  /* width: 100rpx; */
   padding: 10rpx 20rpx;
-  margin-right: 20rpx;   
-  transition: all 0.3s ease-in-out; /* 平滑的状态切换动画 */  
-   /* 标签之间的间距 */
+  margin-right: 20rpx;
+  transition: all 0.3s ease-in-out;
   margin-bottom: 10rpx;
+  white-space: nowrap;
 }
-
 
 .type-button.selected {
   color: #fff;
@@ -202,21 +217,12 @@
   transform: scale(1.1); /* 选中时稍微放大 */
 }
 
-.type-hint {
-  font-size: 28rpx;
-  color: #666;
-  margin-bottom: 20rpx;
-  display: flex;
-  width: 100%;
-  padding: 10rpx 0;
-}
-
 /* 内容输入栏 */
 .content-input-wrapper {
   display: flex;
   /* flex: 1; */
   /* flex-direction: column; */
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
 }
 
 .content-input {
@@ -231,12 +237,10 @@
 
 /* 地点选择框 */
 .location-container {
-  /* margin: 20rpx; */
-  border: 1rpx solid #ddd;
-  /* height: 400rpx; */
-  border-radius: 10rpx;
-  /* overflow: hidden; */
-  /* box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1); */
+  margin-top: 16rpx;
+  border: 1px solid #eee;
+  border-radius: 12rpx;
+  overflow: hidden;
 }
 
 .location-info {
@@ -255,4 +259,53 @@
 .location-map {
   width: 100%;
   /* height: 100%; */
+}
+
+/* 区块标题样式 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.section-desc {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+/* 频道初始化区块样式 */
+.channel-init {
+  background-color: #fff;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  border-radius: 16rpx;
+  position: relative;
+}
+
+.channel-init::after {
+  content: '';
+  position: absolute;
+  bottom: -12rpx;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #eee, transparent);
+}
+
+/* 首条推文区块样式 */
+.post-first {
+  background-color: #fff;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  border-radius: 16rpx;
+}
+
+/* 调整内容输入区域样式 */
+.content-input {
+  border: 1px solid #eee;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  height: 300rpx;
 }
