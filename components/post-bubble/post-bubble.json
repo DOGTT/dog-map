@@ -1,4 +1,7 @@
 {
-  "component": true,
-  "usingComponents": {}
+    "component": true,
+    "usingComponents": {
+        "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
+        "post-inx-selector": "/components/post-inx-selector/post-inx-selector"
+    }
 }

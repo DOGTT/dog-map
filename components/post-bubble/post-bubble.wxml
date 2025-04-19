@@ -11,11 +11,6 @@
         <text class="username">{{username}}</text>
         <text class="date">{{date}}</text>
       </view>
-      <view class="tags">
-        <block wx:for="{{tags}}" wx:key="index">
-          <text class="tag">{{item}}</text>
-        </block>
-      </view>
     </view>
 
     <!-- 内容区 -->
@@ -41,14 +36,39 @@
           {{currentIndex + 1}}/{{images.length}}
         </view>
       </view>
-     
     </view>
 
-    <!-- 尾部互动区 -->
+    <!-- 底部互动区 -->
     <view class="footer">
-      <button wx:for="{{reactions}}" wx:key="index" bindtap="onReactionTap" data-index="{{index}}">
-        {{item}}
-      </button>
+      <view class="interaction-container">
+        <!-- 标签按钮 -->
+        <block wx:for="{{tags}}" wx:key="key">
+          <view class="interaction-button {{item.active ? 'active' : ''}}" bindtap="onTagClick" data-type="tag" data-index="{{index}}">
+            <text class="button-text">{{item.key}}</text>
+            <text class="button-count">{{item.count}}</text>
+          </view>
+        </block>
+        
+        <!-- 贴纸按钮 -->
+        <block wx:for="{{stickers}}" wx:key="key">
+          <view class="interaction-button {{item.active ? 'active' : ''}}" bindtap="onStickerClick" data-type="sticker" data-index="{{index}}">
+            <image class="sticker-image" src="/static/svg/emoji/{{item.key}}.svg" mode="aspectFit"></image>
+            <text class="button-count">{{item.count}}</text>
+          </view>
+        </block>
+        
+        <!-- 添加按钮 -->
+        <view class="add-button" bindtap="onAddInteraction">
+          <van-icon name="plus" size="24rpx" />
+        </view>
+      </view>
     </view>
   </view>
 </view>
+
+<post-inx-selector 
+  show="{{showInteractionSelector}}"
+  bind:close="onInteractionSelectorClose"
+  bind:createtag="onCreateTag"
+  bind:confirm="onInteractionSelectorConfirm"
+/>

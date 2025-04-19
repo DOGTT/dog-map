@@ -1,0 +1,53 @@
+<van-popup show="{{ show }}" position="bottom" round bind:close="onClose">
+  <view class="tag-selector">
+    <view class="header">
+      <text class="title">添加标签</text>
+      <view class="create-tag-input" wx:if="{{isCreatingTag}}">
+        <input 
+          type="text" 
+          value="{{newTagName}}" 
+          placeholder="输入新标签名称" 
+          bindinput="onNewTagInput"
+          bindconfirm="onCreateTag"
+          focus="{{true}}"
+        />
+      </view>
+      <view class="create-tag-btn" wx:else bindtap="onStartCreateTag">
+        创建标签
+      </view>
+      <van-icon name="cross" class="close-icon" bind:click="onClose" />
+    </view>
+    
+    <view class="content">
+      <!-- 标签选择 -->
+      <view class="section">
+        <view class="tag-list">
+          <view 
+            wx:for="{{availableTags}}" 
+            wx:key="id"
+            class="tag-item {{selectedTags.includes(item.id) ? 'selected' : ''}}"
+            bindtap="onTagSelect"
+            data-id="{{item.id}}"
+          >
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+
+      <!-- 表情选择 -->
+      <view class="section">
+        <view class="emoji-list">
+          <view 
+            wx:for="{{availableEmojis}}" 
+            wx:key="index"
+            class="emoji-item {{selectedEmojis.includes(item.id) ? 'selected' : ''}}"
+            bindtap="onEmojiSelect"
+            data-id="index"
+          >
+            <image class="emoji-image" src="{{item.path}}" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</van-popup> 

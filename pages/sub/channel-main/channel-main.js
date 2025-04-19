@@ -23,7 +23,9 @@ Page({
 	},
 
 
-
+	goBack() {
+		wx.navigateBack() // 返回到上一页
+	},
 
 	sendMessage: function () {
 		const newMessage = this.data.inputValue; // 获取输入框的值

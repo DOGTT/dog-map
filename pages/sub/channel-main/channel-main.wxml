@@ -1,25 +1,35 @@
 <view class="root">
-	<van-nav-bar class="nav" title=""></van-nav-bar>
 	<view class="header">
-		<image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
-		<!-- 作者 -->
-		<view class="channel-head">
-			<text class="item left">5/12</text>
-
-			<view class="item center">
-				<image class="channel-avatar" src="/static/png/dog-13.png" />
-				<text class="channel-title">{{channelInfo.title}}</text>
-				<van-icon class="inx-icon" name="star-o" />
+		<van-nav-bar class="nav" title="哈哈哈" left-text="返回" left-arrow bind:click-left="goBack" fixed></van-nav-bar>
+		<!-- 横幅区 -->
+		<view class="banner">
+			<view class="status-data">
+				<view class="status-item">
+					<van-icon name="chat-o" size="36rpx" />
+					<text class="status-count">9</text>
+				</view>
+				<text class="status-separator">|</text>
+				<view class="status-item">
+					<van-icon name="/static/svg/mark.svg" size="36rpx" />
+					<text class="status-count">13</text>
+				</view>
+				<text class="status-separator">|</text>
+				<view class="status-item">
+					<van-icon name="like-o" color="#F00" size="36rpx" />
+					<text class="status-count">5</text>
+				</view>
 			</view>
-
+			<view class="location-nav-button">
+				<image class="nav-icon" src="/static/png/nav.png" />
+				<text class="nav-text">500m</text>
+			</view>
 		</view>
 	</view>
 	<!-- 内容 -->
 	<scroll-view class="body" scroll-y>
+		<post-bubble avatarUrl="/static/png/dog-undefine.png" username="用户名称" date="2025-02-18" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
 
-		<post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
-
-		<post-bubble avatarUrl="/static/png/dog-13.png" username="用户名称" date="2025-02-18" tags="{{['标签1', '标签2']}}" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
+		<post-bubble avatarUrl="/static/png/dog-undefine.png" username="用户名称" date="2025-02-18" images="{{['/static/test/test-photo.jpg', '/static/test/test-photo2.png']}}" text="这里是发布的内容" reactions="{{['👍', '❤️', '😄']}}" bind:reactiontap="onReactionTap" />
 
 
 		<view>
