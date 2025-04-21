@@ -1,6 +1,6 @@
 <view class="root">
 	<view class="header">
-		<van-nav-bar class="nav" title="哈哈哈" left-text="返回" left-arrow bind:click-left="goBack" fixed></van-nav-bar>
+		<van-nav-bar class="nav" title="频道主页" left-text="返回" left-arrow bind:click-left="goBack" fixed></van-nav-bar>
 		<!-- 横幅区 -->
 		<view class="banner">
 			<view class="status-data">
@@ -39,25 +39,18 @@
 
 
 	<!-- 评论互动区 -->
-
 	<view class="tail">
 		<view class="input-container" style="bottom: {{inputBottom}};">
-			<textarea class="chat-input" show-confirm-bar="{{false}}" fixed cursor-spacing="10" auto-height maxlength="200" value="" placeholder="分享动态//动态展示 todo" placeholder-style="fontSize:10px" />
+			<textarea class="chat-input" show-confirm-bar="{{false}}" fixed cursor-spacing="10" auto-height maxlength="300" value="" placeholder="分享在此地的最新见闻" placeholder-style="fontSize:15px" />
 			<view class="input-tail">
-
 				<view class="media-uploader-box" wx:if="{{imageForUpload.length>0}}">
 					<van-uploader file-list="{{ imageForUpload }}" max-count="3" preview-full-image="{{true}}" bind:after-read="onAfterRead" bind:delete="onDeleteImage" />
 				</view>
-
 				<view class="input-ctrl-box">
-
-
 					<view class="inx-zone">
-
 						<van-uploader max-count="3" bind:after-read="onAfterRead">
 							<van-icon class="inx-icon" name="photo-o" />
 						</van-uploader>
-						<van-icon class="inx-icon" name="like-o" />
 					</view>
 					<button class="send-button" size="mini" bindtap="sendMessage"> 发送 </button>
 				</view>

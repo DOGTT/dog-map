@@ -1,209 +1,227 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #fcfcfc;
-    padding-top: 100px;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	background-color: #fcfcfc;
+	padding-top: 100px;
 }
 
 .nav {
-    position: sticky;
-    top: 0;
-    background-color: #f0f0f0;
+	position: sticky;
+	top: 0;
+	background-color: #f0f0f0;
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    z-index: 100;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+	z-index: 100;
 }
 
 .banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15rpx 30rpx;
-    background-color: #fff;
-    border-bottom: 1rpx solid rgba(238, 238, 238, 0.5);
-    margin-top: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15rpx 30rpx;
+	background-color: #fff;
+	border-bottom: 1rpx solid rgba(238, 238, 238, 0.5);
+	margin-top: 100px;
 }
 
 .status-data {
-    display: flex;
-    flex-direction: row;
-    gap: 15rpx;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: 15rpx;
+	align-items: center;
 }
 
 .status-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 5rpx;
 }
 
 .status-count {
-    font-size: 24rpx;
-    color: #555;
+	font-size: 24rpx;
+	color: #555;
 }
 
 .status-separator {
-    font-size: 24rpx;
-    color: #ccc;
-    margin: 0 5rpx;
+	font-size: 24rpx;
+	color: #ccc;
+	margin: 0 5rpx;
 }
 
 .location-nav-button {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.7));
-    padding: 8rpx 15rpx;
-    border-radius: 30rpx;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	display: flex;
+	align-items: center;
+	background: linear-gradient(135deg, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.7));
+	padding: 8rpx 15rpx;
+	border-radius: 30rpx;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .nav-icon {
-    width: 30rpx;
-    height: 30rpx;
-    margin-right: 8rpx;
+	width: 30rpx;
+	height: 30rpx;
+	margin-right: 8rpx;
 }
 
 .nav-text {
-    font-size: 24rpx;
-    color: #333;
+	font-size: 24rpx;
+	color: #333;
 }
 
 .body {
-    flex: 1;
-    margin-top: 88rpx;
-    /* 与header高度一致 */
-    height: calc(100vh - 88rpx - 140px);
-    /* 扣除顶部标题栏和底部输入区的高度 */
-    overflow-y: scroll;
-    font-size: 28rpx;
-    line-height: 40rpx;
-    color: #333;
+	flex: 1;
+	margin-top: 88rpx;
+	/* 与header高度一致 */
+	height: calc(100vh - 88rpx - 140px);
+	/* 扣除顶部标题栏和底部输入区的高度 */
+	overflow-y: scroll;
+	font-size: 28rpx;
+	line-height: 40rpx;
+	color: #333;
 }
 
 .tail {
-    /* position: sticky;  */
-    bottom: 0;
-    z-index: 10;
-    height: 140px;
-    overflow: hidden;
+	/* position: sticky;  */
+	bottom: 0;
+	z-index: 10;
+	height: 120px;
+	overflow: hidden;
 }
 
 .channel-head {
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    gap: 5rpx;
+	display: flex;
+	align-items: center;
+	justify-self: center;
+	gap: 5rpx;
 }
 
 .channel-avatar {
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
 .channel-name {
-    font-size: 25rpx;
-    color: #555;
-    font-weight: lighter;
+	font-size: 25rpx;
+	color: #555;
+	font-weight: lighter;
 }
 
 .back-icon {
-    width: 40rpx;
-    height: 40rpx;
-    margin-right: 20rpx;
-    cursor: pointer;
+	width: 40rpx;
+	height: 40rpx;
+	margin-right: 20rpx;
+	cursor: pointer;
 }
 
 .header-title {
-    font-size: 32rpx;
-    font-weight: bold;
-    color: #333;
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
 }
 
 
 .media-box {
-    width: 100%;
-    height: 600rpx;
+	width: 100%;
+	height: 600rpx;
 }
 
 .slide-image {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 /* 底部输入区 */
 
 .input-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    padding: 10px;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0px;
-    gap: 20px;
-    transition: bottom 0.3s;
-    /* 添加过渡效果 */
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+	padding: 10px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0px;
+	gap: 20px;
+	transition: bottom 0.3s;
+	/* 添加过渡效果 */
 }
 
 .chat-input {
-    border-radius: 20rpx;
-    background-color: #eee;
-    padding: 20rpx;
-    width: 100%;
+	border-radius: 16rpx;
+	background-color: #f5f5f5;
+	padding: 16rpx 24rpx;
+	width: 100%;
+	font-size: 32rpx;
+	line-height: 1.4;
+	transition: all 0.2s ease;
+	box-sizing: border-box;
+	border: 1rpx solid transparent;
+	vertical-align: middle;
+}
+
+.chat-input:focus {
+	background-color: #fff;
+	border-color: #007aff;
+	box-shadow: 0 0 0 2rpx rgba(0, 122, 255, 0.1);
+}
+
+.chat-input::placeholder {
+	color: #999;
+	font-size: 32rpx;
+	line-height: 1.4;
 }
 
 .van-uploader__upload {
-    width: 60px !important;
-    height: 60px !important;
+	width: 60px !important;
+	height: 60px !important;
 }
 
 .van-uploader__preview-image {
-    width: 60px !important;
-    height: 60px !important;
+	width: 60px !important;
+	height: 60px !important;
 }
 
 .input-tail {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
 }
 
 .input-ctrl-box {
-    display: flex;
-    height: 40px;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
+	display: flex;
+	height: 40px;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 20px;
 }
 
 .inx-zone {
-    gap: 5px;
+	gap: 5px;
 }
 
 .inx-icon {
-    font-size: 35px;
-    margin-right: 10px;
+	font-size: 35px;
+	margin-right: 10px;
 }
 
 .send-button {
-    width: 100px;
-    margin: 0;
-    /* margin-right: 10rpx; */
-    font-size: 20px !important;
-    background-color: #007aff;
-    color: white;
-    border: none;
-    border-radius: 20px;
+	width: 120px;
+	margin: 0;
+	/* margin-right: 10rpx; */
+	font-size: 20px !important;
+	background-color: #FFBF00;
+	color: white;
+	border: none;
+	border-radius: 15px;
 }

@@ -66,18 +66,18 @@
           <!-- 第2行：状态数据和导航 -->
           <view class="channel-detail-footer">
             <view class="status-data">
-              <view class="status-item">
+              <view class="status-item" bindtap='navToChannelPage'>
                 <van-icon name="chat-o" size="36rpx" />
                 <text class="status-count">{{channelDetailCard.data.interactionCount || 9}}</text>
               </view>
               <text class="status-separator">|</text>
-              <view class="status-item">
+              <view class="status-item" bindtap='navToChannelHome'>
                 <van-icon name="/static/svg/mark.svg" size="36rpx" />
                 <text class="status-count">{{channelDetailCard.data.memberCount || 13}}</text>
               </view>
               <text class="status-separator">|</text>
-              <view class="status-item">
-                <van-icon name="{{channelDetailCard.isLiked ? 'like' : 'like-o'}}" color="#F00" size="36rpx" bindclick='toggleLike' />
+              <view class="status-item" bindtap='toggleLike'>
+                <van-icon name="{{channelDetailCard.isLiked ? 'like' : 'like-o'}}" color="#F00" size="36rpx"  />
                 <text class="status-count">{{channelDetailCard.data.memberCount || 5}}</text>
               </view>
             </view>

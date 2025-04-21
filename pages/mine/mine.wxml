@@ -1,5 +1,4 @@
 <!--pages/mine.wxml-->
-<van-nav-bar title="Weixin" background="#FFF"></van-nav-bar>
 <view class="root">
 	<!-- 上部分 -->
 	<view class="header">

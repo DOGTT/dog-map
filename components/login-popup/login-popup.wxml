@@ -1,27 +1,45 @@
 <!--components/login-popup/login-popup.wxml-->
 
-<van-popup show="{{show}}" position="bottom" custom-style="z-index: 9999; height: 40%; border-radius: 20rpx 20rpx 0 0;" bind:close="onClose" class="login-popup">
+<van-popup show="{{show}}" position="bottom" custom-style="z-index: 9999; border-radius: 20rpx 20rpx 0 0;" bind:close="onClose" class="login-popup">
 
 
 
-  <view class="login-content">
-    <text class="login-title">▼・ᴥ・▼ 欢迎登陆</text>
-    <canvas id="avatarCropper" type="2d" style="display: none;" />
+	<view class="login-content">
+		<text class="login-title">▼・ᴥ・▼ 你来啦!</text>
+		<canvas id="avatarCropper" type="2d" style="display: none;" />
+		<button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+			<image class="avatar" src="{{petInfo.avatar}}"></image>
+		</button>
+		<view class="name-wrapper">
+			<text class="name-label">爱犬名字</text>
+			<input class="name-input" placeholder="请输入爱犬大名" value="{{petInfo.name}}" bind:change="onNameInputChange" />
+		</view>
+		<view class="title-wrapper" wx:if="{{petInfo.name}}">
+			<view class="title-row">
+				<text class="title-label">你是<text class="title-label-name">{{petInfo.name}}</text>的</text>
+				<input class="title-input" value="{{petInfo.title}}" bind:change="onTitleInputChange" />
+			</view>
+			<view class="title-select-row">
+				<text class="title-hint">也可以自己输入哦~</text>
+				<view class="title-tags">
+					<text class="title-tag {{petInfo.title === '主人' ? 'active' : ''}}" bindtap="onTitleTagTap" data-title="主人">主人</text>
+					<text class="title-tag {{petInfo.title === '粑粑' ? 'active' : ''}}" bindtap="onTitleTagTap" data-title="粑粑">粑粑</text>
+					<text class="title-tag {{petInfo.title === '麻麻' ? 'active' : ''}}" bindtap="onTitleTagTap" data-title="麻麻">麻麻</text>
+					<text class="title-tag {{petInfo.title === '捡屎官' ? 'active' : ''}}" bindtap="onTitleTagTap" data-title="捡屎官">捡屎官</text>
+				</view>
+			</view>
+		</view>
 
-    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image class="avatar" src="{{petInfo.avatar}}"></image>
-    </button>
-    <view class="name-wrapper">
-      <text class="name-label">汪汪大名</text>
-      <input class="name-input" placeholder="请输入狗狗昵称" value="{{petInfo.name}}" bind:change="onNameInputChange" />
-    </view>
-    <van-button open-type="getPhoneNumber" type="primary" bindclick="onLogin">微信一键登陆</van-button>
-  </view>
+		<view class="button-zone">
+			<van-button open-type="getPhoneNumber" type="primary" bindclick="onLogin">微信快速注册</van-button>
+		</view>
 
-  <checkbox-group class="terms-checkbox-group" bindchange="onTermsCheckboxChange">
-    <checkbox class="terms-checkbox" value="agree" />
-    <text class="terms-text">我已阅读并同意</text>
-    <text class="terms-link" bindtap="navigateToTerms">《用户协议》</text>
-  </checkbox-group>
+	</view>
+
+	<checkbox-group class="terms-checkbox-group" bindchange="onTermsCheckboxChange">
+		<checkbox class="terms-checkbox" value="agree" />
+		<text class="terms-text">我已阅读并同意</text>
+		<text class="terms-link" bindtap="navigateToTerms">《用户协议》</text>
+	</checkbox-group>
 
 </van-popup>

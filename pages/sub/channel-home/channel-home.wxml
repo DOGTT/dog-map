@@ -2,43 +2,71 @@
 	<van-nav-bar class="nav" title=""></van-nav-bar>
 	<!-- 头部固定 -->
 	<view class="header">
-		<image class="back-icon" src="/static/png/return.png" bindtap="goBack" />
+		<van-nav-bar class="nav" title="频道信息" left-text="返回" left-arrow bind:click-left="goBack" fixed></van-nav-bar>
 	</view>
 	<!-- 主内容区 -->
 	<view class="body">
-		<!-- 标题 -->
-		<view class="channel-title">
-			<text class="title-text">{{channelInfo.name}}</text>
-		</view>
-
-		<!-- 状态标签 -->
-		<view class="status-tag" wx:if="{{channelInfo.status}}">
-			<text class="tag-text">🔥 {{channelInfo.status}}</text>
-		</view>
-
-		<!-- 描述简介 -->
-		<view class="channel-description">
-			<text class="description-text">{{channelInfo.description}}</text>
-		</view>
-
-		<!-- 位置信息 -->
-		<view class="location-info">
-			<view class="location-text">
-				<text>{{channelInfo.location}}</text>
-				<text class="distance">{{channelInfo.distance}}km</text>
-			</view>
-			<view class="location-actions">
-				<button class="nav-btn" bindtap="navigate">导航</button>
+		<!-- 标题和类型信息 -->
+		<view class="channel-detail-header">
+			<view class="title-container">
+				<view class="title-row">
+					<text class="type-text">{{channelInfo.status || '类型'}}</text>
+					<text class="separator">·</text>
+					<text class="title-text">{{channelInfo.name}}</text>
+				</view>
+				<view class="tags-container">
+					<text class="tag-item">大狗狗</text>
+					<text class="tag-item">友好</text>
+					<text class="tag-item">活跃</text>
+				</view>
+				<view class="status-data">
+					<view class="status-item">
+						<van-icon name="chat-o" size="36rpx" />
+						<text class="status-count">9</text>
+					</view>
+					<text class="status-separator">|</text>
+					<view class="status-item">
+						<van-icon name="/static/svg/mark.svg" size="36rpx" />
+						<text class="status-count">13</text>
+					</view>
+					<text class="status-separator">|</text>
+					<view class="status-item">
+						<van-icon name="like-o" size="36rpx" />
+						<text class="status-count">5</text>
+					</view>
+				</view>
+				<view class="location-row">
+					<text class="location-text">{{channelInfo.location}}</text>
+					<view class="location-nav-button" bindtap="navigate">
+						<image class="nav-icon" src="/static/png/nav.png" />
+						<text class="nav-text">{{channelInfo.distance}}km</text>
+					</view>
+				</view>
+				<view class="intro-row">
+					<view class="intro-content">
+						<text class="intro-text" wx:if="{{!isEditingIntro}}">{{channelInfo.intro}}</text>
+						<textarea class="intro-input" wx:else value="{{channelInfo.intro}}" bindinput="onIntroInput" placeholder="请输入简介" auto-height maxlength="200" show-confirm-bar="{{false}}" />
+					</view>
+					<view class="intro-actions">
+						<view class="action-buttons" wx:if="{{!isEditingIntro}}">
+							<van-icon name="edit" size="36rpx" color="#666666" bindtap="startEditIntro" />
+						</view>
+						<view class="action-buttons" wx:else>
+							<van-button size="small" type="primary" custom-class="save-btn" bindtap="saveIntro">保存</van-button>
+							<van-button size="small" type="default" custom-class="cancel-btn" bindtap="cancelEditIntro">取消</van-button>
+						</view>
+					</view>
+				</view>
 			</view>
 		</view>
 
 		<!-- 设置项目 -->
-		<view class="settings">
+		<!-- <view class="settings">
 			<view class="setting-item" bindtap="editChannel">
 				<image class="setting-icon" src="/static/png/settings.png" />
 				<text>频道设置</text>
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 滑动tab -->
 		<view class="tab-container">
@@ -46,14 +74,14 @@
 				<view class="tab {{currentTab === 'members' ? 'active' : ''}}" bindtap="switchTab" data-tab="members">
 					<text>成员</text>
 				</view>
+				<view class="tab {{currentTab === 'links' ? 'active' : ''}}" bindtap="switchTab" data-tab="links">
+					<text>动态</text>
+				</view>
 				<view class="tab {{currentTab === 'essence' ? 'active' : ''}}" bindtap="switchTab" data-tab="essence">
 					<text>精华</text>
 				</view>
 				<view class="tab {{currentTab === 'media' ? 'active' : ''}}" bindtap="switchTab" data-tab="media">
 					<text>媒体</text>
-				</view>
-				<view class="tab {{currentTab === 'links' ? 'active' : ''}}" bindtap="switchTab" data-tab="links">
-					<text>链接</text>
 				</view>
 			</view>
 		</view>
@@ -71,6 +99,14 @@
 				</view>
 			</view>
 
+			<!-- 动态列表 -->
+			<view class="links-list" wx:if="{{currentTab === 'links'}}">
+				<view class="link-item" wx:for="{{linksList}}" wx:key="id" bindtap="openLink" data-url="{{item.url}}">
+					<text class="link-title">{{item.title}}</text>
+					<text class="link-url">{{item.url}}</text>
+				</view>
+			</view>
+
 			<!-- 精华内容 -->
 			<view class="essence-list" wx:if="{{currentTab === 'essence'}}">
 				<view class="essence-item" wx:for="{{essenceList}}" wx:key="id">
@@ -85,21 +121,15 @@
 					<image class="media-item" wx:for="{{mediaList}}" wx:key="id" src="{{item.url}}" mode="aspectFill" />
 				</view>
 			</view>
-
-			<!-- 链接列表 -->
-			<view class="links-list" wx:if="{{currentTab === 'links'}}">
-				<view class="link-item" wx:for="{{linksList}}" wx:key="id" bindtap="openLink" data-url="{{item.url}}">
-					<text class="link-title">{{item.title}}</text>
-					<text class="link-url">{{item.url}}</text>
-				</view>
-			</view>
 		</scroll-view>
 	</view>
 
 	<!-- 尾部固定 -->
 	<view class="tail">
 		<view class="action-buttons">
-			<button class="join-btn" bindtap="joinChannel">加入频道</button>
+			<button class="join-btn {{isJoined ? 'joined' : ''}}" bindtap="handleJoinAction">
+				{{isJoined ? '进入频道' : '关注并进入频道'}}
+			</button>
 		</view>
 	</view>
 </view>
