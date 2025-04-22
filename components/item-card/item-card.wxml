@@ -6,7 +6,7 @@
   <text class="item-card-title">{{title|| '标题'}}</text>
   <view class="item-card-tail">
     <view class="author-info">
-      <image class="author-avatar" src="{{coverImage || '/static/png/dog-13.png'}}" />
+      <image class="author-avatar" src="{{coverImage || '/static/png/dog-undefine.png'}}" />
       <text class="author-name">香香</text>
     </view>
     <view class="ixn-info">

@@ -58,27 +58,35 @@
 	</view>
 	<!-- 下部分 -->
 	<scroll-view class="bottom-section" enable-flex scroll-y="true" bindscrolltolower="onLoadMore" lower-threshold="50">
-		<!-- <text>第一列</text> -->
-		<view class="bottom-column" bindscrolltolower="onLoadMore">
-			<item-card title="1a" />
-			<item-card title="1b" />
-			<item-card title="1c" />
-			<item-card title="1d" />
+		<view class="waterfall-container" wx:if="{{leftColumnItems.length > 0 || rightColumnItems.length > 0}}">
+			<view class="waterfall-column">
+				<block wx:for="{{leftColumnItems}}" wx:key="id">
+					<item-card 
+						title="{{item.title}}"
+						description="{{item.description}}"
+					/>
+				</block>
+			</view>
+			<view class="waterfall-column">
+				<block wx:for="{{rightColumnItems}}" wx:key="id">
+					<item-card 
+						title="{{item.title}}"
+						description="{{item.description}}"
+					/>
+				</block>
+			</view>
 		</view>
-		<!-- <text>第二列</text> -->
-		<view class="bottom-column" bindscrolltolower="onLoadMore">
-			<item-card title="2a" />
-			<item-card title="2b" />
-			<item-card title="2c" />
-			<item-card title="2d" />
+		
+		<!-- 空状态提示 -->
+		<view class="empty-state" wx:if="{{leftColumnItems.length === 0 && rightColumnItems.length === 0}}">
+			<image class="empty-icon" src="/static/png/empty.png" mode="aspectFit" />
+			<text class="empty-text">暂无{{tabs[activeTab]}}内容</text>
 		</view>
 
 		<view class="loading-status">
-			<!-- <van-loading wx:if="{{isLoading}}" size="24px">加载中...</van-loading> -->
+			<van-loading wx:if="{{isLoading}}" size="24px">加载中...</van-loading>
 			<text wx:if="{{noMoreData}}">没有更多了</text>
-			<text>没有更多了</text>
 		</view>
-
 	</scroll-view>
 
 	<!-- 登陆注册页 -->

@@ -136,6 +136,14 @@ Component({
                 })
                 return
             }
+            // 验证是否已选择头像
+            if (!this.data.petInfo.avatar_base64_data) {
+                wx.showToast({
+                    title: '请选择爱犬头像',
+                    icon: 'none',
+                })
+                return
+            }
             var _this = this
             wx.login({
                 success: res => {
