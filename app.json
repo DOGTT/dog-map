@@ -9,7 +9,8 @@
         "pages/sub/channel-main/channel-main",
         "pages/sub/channel-home/channel-home",
         "pages/sub/search/search",
-        "pages/sub/user-edit/user-edit"
+        "pages/sub/user-edit/user-edit",
+        "pages/sub/test/test"
     ],
     "useExtendedLib": {
         "kbone": true,
@@ -48,7 +49,7 @@
                 "selectedIconPath": "static/png/tab/message-set.png"
             },
             {
-                "pagePath": "pages/mine/mine",
+                "pagePath": "pages/sub/test/test",
                 "text": "我们",
                 "iconPath": "static/png/tab/home.png",
                 "selectedIconPath": "static/png/tab/home-set.png"

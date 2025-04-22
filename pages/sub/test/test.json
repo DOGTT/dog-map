@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "吸顶Tabbar示例",
+  "usingComponents": {},
+  "navigationStyle": "custom",
+  "backgroundColor": "#f8f8f8"
+}

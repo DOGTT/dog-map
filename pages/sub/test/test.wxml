@@ -1,0 +1,45 @@
+<!-- index.wxml -->
+<view class="container">
+  <!-- 固定导航栏 -->
+  <view class="navbar">页面标题</view>
+  
+  <!-- 主滚动区域 -->
+  <scroll-view 
+    scroll-y 
+    class="main-scroll" 
+    scroll-top="{{scrollTop}}"
+    bindscroll="handleScroll"
+    bindtouchend="handleScrollEnd"
+    bindtouchcancel="handleScrollEnd"
+    style="height: {{scrollHeight}}px;"
+  >
+    <!-- 顶部内容区域 -->
+    <view class="top-content" style="height: {{topHeight}}px;">
+      <image src="/banner.jpg" mode="widthFix"/>
+    </view>
+
+    <!-- 智能定位Tabbar -->
+    <view 
+      class="tabbar {{isSticky ? 'sticky' : ''}}" 
+      style="transform: translateY({{tabbarOffset}}px); transition: {{transition}};"
+    >
+      <view 
+        wx:for="{{tabs}}" 
+        wx:key="index" 
+        class="tab {{activeIndex === index ? 'active' : ''}}"
+        bindtap="switchTab"
+        data-index="{{index}}"
+      >
+        {{item}}
+        <view class="tab-line" wx:if="{{activeIndex === index}}"></view>
+      </view>
+    </view>
+
+    <!-- 内容区域 -->
+    <view class="content">
+      <block wx:for="{{100}}" wx:key="*this">
+        <view class="item">内容区块 {{index + 1}}</view>
+      </block>
+    </view>
+  </scroll-view>
+</view>
